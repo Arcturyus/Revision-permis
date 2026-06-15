@@ -1,9 +1,7 @@
 /* ====================================================================
    DONNÉES DES 100 FICHES — Examen pratique du permis B (deck ECF)
    Généré automatiquement depuis « questions-permis-ecf.pdf ».
-   ⚠️  À RELIRE : extraction automatique d'un PDF. Quelques coquilles du
-       PDF source subsistent (ex. fiche 81 « endroitdangereux »,
-       fiche 84 « de usure »). Ce fichier est désormais ÉDITABLE À LA MAIN :
+   Ce fichier est ÉDITABLE À LA MAIN :
        ne pas le régénérer sous peine d'écraser les corrections.
    NB : le deck ECF répète volontairement certaines fiches (65≈1, 67≈3…).
    image: chemin d'une photo (assets/img/…) ou null si aucune.
@@ -103,13 +101,13 @@ window.QUESTIONS = [
       },
       {
         "role": "manipulation",
-        "q": "Faites fonctionner les essuie- glaces avant du véhicule sur la position la plus rapide.",
+        "q": "Faites fonctionner les essuie-glaces avant du véhicule sur la position la plus rapide.",
         "a": ""
       },
       {
         "role": "premiers_secours",
-        "q": "Comment vérifier la respiration d'une victime ?",
-        "a": "• Regarder si le ventre et la poitrine se soulèvent.\n• Sentir de l'air à l’expiration."
+        "q": "Comment vérifier la respiration d’une victime ?",
+        "a": "• Regarder si le ventre et la poitrine se soulèvent.\n• Sentir de l’air à l’expiration."
       }
     ],
     "image": null
@@ -224,7 +222,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "Quelles Sont les précautions à prendre lors du remplissage du réservoir ?",
+        "q": "Quelles sont les précautions à prendre lors du remplissage du réservoir ?",
         "a": "Arrêter le moteur, ne pas fumer, ne pas téléphoner."
       },
       {
@@ -234,7 +232,7 @@ window.QUESTIONS = [
       },
       {
         "role": "premiers_secours",
-        "q": "Quel comportement adopté en présence d'une victime qui ne répond pas et ne réagit pas, mais respire ?",
+        "q": "Quel comportement adopter en présence d'une victime qui ne répond pas et ne réagit pas, mais respire ?",
         "a": "• La placer en position stable sur le côté ou Position Latérale de Sécurité (PLS),\n• Alerter les secours,\n• Surveiller la respiration de la victime jusqu'à l'arrivée des secours."
       }
     ],
@@ -266,7 +264,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "Quel peut être la conséquence d'une panne de dégivrage de la lunette arrière ?",
+        "q": "Quelle peut être la conséquence d'une panne de dégivrage de la lunette arrière ?",
         "a": "Une insuffisance ou une absence de visibilité vers l’arrière."
       },
       {
@@ -350,7 +348,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "À partir de quel taux d'alcool, en période de permis probatoire, est- on en infraction ?",
+        "q": "À partir de quel taux d'alcool, en période de permis probatoire, est-on en infraction ?",
         "a": "0,20 g/L de sang, c'est-à-dire 0 verre, car dès le 1er verre, ce seuil peut être dépassé."
       },
       {
@@ -376,7 +374,7 @@ window.QUESTIONS = [
       },
       {
         "role": "manipulation",
-        "q": "Contrôlez l'État, la propreté et le fonctionnement des feux de détresse à l'avant et à l’arrière.",
+        "q": "Contrôlez l’état, la propreté et le fonctionnement des feux de détresse à l’avant et à l’arrière.",
         "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
       },
       {
@@ -413,7 +411,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "manipulation",
-        "q": "Citez un cas de utilisation de l'appel lumineux ?",
+        "q": "Citez un cas d'utilisation de l'appel lumineux ?",
         "a": "• Pour avertir de son approche,\n• En cas de danger à la place de l'avertisseur sonore."
       },
       {
@@ -528,7 +526,7 @@ window.QUESTIONS = [
       },
       {
         "role": "securite_routiere",
-        "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de pré signalisation ?",
+        "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
         "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
       }
     ],
@@ -623,7 +621,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "Par temps clair, à quelle distance doivent-il être visibles ?",
+        "q": "Par temps clair, à quelle distance doivent-ils être visibles ?",
         "a": "À 150 m."
       },
       {
@@ -759,7 +757,7 @@ window.QUESTIONS = [
       },
       {
         "role": "premiers_secours",
-        "q": "L’Utilisation d'un défibrillateur automatisé sur une victime qui n'est pas un arrêt cardiaque présente-t-elle un risque ?",
+        "q": "L’utilisation d’un défibrillateur automatisé sur une victime qui n’est pas en arrêt cardiaque présente-t-elle un risque ?",
         "a": "Non, car le défibrillateur est automatisé et se déclenche uniquement quand la victime est en arrêt cardiaque."
       }
     ],
@@ -906,7 +904,7 @@ window.QUESTIONS = [
       },
       {
         "role": "premiers_secours",
-        "q": "Quelles sont les signes d'un arrêt cardiaque ?",
+        "q": "Quels sont les signes d'un arrêt cardiaque ?",
         "a": "La victime ne répond pas, ne réagit pas et ne respire pas ou présente une respiration anormale."
       }
     ],
@@ -922,7 +920,7 @@ window.QUESTIONS = [
       },
       {
         "role": "verification",
-        "q": "Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement du des feux de recul.",
+        "q": "Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de recul.",
         "a": "« Propres et en bon état » Signaler toute anomalie."
       },
       {
@@ -1138,7 +1136,7 @@ window.QUESTIONS = [
       {
         "role": "premiers_secours",
         "q": "Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?",
-        "a": "• Alerter : alerter immédiatement les secours.\n• Masser : pratiquer une réanimation cardio-pulmonaires.\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible."
+        "a": "• Alerter : alerter immédiatement les secours.\n• Masser : pratiquer une réanimation cardio-pulmonaire.\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible."
       }
     ],
     "image": null
@@ -1263,7 +1261,7 @@ window.QUESTIONS = [
       },
       {
         "role": "premiers_secours",
-        "q": "L’Utilisation d'un défibrillateur automatisé sur une victime qui n'est pas en arrêt cardiaque présente-t-elle un risque ?",
+        "q": "L’utilisation d’un défibrillateur automatisé sur une victime qui n’est pas en arrêt cardiaque présente-t-elle un risque ?",
         "a": "Non, car le défibrillateur est automatisé et se déclenche uniquement quand la victime est en arrêt cardiaque."
       }
     ],
@@ -1337,7 +1335,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "Pour un capot s'ouvre depuis l'avant du véhicule, quelle est l'utilité du dispositif de sécurité ?",
+        "q": "Pour un capot qui s'ouvre depuis l'avant du véhicule, quelle est l'utilité du dispositif de sécurité ?",
         "a": "Empêcher l'ouverture du capot en circulation en cas de mauvais verrouillage."
       },
       {
@@ -1447,13 +1445,13 @@ window.QUESTIONS = [
       },
       {
         "role": "manipulation",
-        "q": "Faites fonctionner les essuie- glaces avant du véhicule sur la position la plus rapide.",
+        "q": "Faites fonctionner les essuie-glaces avant du véhicule sur la position la plus rapide.",
         "a": ""
       },
       {
         "role": "premiers_secours",
-        "q": "Comment vérifier la respiration d'une victime ?",
-        "a": "• Regarder si le ventre et la poitrine se soulèvent,\n• Sentir de l'air à l’expiration."
+        "q": "Comment vérifier la respiration d’une victime ?",
+        "a": "• Regarder si le ventre et la poitrine se soulèvent,\n• Sentir de l’air à l’expiration."
       }
     ],
     "image": null
@@ -1526,7 +1524,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "Quel peut être la conséquence d'une panne de dégivrage de la lunette arrière ?",
+        "q": "Quelle peut être la conséquence d'une panne de dégivrage de la lunette arrière ?",
         "a": "Une insuffisance ou une absence de visibilité vers l’arrière."
       },
       {
@@ -1536,7 +1534,7 @@ window.QUESTIONS = [
       },
       {
         "role": "securite_routiere",
-        "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de pré signalisation ?",
+        "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
         "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
       }
     ],
@@ -1594,7 +1592,7 @@ window.QUESTIONS = [
       },
       {
         "role": "manipulation",
-        "q": "Contrôlez l'État, la propreté et le fonctionnement des feux de détresse à l'avant et à l’arrière.",
+        "q": "Contrôlez l’état, la propreté et le fonctionnement des feux de détresse à l’avant et à l’arrière.",
         "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
       },
       {
@@ -1610,7 +1608,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "verification",
-        "q": "À partir de quel taux d'alcool, en période de permis probatoire, est- on en infraction ?",
+        "q": "À partir de quel taux d'alcool, en période de permis probatoire, est-on en infraction ?",
         "a": "0,20 g/L de sang, c'est-à-dire 0 verre, car dès le 1er verre, ce seuil peut être dépassé."
       },
       {
@@ -1631,7 +1629,7 @@ window.QUESTIONS = [
     "items": [
       {
         "role": "manipulation",
-        "q": "Citer un cas de utilisation de l'appel lumineux.",
+        "q": "Citer un cas d'utilisation de l'appel lumineux.",
         "a": "• Pour avertir de son approche,\n• En cas de danger à la place de l'avertisseur sonore."
       },
       {
@@ -1704,7 +1702,7 @@ window.QUESTIONS = [
       },
       {
         "role": "securite_routiere",
-        "q": "Hors autoroute ou endroitdangereux, en cas de panne ou d'accident, où doit être placé le triangle de pré signalisation ?",
+        "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
         "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
       }
     ],
@@ -1762,7 +1760,7 @@ window.QUESTIONS = [
       },
       {
         "role": "verification",
-        "q": "Sur le flanc d’un pneumatique, désignez le repère du témoin de usure de la bande de roulement.",
+        "q": "Sur le flanc d’un pneumatique, désignez le repère du témoin d’usure de la bande de roulement.",
         "a": ""
       },
       {
@@ -1788,7 +1786,7 @@ window.QUESTIONS = [
       },
       {
         "role": "securite_routiere",
-        "q": "Quel comportement adopté en cas de diffusion du signal d'alerte du système d'alerte et d'information des populations (SAIP) ?",
+        "q": "Quel comportement adopter en cas de diffusion du signal d'alerte du système d'alerte et d'information des populations (SAIP) ?",
         "a": "• Se mettre en sécurité,\n• S’informer grâce aux médias et site Internet des autorités dès que leur consultation est possible,\n• Respecter les consignes des autorités."
       }
     ],
@@ -1914,8 +1912,8 @@ window.QUESTIONS = [
       },
       {
         "role": "premiers_secours",
-        "q": "Quelles sont les signes d'un arrêt cardiaque ?",
-        "a": "Victime ne répond pas, ne réagit pas et ne respire pas ou présente une respiration anormale."
+        "q": "Quels sont les signes d'un arrêt cardiaque ?",
+        "a": "La victime ne répond pas, ne réagit pas et ne respire pas ou présente une respiration anormale."
       }
     ],
     "image": null
@@ -2014,7 +2012,7 @@ window.QUESTIONS = [
       },
       {
         "role": "manipulation",
-        "q": "Montrez où s’effetue le changement d'une ampoule à l'avant du véhicule.",
+        "q": "Montrez où s’effectue le changement d’une ampoule à l’avant du véhicule.",
         "a": ""
       },
       {
@@ -2040,7 +2038,7 @@ window.QUESTIONS = [
       },
       {
         "role": "premiers_secours",
-        "q": "Quel comportement adopté en présence d'une victime qui ne répond pas et ne réagit pas, mais respire ?",
+        "q": "Quel comportement adopter en présence d'une victime qui ne répond pas et ne réagit pas, mais respire ?",
         "a": "• La placer en position stable sur le côté ou Position Latérale de Sécurité (PLS),\n• Alerter les secours,\n• Surveiller la respiration de la victime jusqu'à l'arrivée des secours."
       }
     ],
@@ -2098,13 +2096,13 @@ window.QUESTIONS = [
       },
       {
         "role": "manipulation",
-        "q": "Montrez où se situe les gicleurs de lave-glace avant.",
+        "q": "Montrez où se situent les gicleurs de lave-glace avant.",
         "a": ""
       },
       {
         "role": "premiers_secours",
         "q": "Qu'est-ce qu'un défibrillateur automatisé externe (DAE) ?",
-        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normal à une victime en arrêt cardiaque."
+        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque."
       }
     ],
     "image": null

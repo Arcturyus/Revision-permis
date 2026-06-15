@@ -46,9 +46,14 @@
     $('stat-due').textContent = c.due;
     $('stat-mastered').textContent = c.mastered;
     $('home-progress').style.width = (c.total ? (c.mastered / c.total * 100) : 0) + '%';
-    $('today-sub').textContent = c.due > 0
-      ? c.due + ' fiche' + (c.due > 1 ? 's' : '') + ' à réviser'
-      : 'Tout est à jour — bravo !';
+    if (c.due === 0) {
+      $('today-sub').textContent = 'Tout est à jour — bravo !';
+    } else {
+      var parts = [];
+      if (c.dueNew > 0) parts.push(c.dueNew + ' nouvelle' + (c.dueNew > 1 ? 's' : ''));
+      if (c.dueReview > 0) parts.push(c.dueReview + ' à revoir');
+      $('today-sub').textContent = parts.join(' + ');
+    }
   }
 
   function fichesForTheme(theme) {
@@ -61,7 +66,10 @@
   function startSession(mode, theme) {
     var ids;
     if (mode === 'today') {
-      ids = ALL_IDS.filter(SRS.isDue);
+      var dueReview = ALL_IDS.filter(function (id) { return !SRS.isNew(id) && SRS.isDue(id); });
+      var allowance = SRS.newAllowanceToday();
+      var dueNew = ALL_IDS.filter(SRS.isNew).slice(0, allowance);
+      ids = dueReview.concat(dueNew);
       if (ids.length === 0) ids = ALL_IDS.slice(); // rien de dû → révision libre
     } else if (mode === 'theme') {
       ids = fichesForTheme(theme);
@@ -184,6 +192,12 @@
       if (confirm('Effacer toute ta progression enregistrée sur cet appareil ?')) {
         SRS.reset(); refreshHome();
       }
+    });
+    var npdInput = $('setting-new-per-day');
+    npdInput.value = SRS.getSettings().newPerDay;
+    npdInput.addEventListener('change', function () {
+      var v = parseInt(npdInput.value, 10);
+      if (v > 0) { SRS.setSetting('newPerDay', v); refreshHome(); }
     });
   }
 
