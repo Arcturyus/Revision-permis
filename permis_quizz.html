@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code de la Route — Révisions</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --road-yellow: #FFD500;
+    --road-yellow-dark: #E5C000;
+    --road-red: #D7282F;
+    --road-blue: #003DA5;
+    --road-green: #00843D;
+    --asphalt: #1a1a1a;
+    --asphalt-light: #2a2a2a;
+    --line-white: #f5f5f5;
+    --concrete: #f0eee8;
+    --concrete-dark: #d8d4c8;
+    --success: #00843D;
+    --error: #D7282F;
+    --shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--concrete);
+    color: var(--asphalt);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0, transparent 39px, rgba(0,0,0,0.02) 39px, rgba(0,0,0,0.02) 40px),
+      repeating-linear-gradient(90deg, transparent 0, transparent 39px, rgba(0,0,0,0.02) 39px, rgba(0,0,0,0.02) 40px);
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--asphalt);
+    color: var(--line-white);
+    padding: 3rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 8px solid var(--road-yellow);
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+      var(--line-white) 0, var(--line-white) 40px,
+      transparent 40px, transparent 80px);
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    margin-bottom: 0.5rem;
+  }
+
+  .header h1 .highlight {
+    color: var(--road-yellow);
+    display: inline-block;
+    transform: skew(-5deg);
+  }
+
+  .header .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 1rem;
+  }
+
+  .header .intro {
+    margin-top: 1.5rem;
+    max-width: 600px;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+  }
+
+  /* NAVIGATION DES SECTIONS */
+  .sections-nav {
+    max-width: 1200px;
+    margin: -2.5rem auto 3rem;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .section-card {
+    background: white;
+    border: 3px solid var(--asphalt);
+    padding: 1.5rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    text-align: left;
+    font-family: inherit;
+    color: var(--asphalt);
+    box-shadow: 4px 4px 0 var(--asphalt);
+  }
+
+  .section-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--asphalt);
+  }
+
+  .section-card.active {
+    background: var(--road-yellow);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--asphalt);
+  }
+
+  .section-card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--road-red);
+  }
+
+  .section-card.active .num { color: var(--asphalt); }
+
+  .section-card .label {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-top: 0.25rem;
+  }
+
+  .section-card .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(0,0,0,0.5);
+    margin-top: 0.5rem;
+  }
+
+  /* PROGRESSION */
+  .progress-bar-container {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(0,0,0,0.6);
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: var(--concrete-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--road-green);
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* CONTENU PRINCIPAL */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  .question-card {
+    background: white;
+    border-radius: 0;
+    border: 3px solid var(--asphalt);
+    box-shadow: 8px 8px 0 var(--asphalt);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .question-header {
+    background: var(--asphalt);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .question-header .q-num { color: var(--road-yellow); font-weight: 700; }
+
+  .question-body {
+    padding: 2rem 1.75rem 1.5rem;
+  }
+
+  .question-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    color: var(--asphalt);
+  }
+
+  .visual-aid {
+    background: var(--concrete);
+    border: 2px dashed var(--concrete-dark);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.6);
+    border-radius: 4px;
+  }
+
+  .visual-aid svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .answer-btn {
+    background: white;
+    border: 2px solid var(--asphalt);
+    padding: 1rem 1.25rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--asphalt);
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    position: relative;
+  }
+
+  .answer-btn:not(:disabled):hover {
+    background: var(--road-yellow);
+    transform: translateX(4px);
+  }
+
+  .answer-btn .letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--road-red);
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .answer-btn.correct {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+  }
+
+  .answer-btn.correct .letter { color: white; }
+
+  .answer-btn.incorrect {
+    background: var(--error);
+    color: white;
+    border-color: var(--error);
+  }
+
+  .answer-btn.incorrect .letter { color: white; }
+
+  .answer-btn:disabled {
+    cursor: not-allowed;
+  }
+
+  .answer-btn.faded {
+    opacity: 0.45;
+  }
+
+  /* EXPLICATION */
+  .explanation {
+    margin: 1.5rem 1.75rem 1.75rem;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, #fff9d6 0%, #fff5b8 100%);
+    border-left: 6px solid var(--road-yellow);
+    display: none;
+    animation: slideIn 0.4s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .explanation.show { display: block; }
+
+  .explanation h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+    color: var(--asphalt);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .explanation h4::before {
+    content: '💡';
+    font-size: 1.2rem;
+  }
+
+  .explanation p {
+    margin-bottom: 0.75rem;
+    color: var(--asphalt);
+  }
+
+  .explanation strong {
+    background: rgba(0,0,0,0.1);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  .explanation .tip {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(0,0,0,0.2);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  .explanation .tip::before {
+    content: '🎯 Astuce — ';
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* NAVIGATION QUESTION */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0 1.75rem 1.75rem;
+    gap: 1rem;
+  }
+
+  .nav-btn {
+    background: var(--asphalt);
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+  }
+
+  .nav-btn:not(:disabled):hover {
+    background: var(--road-red);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .nav-btn.primary {
+    background: var(--road-green);
+  }
+
+  .nav-btn.primary:hover {
+    background: #006b30;
+  }
+
+  /* ÉCRAN DE FIN */
+  .results-screen {
+    background: white;
+    border: 3px solid var(--asphalt);
+    box-shadow: 8px 8px 0 var(--asphalt);
+    padding: 3rem 2rem;
+    text-align: center;
+    display: none;
+  }
+
+  .results-screen.show { display: block; }
+
+  .results-screen .score-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    line-height: 1;
+    margin: 1rem 0;
+  }
+
+  .results-screen .score-display.good { color: var(--road-green); }
+  .results-screen .score-display.medium { color: var(--road-yellow-dark); }
+  .results-screen .score-display.bad { color: var(--road-red); }
+
+  .results-screen h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .results-screen .verdict {
+    font-size: 1.1rem;
+    color: rgba(0,0,0,0.7);
+    margin-bottom: 2rem;
+  }
+
+  .restart-btn {
+    background: var(--road-yellow);
+    border: 3px solid var(--asphalt);
+    padding: 1rem 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--asphalt);
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+    color: var(--asphalt);
+  }
+
+  .restart-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--asphalt);
+  }
+
+  /* PANNEAUX SVG INTÉGRÉS */
+  .panel-display {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .panel-display .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(0,0,0,0.6);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .header { padding: 2rem 1.25rem 3rem; }
+    .sections-nav { padding: 0 1.25rem; }
+    .container { padding: 0 1.25rem 3rem; }
+    .question-body { padding: 1.5rem 1.25rem 1rem; }
+    .explanation { margin: 1rem 1.25rem 1.25rem; padding: 1.25rem; }
+    .nav-buttons { padding: 0 1.25rem 1.25rem; flex-direction: column; }
+    .nav-btn { width: 100%; }
+    .question-text { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-content">
+    <h1>CODE DE LA <span class="highlight">ROUTE</span></h1>
+    <div class="subtitle">// Révision interactive — Spécial reprise de conduite</div>
+    <p class="intro">Deux blocs : (1) le code en pratique — priorités, panneaux, voies, situations ; (2) la totalité des questions officielles REMC posées par l'examinateur à l'oral. Chaque question est expliquée.</p>
+  </div>
+</header>
+
+<nav class="sections-nav" id="sections-nav">
+  <button class="section-card active" data-section="0">
+    <div class="num">01</div>
+    <div class="label">Priorités</div>
+    <div class="count">Qui passe en premier ?</div>
+  </button>
+  <button class="section-card" data-section="1">
+    <div class="num">02</div>
+    <div class="label">Panneaux</div>
+    <div class="count">Lire la signalisation</div>
+  </button>
+  <button class="section-card" data-section="2">
+    <div class="num">03</div>
+    <div class="label">Voies & marquages</div>
+    <div class="count">Choisir sa voie</div>
+  </button>
+  <button class="section-card" data-section="3">
+    <div class="num">04</div>
+    <div class="label">Situations</div>
+    <div class="count">Circulation réelle</div>
+  </button>
+  <button class="section-card" data-section="4">
+    <div class="num">05</div>
+    <div class="label">Examen — Vérifs</div>
+    <div class="count">Intérieures & extérieures</div>
+  </button>
+  <button class="section-card" data-section="5">
+    <div class="num">06</div>
+    <div class="label">Examen — Sécu & Secours</div>
+    <div class="count">Sécurité routière & PS</div>
+  </button>
+  <button class="section-card" data-section="6">
+    <div class="num">07</div>
+    <div class="label">Fautes éliminatoires</div>
+    <div class="count">À éviter absolument</div>
+  </button>
+</nav>
+
+<div class="progress-bar-container">
+  <div class="progress-info">
+    <span id="progress-text">Question 1 / 10</span>
+    <span id="score-text">Score : 0</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<main class="container">
+  <div id="quiz-area"></div>
+  <div class="results-screen" id="results-screen">
+    <h2>SECTION TERMINÉE</h2>
+    <div class="score-display" id="final-score">0/10</div>
+    <p class="verdict" id="verdict"></p>
+    <button class="restart-btn" id="restart-btn">↻ Recommencer cette section</button>
+  </div>
+</main>
+
+<script>
+// ===== BANQUE DE QUESTIONS =====
+const QUIZ_DATA = {
+  sections: [
+    {
+      title: "Priorités",
+      questions: [
+        {
+          q: "À une intersection sans panneau ni feu, qui a la priorité ?",
+          visual: `<svg viewBox="0 0 280 280" width="260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vue de dessus d'une intersection. La voiture bleue MOI arrive par la gauche en allant vers la droite. La voiture rouge LUI arrive par le bas en allant vers le haut, donc à la droite de MOI."><rect width="280" height="280" fill="#c8d8b8"/><rect x="0" y="105" width="280" height="70" fill="#3a3a3a"/><rect x="105" y="0" width="70" height="280" fill="#3a3a3a"/><line x1="0" y1="140" x2="100" y2="140" stroke="#f5f5f5" stroke-width="3" stroke-dasharray="14,10"/><line x1="180" y1="140" x2="280" y2="140" stroke="#f5f5f5" stroke-width="3" stroke-dasharray="14,10"/><line x1="140" y1="0" x2="140" y2="100" stroke="#f5f5f5" stroke-width="3" stroke-dasharray="14,10"/><line x1="140" y1="180" x2="140" y2="280" stroke="#f5f5f5" stroke-width="3" stroke-dasharray="14,10"/><g><rect x="22" y="146" width="50" height="22" rx="5" fill="#1e6fdc" stroke="#fff" stroke-width="2"/><rect x="58" y="149" width="10" height="16" rx="1" fill="#bde0ff"/><circle cx="71" cy="151" r="2" fill="#fff7a8"/><circle cx="71" cy="163" r="2" fill="#fff7a8"/></g><line x1="80" y1="157" x2="98" y2="157" stroke="#1e6fdc" stroke-width="8" stroke-linecap="round"/><polygon points="94,148 112,157 94,166" fill="#1e6fdc"/><rect x="18" y="188" width="60" height="26" rx="5" fill="#1e6fdc"/><text x="48" y="207" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="15" fill="#fff" letter-spacing="2">MOI</text><g><rect x="148" y="208" width="22" height="50" rx="5" fill="#d7282f" stroke="#fff" stroke-width="2"/><rect x="151" y="216" width="16" height="10" rx="1" fill="#ffd5d5"/><circle cx="153" cy="211" r="2" fill="#fff7a8"/><circle cx="165" cy="211" r="2" fill="#fff7a8"/></g><line x1="159" y1="200" x2="159" y2="182" stroke="#d7282f" stroke-width="8" stroke-linecap="round"/><polygon points="150,186 159,168 168,186" fill="#d7282f"/><rect x="190" y="222" width="60" height="26" rx="5" fill="#d7282f"/><text x="220" y="241" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="15" fill="#fff" letter-spacing="2">LUI</text><circle cx="140" cy="140" r="15" fill="#FFD500" stroke="#1a1a1a" stroke-width="3"/><text x="140" y="147" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="18" fill="#1a1a1a">?</text></svg><div style="margin-top:0.75rem;font-weight:600;color:#1a1a1a"><span style="color:#1e6fdc">●</span> MOI arrive par la gauche &nbsp;•&nbsp; <span style="color:#d7282f">●</span> LUI arrive par ma droite</div>`,
+          answers: [
+            "Moi, car je suis déjà engagé",
+            "Le véhicule venant de ma droite",
+            "Le premier arrivé à l'intersection",
+            "Le véhicule le plus rapide"
+          ],
+          correct: 1,
+          explanation: "<p><strong>Priorité à droite</strong> : règle de base en France quand aucune signalisation ne précise les priorités. Tout véhicule venant de ta droite a la priorité, même si tu es \"déjà là\".</p><p>Cette règle s'applique dans la majorité des petites intersections en ville, hors zones balisées (stop, cédez-le-passage, feux, panneaux de priorité).</p>",
+          tip: "Quand tu approches d'une intersection sans aucun panneau visible, regarde par réflexe à droite EN PREMIER. C'est de là que vient le danger légal."
+        },
+        {
+          q: "Tu arrives à un STOP. Que dois-tu faire ?",
+          answers: [
+            "Ralentir fortement puis passer si la voie est libre",
+            "Marquer un arrêt complet, roues immobiles, puis céder le passage",
+            "S'arrêter uniquement si une voiture arrive",
+            "Klaxonner et passer"
+          ],
+          correct: 1,
+          explanation: "<p>Le STOP impose un <strong>arrêt absolu</strong>, roues totalement immobilisées, peu importe s'il y a du trafic ou non. C'est l'un des rares panneaux où ne pas s'arrêter complètement est une faute éliminatoire à l'examen.</p><p>Après l'arrêt, tu cèdes le passage à TOUS les véhicules circulant sur la voie prioritaire.</p>",
+          tip: "Le test : si quelqu'un te filme, doit voir tes roues s'arrêter clairement. Compte mentalement \"1...\" avant de repartir."
+        },
+        {
+          q: "Au panneau \"Cédez le passage\" (triangle pointe en bas), que dois-tu faire ?",
+          visual: `<svg viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panneau triangulaire blanc à bordure rouge, pointe dirigée vers le bas"><polygon points="10,15 90,15 50,92" fill="white" stroke="#D7282F" stroke-width="8" stroke-linejoin="miter"/></svg>`,
+          answers: [
+            "Marquer un arrêt obligatoire",
+            "Ralentir et céder le passage, sans arrêt obligatoire si voie libre",
+            "Accélérer pour passer rapidement",
+            "Continuer sans ralentir, j'ai la priorité"
+          ],
+          correct: 1,
+          explanation: "<p>Le <strong>Cédez le passage</strong> n'impose pas l'arrêt si la voie est libre. Tu ralentis pour pouvoir t'arrêter si nécessaire, et tu laisses passer tout véhicule arrivant sur la voie prioritaire.</p><p>La différence majeure avec le STOP : ici, tu peux passer en roulant si rien ne vient.</p>",
+          tip: "Triangle pointe en bas = je m'efface. Le losange jaune (priorité), c'est l'inverse."
+        },
+        {
+          q: "Tu es sur une route avec un panneau losange jaune sur fond blanc. Que signifie-t-il ?",
+          visual: `<svg viewBox="0 0 100 100" width="100"><polygon points="50,5 95,50 50,95 5,50" fill="white" stroke="#1a1a1a" stroke-width="4"/><polygon points="50,18 82,50 50,82 18,50" fill="#FFD500"/></svg>`,
+          answers: [
+            "Danger, ralentir",
+            "Route prioritaire — j'ai la priorité aux intersections",
+            "Fin de la priorité",
+            "Voie réservée aux taxis"
+          ],
+          correct: 1,
+          explanation: "<p>Le <strong>losange jaune</strong> indique que tu es sur une <strong>route prioritaire</strong>. Tous les véhicules venant des voies adjacentes doivent te céder le passage, même s'ils arrivent de ta droite.</p><p>Cette priorité reste valable jusqu'à un panneau \"Fin de priorité\" (même losange barré) ou une nouvelle indication.</p>",
+          tip: "Tant que tu vois le losange jaune, tu peux dérouler. La priorité à droite est SUSPENDUE."
+        },
+        {
+          q: "Tu arrives à un rond-point en France. Qui a la priorité ?",
+          answers: [
+            "Les véhicules qui entrent dans le rond-point",
+            "Les véhicules déjà engagés dans le rond-point",
+            "Le véhicule à droite",
+            "Les piétons uniquement"
+          ],
+          correct: 1,
+          explanation: "<p><strong>Définition :</strong> un <strong>rond-point</strong> moderne (terme officiel : <em>sens giratoire</em>) est une intersection circulaire où la circulation tourne en sens anti-horaire autour d'un îlot central, à chaussée séparée des voies d'entrée.</p><p><strong>Règle générale (99 % des cas) :</strong> à chaque entrée, ce duo de panneaux t'accueille :</p><div style=\"display:flex;gap:1.5rem;align-items:center;justify-content:center;margin:1rem 0;flex-wrap:wrap\"><div style=\"text-align:center\"><svg width=\"56\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"10,15 90,15 50,90\" fill=\"white\" stroke=\"#D7282F\" stroke-width=\"8\"/></svg><div style=\"font-size:0.75rem;margin-top:0.25rem;font-weight:700\">Cédez<br>le passage</div></div><div style=\"font-size:1.5rem;font-weight:900\">+</div><div style=\"text-align:center\"><svg width=\"56\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"44\" fill=\"#003DA5\"/><path d=\"M 75 50 A 25 25 0 1 1 50 25\" fill=\"none\" stroke=\"white\" stroke-width=\"7\" stroke-linecap=\"round\"/><polygon points=\"43,28 56,22 56,36\" fill=\"white\"/><path d=\"M 25 50 A 25 25 0 0 1 30 36\" fill=\"none\" stroke=\"white\" stroke-width=\"7\" stroke-linecap=\"round\"/></svg><div style=\"font-size:0.75rem;margin-top:0.25rem;font-weight:700\">Sens giratoire<br>obligatoire</div></div></div><p>Le triangle « Cédez le passage » signifie : les véhicules <strong>déjà engagés</strong> dans l'anneau sont prioritaires. Tu attends une fenêtre, tu t'insères. La priorité à droite est <strong>suspendue</strong> à l'intérieur.</p><p><strong>L'exception célèbre : la place de l'Étoile</strong> (Arc de Triomphe, Paris) — et quelques rares « carrefours à sens giratoire » à l'ancienne. <strong>Aucun</strong> panneau Cédez le passage à l'entrée → la <strong>priorité à droite</strong> classique s'applique. Conséquence paradoxale : ici, c'est celui qui <strong>ENTRE</strong> qui est prioritaire sur celui déjà engagé. Visuellement c'est le chaos (12 avenues qui débouchent en même temps), légalement c'est cohérent. Les assurances l'ont compris : à l'Étoile, les sinistres sont partagés 50/50 par défaut.</p>",
+          tip: "Mnémo : « Triangle rouge à l'entrée = je m'efface ». Pas de triangle = priorité à droite, je peux entrer (mais je regarde à droite très fort)."
+        },
+        {
+          q: "Un véhicule prioritaire (police, pompiers) approche avec gyrophare et sirène. Que fais-tu ?",
+          answers: [
+            "Je continue normalement, il se débrouillera",
+            "Je freine brutalement sur place",
+            "Je dégage la voie en me rabattant à droite, en sécurité",
+            "Je passe à gauche pour le doubler"
+          ],
+          correct: 2,
+          explanation: "<p>Tu dois <strong>faciliter le passage</strong> du véhicule prioritaire en te déportant à droite (ou à gauche sur une voie à sens unique si plus logique), idéalement en ralentissant pour t'arrêter le long du trottoir.</p><p>⚠️ Ne freine pas brutalement au milieu de la voie : tu crées un danger pour les véhicules derrière toi.</p>",
+          tip: "Avant de bouger : un coup d'œil dans le rétro pour ne pas surprendre celui qui te suit. Clignotant + manœuvre douce."
+        },
+        {
+          q: "Tu arrives à un feu orange clignotant. Que signifie-t-il ?",
+          visual: `<svg viewBox="0 0 100 220" width="80" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="5" width="60" height="180" rx="8" fill="#1a1a1a" stroke="#444" stroke-width="2"/><circle cx="50" cy="40" r="22" fill="#3a3a3a" stroke="#222" stroke-width="2"/><circle cx="50" cy="95" r="22" fill="#ff9a1a" stroke="#222" stroke-width="2" opacity="0.95"/><circle cx="50" cy="95" r="14" fill="#ffcc66" opacity="0.6"/><circle cx="50" cy="150" r="22" fill="#3a3a3a" stroke="#222" stroke-width="2"/><rect x="42" y="185" width="16" height="25" fill="#1a1a1a"/><text x="50" y="215" text-anchor="middle" font-family="Inter" font-size="9" font-weight="700" fill="#1a1a1a">CLIGNOTE</text></svg>`,
+          answers: [
+            "Le feu est en panne, je passe sans m'arrêter",
+            "Je dois m'arrêter immédiatement",
+            "Avertissement : feu non géré, je dois respecter la signalisation de priorité en place",
+            "C'est la voie pour les bus"
+          ],
+          correct: 2,
+          explanation: "<p><strong>Définition :</strong> le <strong>feu orange (ou jaune) clignotant</strong> signale que le carrefour n'est PAS régulé par les feux. Cas typiques : nuit (les villes coupent les feux pour fluidifier), panne, ou carrefour à feux uniquement le jour.</p><p><strong>Ce qu'il NE veut PAS dire :</strong></p><p>• Pas « tu as la priorité »<br>• Pas « tu peux passer sans regarder »<br>• Pas « arrête-toi »</p><p><strong>Ce qu'il veut dire :</strong> « le feu est désactivé, cherche LA VRAIE règle de priorité ». Tu lèves les yeux et tu cherches dans l'ordre :</p><p>1. Un <strong>panneau STOP</strong> (octogone rouge) → arrêt total<br>2. Un <strong>Cédez le passage</strong> (triangle pointe en bas) → laisser passer<br>3. Un <strong>losange jaune</strong> de route prioritaire → tu as la priorité<br>4. <strong>Aucun panneau</strong> → priorité à droite par défaut</p><p><strong>Exemple concret :</strong> tu rentres tard à Lyon, le feu d'un carrefour clignote orange. Tu vois un Cédez le passage planté sur ton entrée → tu cèdes. L'autre côté du carrefour a peut-être la priorité par défaut, c'est le but : le feu désactivé révèle la vraie hiérarchie sous-jacente.</p>",
+          tip: "Mnémo : « Orange clignotant = feu en pause, panneau aux commandes ». Si tu vois un orange fixe (non clignotant), c'est l'inverse : tu t'arrêtes (sauf si déjà engagé)."
+        },
+        {
+          q: "Tu tournes à gauche à une intersection. Un piéton traverse la rue dans laquelle tu t'engages. Qui a la priorité ?",
+          answers: [
+            "Moi, je suis en voiture",
+            "Le piéton, toujours",
+            "Le piéton seulement s'il y a un passage piéton",
+            "Personne, on se débrouille"
+          ],
+          correct: 1,
+          explanation: "<p>Quand tu tournes (à gauche OU à droite), tu dois céder le passage à <strong>tout piéton</strong> traversant la voie sur laquelle tu t'engages, qu'il y ait un passage piéton ou non.</p><p>Cette règle est souvent oubliée et c'est une cause fréquente d'accident en ville.</p>",
+          tip: "Avant de tourner : regard balayage → contrôle l'angle mort + le trottoir vers lequel tu vas. Le piéton qui s'élance ne te voit pas forcément."
+        },
+        {
+          q: "Tu es engagé sur une intersection et le feu passe à l'orange fixe. Que fais-tu ?",
+          answers: [
+            "Je fais marche arrière",
+            "Je continue à dégager l'intersection",
+            "Je m'arrête au milieu",
+            "J'accélère"
+          ],
+          correct: 1,
+          explanation: "<p>Une fois <strong>engagé</strong> sur une intersection, tu dois la <strong>dégager</strong>, même si le feu passe à l'orange ou au rouge. T'arrêter au milieu bloquerait le trafic transversal et créerait un danger.</p><p>L'orange fixe signifie \"arrêt si tu peux le faire en sécurité\". Si tu es déjà sur la ligne, tu continues.</p>",
+          tip: "La règle d'or : ne JAMAIS bloquer une intersection. Avant de t'engager, vérifie que tu pourras la dégager."
+        },
+        {
+          q: "Sur une voie cyclable (bande ou piste), un cycliste arrive. Toi tu sors d'un parking en voiture. Qui a la priorité ?",
+          answers: [
+            "Moi, je suis plus gros",
+            "Le cycliste, qui est sur sa voie",
+            "Aucune règle, on improvise",
+            "Le premier qui klaxonne"
+          ],
+          correct: 1,
+          explanation: "<p>Quand tu sors d'un parking, d'un chemin privé, d'un trottoir ou d'une station-service, tu dois céder le passage à <strong>tous les usagers</strong> de la chaussée, y compris les cyclistes sur leur bande ou piste.</p><p>Tu es l'usager \"qui s'insère\", donc tu n'as aucune priorité.</p>",
+          tip: "Sortie de parking = STOP mental systématique. Regarde aussi sur le trottoir (piétons) avant de mordre la chaussée."
+        }
+      ]
+    },
+    {
+      title: "Panneaux",
+      questions: [
+        {
+          q: "Quelle est la forme générale d'un panneau de DANGER ?",
+          visual: `<svg viewBox="0 0 100 100" width="90"><polygon points="50,10 90,85 10,85" fill="white" stroke="#D7282F" stroke-width="7"/><text x="50" y="70" text-anchor="middle" font-family="Inter" font-size="32" font-weight="900" fill="#1a1a1a">!</text></svg>`,
+          answers: [
+            "Rond rouge",
+            "Triangle pointe en haut, bordure rouge",
+            "Carré bleu",
+            "Losange jaune"
+          ],
+          correct: 1,
+          explanation: "<p>Tous les panneaux de <strong>danger</strong> sont des triangles pointe en haut avec bordure rouge et fond blanc. Le pictogramme à l'intérieur précise le type de danger (virage, dos d'âne, animaux, école…).</p><p>Ils annoncent un danger <strong>à venir</strong>, généralement 150 mètres plus loin hors agglomération, ou juste avant en ville.</p>",
+          tip: "Triangle rouge = \"attention !\". Tu ralentis et tu cherches d'où peut venir le danger annoncé."
+        },
+        {
+          q: "Quelle est la forme générale d'un panneau d'INTERDICTION ?",
+          visual: `<svg viewBox="0 0 100 100" width="90"><circle cx="50" cy="50" r="42" fill="white" stroke="#D7282F" stroke-width="8"/></svg>`,
+          answers: [
+            "Carré bleu",
+            "Rond avec bordure rouge",
+            "Triangle pointe en bas",
+            "Octogone rouge"
+          ],
+          correct: 1,
+          explanation: "<p>Les panneaux d'<strong>interdiction</strong> sont des cercles à bordure rouge, fond blanc, avec un pictogramme noir indiquant ce qui est interdit (sens interdit, vitesse, demi-tour, dépassement…).</p><p>Le seul panneau d'interdiction de forme différente est le <strong>STOP</strong> (octogonal).</p>",
+          tip: "Rond rouge = \"non\". Rond bleu, on verra plus tard, c'est l'inverse : \"obligatoire\"."
+        },
+        {
+          q: "Un panneau rond, fond bleu, avec une flèche blanche. C'est quoi ?",
+          visual: `<svg viewBox="0 0 100 100" width="90"><circle cx="50" cy="50" r="44" fill="#003DA5"/><path d="M 50 25 L 50 75 M 50 25 L 38 38 M 50 25 L 62 38" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/></svg>`,
+          answers: [
+            "Direction conseillée",
+            "Direction obligatoire",
+            "Sens interdit",
+            "Voie réservée"
+          ],
+          correct: 1,
+          explanation: "<p>Les panneaux <strong>ronds bleus</strong> indiquent une <strong>obligation</strong>. Une flèche dans un rond bleu = direction obligatoire à suivre. Tu n'as pas le choix d'aller autre part.</p><p>Pratique pour comprendre la logique : <strong>rouge = interdit</strong>, <strong>bleu rond = obligatoire</strong>.</p>",
+          tip: "Si tu vois un rond bleu fléché vers la droite, tu DOIS aller à droite. Le panneau ne suggère pas, il impose."
+        },
+        {
+          q: "Tu vois un panneau rectangulaire vert avec des noms de villes en blanc. Tu es sur quel type de route ?",
+          answers: [
+            "Une autoroute",
+            "Une route à grande circulation (nationale, axe important)",
+            "Une route en zone résidentielle",
+            "Une rue piétonne"
+          ],
+          correct: 1,
+          explanation: "<p>Les panneaux de direction <strong>verts</strong> indiquent les <strong>itinéraires principaux hors autoroute</strong> (nationales, grandes liaisons intervilles, axes gratuits importants).</p><p><strong>Le code couleur complet — à connaître par cœur :</strong></p><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:0.5rem;margin:1rem 0\"><div style=\"background:#00843D;color:#fff;padding:0.6rem 0.4rem;text-align:center;font-weight:700;font-size:0.85rem;border-radius:3px\">VERT<br><span style=\"font-size:0.7rem;font-weight:400\">Grandes liaisons</span></div><div style=\"background:#003DA5;color:#fff;padding:0.6rem 0.4rem;text-align:center;font-weight:700;font-size:0.85rem;border-radius:3px\">BLEU<br><span style=\"font-size:0.7rem;font-weight:400\">Autoroutes</span></div><div style=\"background:#fff;color:#1a1a1a;padding:0.6rem 0.4rem;text-align:center;font-weight:700;font-size:0.85rem;border:2px solid #1a1a1a;border-radius:3px\">BLANC<br><span style=\"font-size:0.7rem;font-weight:400\">Local / villes proches</span></div><div style=\"background:#FFD500;color:#1a1a1a;padding:0.6rem 0.4rem;text-align:center;font-weight:700;font-size:0.85rem;border-radius:3px\">JAUNE<br><span style=\"font-size:0.7rem;font-weight:400\">Déviation temporaire</span></div><div style=\"background:#7a4a1a;color:#fff;padding:0.6rem 0.4rem;text-align:center;font-weight:700;font-size:0.85rem;border-radius:3px\">MARRON<br><span style=\"font-size:0.7rem;font-weight:400\">Sites touristiques</span></div><div style=\"background:#000;color:#fff;padding:0.6rem 0.4rem;text-align:center;font-weight:700;font-size:0.85rem;border-radius:3px\">NOIR<br><span style=\"font-size:0.7rem;font-weight:400\">Zones d'activité / industrielles</span></div></div><p><strong>Astuce de mémorisation :</strong> les couleurs vont du plus rapide au plus lent. <strong>Bleu</strong> (autoroute) > <strong>vert</strong> (nationale rapide) > <strong>blanc</strong> (route locale). <strong>Jaune</strong> = exception temporaire (chantier, accident, fête). <strong>Marron</strong> = tu fais du tourisme, donc tu prends ton temps.</p>",
+          tip: "Sur autoroute, suis les panneaux bleus. Pour rester sur du gratuit rapide, suis les verts. Le jaune temporaire est PRIORITAIRE sur les autres — il indique que la route normale ne passe plus."
+        },
+        {
+          q: "Le panneau \"Fin de toutes les interdictions précédemment signalées\" ressemble à quoi ?",
+          visual: `<svg viewBox="0 0 100 100" width="90"><circle cx="50" cy="50" r="42" fill="white" stroke="#1a1a1a" stroke-width="4"/><line x1="20" y1="20" x2="80" y2="80" stroke="#1a1a1a" stroke-width="5"/><line x1="22" y1="22" x2="82" y2="82" stroke="#1a1a1a" stroke-width="5"/><line x1="24" y1="24" x2="84" y2="84" stroke="#1a1a1a" stroke-width="5"/></svg>`,
+          answers: [
+            "Un panneau rouge barré",
+            "Un panneau rond blanc avec plusieurs barres noires obliques",
+            "Un panneau carré vert",
+            "Un panneau triangulaire"
+          ],
+          correct: 1,
+          explanation: "<p>Le panneau de <strong>fin de toutes interdictions</strong> est un rond blanc traversé de plusieurs barres noires obliques. Il lève toutes les restrictions précédentes (vitesse, dépassement, etc.).</p><p>Il existe aussi des panneaux de fin spécifiques (fin de limitation 50, fin d'interdiction de dépasser…) qui ne lèvent QUE l'interdiction concernée.</p>",
+          tip: "Barres = annulation. Plus il y a de barres, plus large est l'annulation."
+        },
+        {
+          q: "Un panneau carré bleu avec une voiture blanche dessus. Qu'est-ce que ça signifie ?",
+          visual: `<svg viewBox="0 0 100 100" width="90"><rect x="8" y="8" width="84" height="84" fill="#003DA5"/><rect x="25" y="42" width="50" height="22" fill="white" rx="3"/><circle cx="35" cy="68" r="6" fill="white"/><circle cx="65" cy="68" r="6" fill="white"/></svg>`,
+          answers: [
+            "Voie réservée aux voitures",
+            "Route à accès réglementé (caractéristiques d'autoroute mais pas autoroute)",
+            "Parking",
+            "Stationnement interdit"
+          ],
+          correct: 1,
+          explanation: "<p>Le carré bleu avec voiture indique une <strong>route à accès réglementé</strong> (souvent appelée \"route express\"). Caractéristiques proches de l'autoroute : interdite aux véhicules lents, piétons, cyclistes, mais sans péage et avec une vitesse max généralement de 110 km/h.</p><p>Ne pas confondre avec le panneau autoroute (carré bleu avec dessin de pont/autoroute stylisée).</p>",
+          tip: "Carré bleu = info / autorisation. Rond bleu = obligation. Pas la même chose."
+        },
+        {
+          q: "Tu vois un panneau rectangulaire blanc avec écrit \"Rappel\" et 50 en dessous. Que dois-tu comprendre ?",
+          answers: [
+            "Une nouvelle limitation commence à 50 km/h",
+            "On te rappelle que la limitation à 50 km/h est toujours en vigueur",
+            "La limitation est levée",
+            "C'est la distance jusqu'à la prochaine ville"
+          ],
+          correct: 1,
+          explanation: "<p>Le panonceau \"<strong>Rappel</strong>\" signifie qu'on te répète une limitation déjà en vigueur, souvent placée après une intersection ou un long parcours pour éviter toute ambiguïté. La règle n'a pas changé, on te la remet juste sous les yeux.</p>",
+          tip: "Rappel = pense \"je devrais déjà le savoir\". Si ça te surprend, c'est que tu as raté un panneau plus tôt."
+        },
+        {
+          q: "Un panneau d'entrée d'agglomération (nom de ville sur fond blanc avec bordure rouge). Quelle est la vitesse maximale par défaut ?",
+          answers: [
+            "30 km/h",
+            "50 km/h",
+            "70 km/h",
+            "90 km/h"
+          ],
+          correct: 1,
+          explanation: "<p>Dès le panneau d'entrée d'agglomération, la vitesse est limitée à <strong>50 km/h</strong> par défaut, sans qu'un panneau de limitation soit nécessaire.</p><p>Cette limite peut être modifiée par des panneaux spécifiques (30 km/h en zone scolaire, 70 km/h sur certains axes urbains, etc.), mais en l'absence de panneau, c'est 50.</p>",
+          tip: "Le panneau ville = baisse immédiate à 50, dès la ligne du panneau. Pas \"je freine après\"."
+        },
+        {
+          q: "Sur autoroute, un panneau indique \"110\". Quelle est la limite par temps sec, conducteur expérimenté ?",
+          answers: [
+            "110 km/h",
+            "130 km/h, c'est la limite normale de l'autoroute",
+            "100 km/h s'il pleut",
+            "Aucune limite"
+          ],
+          correct: 0,
+          explanation: "<p>Le panneau de limitation est <strong>impératif</strong> : il prime sur la limite par défaut de l'autoroute. Si tu vois 110, c'est 110, même par temps sec.</p><p>Sur autoroute en France, la vitesse maximale est de 130 km/h par temps sec, 110 km/h sous la pluie, et 50 km/h lorsque la visibilité est inférieure à 50 m. Toutefois, une signalisation locale (travaux, danger, trafic…) peut imposer une vitesse plus faible, qui doit toujours être respectée en priorité.</p>",
+          tip: "Le panneau bat toujours la règle générale. Quand tu vois un nombre, c'est ce nombre qui compte."
+        },
+        {
+          q: "Tu approches d'une zone urbaine où tu vois un panneau bleu carré avec un piéton et un enfant. C'est quoi ?",
+          answers: [
+            "Passage piéton",
+            "Zone de rencontre (priorité aux piétons, 20 km/h max)",
+            "École",
+            "Trottoir"
+          ],
+          correct: 1,
+          explanation: "<p>La <strong>zone de rencontre</strong> est une zone où piétons, cyclistes et voitures partagent l'espace, avec <strong>priorité absolue aux piétons</strong> (ils peuvent marcher sur la chaussée) et vitesse limitée à <strong>20 km/h</strong>.</p><p>À ne pas confondre avec la zone 30 (panneau différent, 30 km/h, piétons sur trottoirs).</p>",
+          tip: "Zone de rencontre = tu roules au pas, à l'affût. Le piéton peut surgir n'importe où, c'est légal."
+        }
+      ]
+    },
+    {
+      title: "Voies & marquages",
+      questions: [
+        {
+          q: "Une ligne blanche continue au milieu de la chaussée. Que peux-tu faire ?",
+          visual: `<svg viewBox="0 0 200 60" width="220"><rect x="0" y="0" width="200" height="60" fill="#2a2a2a"/><line x1="0" y1="30" x2="200" y2="30" stroke="white" stroke-width="3"/></svg>`,
+          answers: [
+            "Dépasser si la voie d'en face est libre",
+            "Ni franchir, ni chevaucher la ligne",
+            "Faire demi-tour",
+            "Tourner à gauche pour entrer dans un parking"
+          ],
+          correct: 1,
+          explanation: "<p>Une <strong>ligne continue</strong> ne peut être ni franchie ni chevauchée, sauf cas exceptionnels (obstacle, véhicule lent dépassant difficilement signalé). Aucun dépassement, aucun demi-tour, aucun tourne-à-gauche.</p><p>Le franchissement d'une ligne continue est sanctionné : 135€ et 3 points en moins.</p>",
+          tip: "Blanc continu = mur invisible. Tu colles ta voiture à droite de la ligne, point."
+        },
+        {
+          q: "Une ligne discontinue \"normale\" (traits courts, espaces longs). Que peux-tu faire ?",
+          visual: `<svg viewBox="0 0 200 60" width="220"><rect x="0" y="0" width="200" height="60" fill="#2a2a2a"/><line x1="10" y1="30" x2="40" y2="30" stroke="white" stroke-width="3"/><line x1="80" y1="30" x2="110" y2="30" stroke="white" stroke-width="3"/><line x1="150" y1="30" x2="180" y2="30" stroke="white" stroke-width="3"/></svg>`,
+          answers: [
+            "Je ne peux pas la franchir",
+            "Je peux la franchir pour dépasser, tourner ou changer de voie si la situation le permet",
+            "Je dois la franchir",
+            "C'est une voie de bus"
+          ],
+          correct: 1,
+          explanation: "<p>La <strong>ligne discontinue axiale</strong> (traits courts) sépare les deux sens de circulation et peut être franchie pour dépasser, tourner à gauche, ou faire demi-tour <strong>si la sécurité le permet</strong>.</p><p>\"Si la sécurité le permet\" est crucial : visibilité suffisante, voie d'en face libre, manœuvre justifiée.</p>",
+          tip: "Discontinue ne veut pas dire \"vas-y\". Ça veut dire \"tu peux, si c'est sûr\"."
+        },
+        {
+          q: "Une ligne discontinue avec traits LONGS et espaces COURTS. Qu'est-ce qu'elle annonce ?",
+          visual: `<svg viewBox="0 0 200 60" width="220"><rect x="0" y="0" width="200" height="60" fill="#2a2a2a"/><line x1="10" y1="30" x2="70" y2="30" stroke="white" stroke-width="3"/><line x1="90" y1="30" x2="150" y2="30" stroke="white" stroke-width="3"/><line x1="170" y1="30" x2="200" y2="30" stroke="white" stroke-width="3"/></svg>`,
+          answers: [
+            "Que je vais bientôt arriver à une ligne continue (annonce de ligne)",
+            "Qu'on peut rouler dessus",
+            "Que c'est une zone scolaire",
+            "Qu'il y a un stop dans 50m"
+          ],
+          correct: 0,
+          explanation: "<p>La <strong>ligne d'annonce</strong> (traits longs, espaces courts) prévient qu'une <strong>ligne continue arrive bientôt</strong>. C'est le moment de finir un éventuel dépassement et de te rabattre.</p><p>Tu peux encore la franchir, mais tu sais que la possibilité va se fermer.</p>",
+          tip: "Traits longs = \"dépêche-toi de te rabattre\". Traits courts = \"tu as encore le temps\". En gros c'est un peu le feu orange du marquage au sol."
+        },
+        {
+          q: "Sur une route à 3 voies dans le même sens, sans signalisation particulière, tu roules à 70 km/h. Quelle voie dois-tu emprunter ?",
+          answers: [
+            "La voie de gauche, c'est plus rapide",
+            "La voie du milieu",
+            "La voie de droite, sauf pour dépasser",
+            "N'importe laquelle"
+          ],
+          correct: 2,
+          explanation: "<p>En France, la règle est de <strong>circuler le plus à droite possible</strong>. Les voies de gauche sont réservées au dépassement. Tu dois te rabattre dès que la voie de droite est libre.</p><p>Rester sans raison sur une voie de gauche est sanctionné (35€ d'amende) et est considéré comme une gêne à la circulation.</p>",
+          tip: "Tu dépasses ? Voie de gauche, puis retour à droite. Voie de gauche n'est PAS une voie de vitesse permanente."
+        },
+        {
+          q: "Tu vois une flèche au sol qui pointe seulement à droite, sur ta voie. Tu veux aller tout droit. Que fais-tu ?",
+          visual: `<svg viewBox="0 0 100 140" width="100"><rect x="0" y="0" width="100" height="140" fill="#2a2a2a"/><path d="M 50 110 L 50 60 L 70 60 L 70 45 L 90 70 L 70 95 L 70 80 L 50 80 Z" fill="white" transform="rotate(0 50 70)"/></svg>`,
+          answers: [
+            "Je continue tout droit, j'ai le droit",
+            "Je change de voie tant que c'est encore possible (ligne discontinue)",
+            "Je fais demi-tour",
+            "Je m'arrête"
+          ],
+          correct: 1,
+          explanation: "<p>Une <strong>flèche directionnelle au sol</strong> indique l'utilisation <strong>obligatoire</strong> de cette voie pour la direction indiquée. Si tu es sur une voie \"à droite uniquement\" et que tu veux aller tout droit, tu dois changer de voie avant l'intersection.</p><p>Si tu ne changes pas à temps (souvent à cause d'une ligne continue qui apparaît juste avant), tu DOIS tourner à droite et chercher un autre itinéraire.</p>",
+          tip: "Anticipe : repère les flèches au sol AVANT d'arriver dessus, pas dessus."
+        },
+        {
+          q: "Une bande blanche large continue sur le bord droit de la chaussée (bord de route). Que représente-t-elle ?",
+          answers: [
+            "Une voie de bus",
+            "La limite du bord de la chaussée (bande de rive)",
+            "Une voie cyclable",
+            "Un trottoir"
+          ],
+          correct: 1,
+          explanation: "<p>La <strong>bande de rive</strong> matérialise le bord droit de la chaussée. Elle peut être continue (ne pas franchir, sauf urgence) ou discontinue (franchissable pour s'arrêter, par exemple en cas de panne ou pour laisser passer un véhicule prioritaire).</p><p>Sur autoroute, la bande de rive continue délimite la bande d'arrêt d'urgence.</p>",
+          tip: "Bande blanche à droite = bord du monde roulant. Au-delà, ce n'est plus de la circulation normale."
+        },
+        {
+          q: "Un marquage en \"zébra\" (hachures parallèles) au sol. Tu peux y rouler ?",
+          visual: `<svg viewBox="0 0 200 80" width="220"><rect x="0" y="0" width="200" height="80" fill="#2a2a2a"/><line x1="0" y1="20" x2="200" y2="20" stroke="white" stroke-width="2"/><line x1="0" y1="60" x2="200" y2="60" stroke="white" stroke-width="2"/><g stroke="white" stroke-width="3"><line x1="10" y1="60" x2="40" y2="20"/><line x1="35" y1="60" x2="65" y2="20"/><line x1="60" y1="60" x2="90" y2="20"/><line x1="85" y1="60" x2="115" y2="20"/><line x1="110" y1="60" x2="140" y2="20"/><line x1="135" y1="60" x2="165" y2="20"/><line x1="160" y1="60" x2="190" y2="20"/></g></svg>`,
+          answers: [
+            "Oui, c'est une voie normale",
+            "Non, c'est une zone interdite à la circulation",
+            "Oui mais seulement pour les motos",
+            "Oui pour me garer"
+          ],
+          correct: 1,
+          explanation: "<p>Les <strong>zébras</strong> (hachures) délimitent une zone interdite à la circulation. Tu ne peux ni y rouler, ni t'y arrêter, ni te garer.</p><p>Ils servent souvent à séparer des voies, à créer un espace de sécurité avant un obstacle, ou à canaliser le trafic dans des virages serrés.</p>",
+          tip: "Zébras = sol interdit. Visuellement c'est un \"non\" graphique."
+        },
+        {
+          q: "Tu approches d'un passage piéton non signalé par feu. Un piéton attend sur le trottoir, manifestement pour traverser. Que fais-tu ?",
+          answers: [
+            "Je continue, il n'est pas engagé",
+            "Je m'arrête pour le laisser passer",
+            "Je klaxonne pour l'inciter à traverser",
+            "Je l'ignore"
+          ],
+          correct: 1,
+          explanation: "<p>Depuis 2018, la loi t'oblige à céder le passage à tout piéton <strong>manifestement engagé OU manifestant son intention de traverser</strong> sur un passage piéton non régulé par feu.</p><p>Le non-respect coûte 135€ et 6 points (oui, six). C'est l'une des règles les plus durcies du code.</p>",
+          tip: "Piéton qui s'avance vers le passage, regarde la voiture, met un pied = il manifeste son intention. Tu t'arrêtes."
+        },
+        {
+          q: "Une voie marquée d'un grand losange blanc au sol. C'est quoi ?",
+          visual: `<svg viewBox="0 0 100 140" width="100"><rect x="0" y="0" width="100" height="140" fill="#2a2a2a"/><polygon points="50,30 75,75 50,120 25,75" fill="none" stroke="white" stroke-width="4"/></svg>`,
+          answers: [
+            "Voie réservée aux véhicules avec plusieurs occupants ou bus/taxis",
+            "Voie réservée aux motos",
+            "Voie d'arrêt d'urgence",
+            "Voie pour les camions"
+          ],
+          correct: 0,
+          explanation: "<p>Le <strong>losange blanc</strong> indique une <strong>voie réservée</strong>, généralement aux véhicules à occupation multiple (covoiturage), aux bus, aux taxis, et parfois aux véhicules basses émissions.</p><p>Très présente sur les grands axes urbains et certaines autoroutes (Paris notamment). Y rouler en solo dans une voiture classique = amende.</p>",
+          tip: "Losange = \"voie spéciale\". Lis toujours le panneau associé pour savoir qui peut y rouler."
+        },
+        {
+          q: "Sur l'autoroute, tu es sur la file d'insertion. Que dois-tu faire ?",
+          answers: [
+            "M'arrêter en bout de bretelle pour observer",
+            "Adapter ma vitesse à celle du trafic et m'insérer en clignotant à gauche",
+            "Forcer le passage, j'ai la priorité",
+            "Klaxonner pour signaler ma présence"
+          ],
+          correct: 1,
+          explanation: "<p>Sur la <strong>bretelle d'insertion</strong>, tu n'as <strong>pas la priorité</strong> sur les véhicules circulant sur l'autoroute. Tu dois adapter ta vitesse (souvent accélérer pour atteindre la vitesse de la voie de droite), allumer le clignotant, et t'insérer dans une \"fenêtre\" du trafic.</p><p>S'arrêter en bout de bretelle est extrêmement dangereux : c'est l'erreur n°1 des conducteurs stressés.</p>",
+          tip: "Insertion = accélère, regarde dans le rétro gauche, cible un trou, plonge-toi dedans. Pas de freinage en bout de bretelle, JAMAIS."
+        }
+      ]
+    },
+    {
+      title: "Situations",
+      questions: [
+        {
+          q: "Quelle est la distance de sécurité minimale à respecter avec le véhicule qui te précède ?",
+          answers: [
+            "Une longueur de voiture",
+            "Au moins 2 secondes (compte \"un crocodile, deux crocodiles\")",
+            "10 mètres, peu importe la vitesse",
+            "Aucune si je suis attentif"
+          ],
+          correct: 1,
+          explanation: "<p>La règle des <strong>2 secondes</strong> : compte le temps écoulé entre le passage du véhicule devant toi à un point fixe (panneau, arbre) et le tien. Si tu arrives à \"2 secondes\" ou plus, c'est OK.</p><p>Par mauvais temps (pluie, neige, brouillard), passe à <strong>4 secondes</strong> minimum. La distance se calcule en temps, pas en mètres, parce qu'elle s'adapte automatiquement à ta vitesse.</p>",
+          tip: "Truc : \"Un crocodile, deux crocodiles\". Si tu finis ta phrase AVANT d'arriver au point de repère, distance OK."
+        },
+        {
+          q: "Tu veux dépasser un véhicule sur route à double sens. Quelle condition est INDISPENSABLE ?",
+          answers: [
+            "Avoir une voiture puissante",
+            "Visibilité suffisante sur la voie d'en face et marquage autorisant le dépassement",
+            "Être pressé",
+            "Le véhicule devant doit t'avoir vu"
+          ],
+          correct: 1,
+          explanation: "<p>Avant de dépasser, tu vérifies que :</p><p>1. Le <strong>marquage</strong> l'autorise (ligne discontinue ou flèche d'annonce)<br>2. La <strong>visibilité</strong> est suffisante sur plusieurs centaines de mètres<br>3. Aucun véhicule n'arrive en face<br>4. Personne ne te dépasse déjà (rétro gauche)<br>5. Tu peux dépasser dans un temps raisonnable</p>",
+          tip: "Si tu hésites, tu ne dépasses pas. Le doute = renoncement."
+        },
+        {
+          q: "Tu te fais doubler par un autre véhicule. Que dois-tu faire ?",
+          answers: [
+            "Accélérer pour l'empêcher",
+            "Maintenir ou réduire légèrement ta vitesse et te rabattre à droite si possible",
+            "Klaxonner",
+            "Te déporter à gauche pour montrer ton désaccord"
+          ],
+          correct: 1,
+          explanation: "<p>Quand tu es dépassé, tu dois <strong>faciliter la manœuvre</strong> : maintenir ta vitesse (voire la réduire un peu) et te déporter légèrement à droite si la route le permet, pour laisser plus d'espace.</p><p>Accélérer pour empêcher un dépassement est une faute lourde, souvent à l'origine d'accidents frontaux.</p>",
+          tip: "Quelqu'un te double ? Pied légèrement levé + déport prudent à droite. Tu rends la manœuvre rapide donc plus sûre pour tout le monde."
+        },
+        {
+          q: "Tu arrives sur une chaussée mouillée. À quoi t'attendre niveau adhérence ?",
+          answers: [
+            "Aucun changement",
+            "Distance de freinage doublée environ, risque d'aquaplaning",
+            "Meilleure adhérence grâce à l'eau",
+            "Pneus plus performants"
+          ],
+          correct: 1,
+          explanation: "<p>Sur chaussée mouillée, la <strong>distance de freinage double</strong> environ. À 50 km/h, elle passe d'environ 14m à 28m. À 90 km/h, de 40m à 80m.</p><p>Risque supplémentaire : l'<strong>aquaplaning</strong>, où une fine couche d'eau soulève le pneu et fait perdre toute adhérence. Le pied de l'aquaplaning : ne pas freiner brutalement, lâcher l'accélérateur, attendre que les pneus reprennent contact.</p>",
+          tip: "Pluie = +20% de distance de sécurité, -20 km/h sur les limites de vitesse. C'est la loi en plus (-20 sur autoroute par exemple)."
+        },
+        {
+          q: "Tu conduis de nuit et tu croises un véhicule en face avec ses pleins phares allumés (gênant). Que fais-tu ?",
+          answers: [
+            "Allume aussi mes pleins phares pour me venger",
+            "Regarde la ligne blanche de droite et lève le pied",
+            "Klaxonne sans arrêt",
+            "Freine brutalement"
+          ],
+          correct: 1,
+          explanation: "<p>Si tu es ébloui en face, tu <strong>regardes le bord droit de ta voie</strong> (ligne de rive blanche) pour ne pas perdre le contrôle, et tu <strong>lèves le pied</strong> pour ralentir.</p><p>Ne JAMAIS répondre par tes propres pleins phares : tu aveugles l'autre, qui peut paniquer et te percuter.</p>",
+          tip: "Éblouissement = regarde à droite, ralentis, attends que ça passe. 2-3 secondes, c'est fini."
+        },
+        {
+          q: "Tu es témoin d'un accident sur la route. Quelle est la première chose à faire ?",
+          answers: [
+            "Prendre des photos",
+            "Protéger : sécuriser la zone (gilet, triangle, éloignement)",
+            "Déplacer les blessés",
+            "Klaxonner pour appeler à l'aide"
+          ],
+          correct: 1,
+          explanation: "<p>La règle <strong>PAS</strong> : <strong>P</strong>rotéger, <strong>A</strong>lerter, <strong>S</strong>ecourir.</p><p>1. <strong>Protéger</strong> : éviter le sur-accident. Gilet jaune, triangle 30m en amont, allumer les feux de détresse, éloigner les personnes valides hors de la chaussée.<br>2. <strong>Alerter</strong> : 112 (numéro européen) ou 15 (SAMU), 18 (pompiers), 17 (police).<br>3. <strong>Secourir</strong> : sans aggraver. Ne pas bouger un blessé sauf danger immédiat (incendie). Parler avec lui, le rassurer.</p>",
+          tip: "PAS dans cet ordre, toujours. Soigner avant de protéger = nouveau drame."
+        },
+        {
+          q: "Tu conduis depuis 2 heures sur autoroute. Tu sens tes paupières lourdes. Que fais-tu ?",
+          answers: [
+            "Je bois un café et je continue",
+            "J'augmente la musique et baisse la fenêtre",
+            "Je m'arrête sur la prochaine aire pour faire une pause de 15-30 minutes",
+            "Je m'arrête sur la bande d'arrêt d'urgence pour dormir"
+          ],
+          correct: 2,
+          explanation: "<p>La <strong>somnolence au volant</strong> est responsable d'<strong>1 accident mortel sur 3 sur autoroute</strong>. Aucun stratagème (musique, fenêtre, café) ne remplace une vraie pause.</p><p>Recommandation : pause toutes les 2 heures minimum, et au moindre signe de fatigue (paupières lourdes, bâillements répétés, regard qui décroche) : aire de repos, 15-30 min, idéalement une micro-sieste.</p><p>⚠️ Jamais sur la bande d'arrêt d'urgence : c'est extrêmement dangereux et interdit hors panne.</p>",
+          tip: "Fatigue = signal d'alarme du cerveau. Tu ne négocies pas avec, tu lui obéis."
+        },
+        {
+          q: "Tu vois un cycliste devant toi sur ta voie en agglomération. Quelle distance latérale dois-tu respecter pour le dépasser ?",
+          answers: [
+            "Au moins 50 cm",
+            "Au moins 1 mètre en agglomération, 1,50 m hors agglomération",
+            "Aucune obligation",
+            "2 mètres minimum"
+          ],
+          correct: 1,
+          explanation: "<p>La loi impose <strong>1 mètre en agglomération</strong> et <strong>1,50 m hors agglomération</strong> minimum entre ton véhicule et un cycliste (ou piéton, ou cavalier, ou trottinette) lors du dépassement.</p><p>Si la route ne permet pas de respecter cette distance, tu dois <strong>attendre</strong> derrière le cycliste, même si ça te ralentit. Tu peux franchir une ligne continue pour respecter cette distance, c'est légal.</p>",
+          tip: "Trop étroit pour 1m ? Tu attends. Le cycliste, lui, ne peut pas reculer."
+        },
+        {
+          q: "Tu conduis avec un régulateur de vitesse activé à 130 km/h sur autoroute. Tu arrives derrière un véhicule plus lent. Que se passe-t-il ?",
+          answers: [
+            "Le régulateur freine automatiquement",
+            "Le régulateur maintient 130 km/h, c'est à toi de freiner ou de doubler",
+            "La voiture s'arrête seule",
+            "Le régulateur passe le clignotant"
+          ],
+          correct: 1,
+          explanation: "<p>Un <strong>régulateur de vitesse classique</strong> maintient une vitesse constante mais ne réagit PAS au trafic devant toi. C'est toi qui dois agir (frein, manœuvre).</p><p>⚠️ À ne pas confondre avec le <strong>régulateur adaptatif</strong> (ACC), qui lui détecte les véhicules devant et ralentit/accélère automatiquement. Vérifie toujours ce qu'embarque ta voiture avant de te fier au système.</p>",
+          tip: "Régulateur classique = je suis libéré du pied droit, mais pas du cerveau. La vigilance reste à 100%."
+        },
+        {
+          q: "Tu pratiques l'écoconduite. Quelle est la pratique la plus efficace ?",
+          answers: [
+            "Rouler à fond pour arriver plus vite",
+            "Anticiper, conduire en souplesse, lever le pied tôt avant un ralentissement, passer rapidement les rapports",
+            "Couper le moteur dans les descentes",
+            "Rouler en sous-régime tout le temps"
+          ],
+          correct: 1,
+          explanation: "<p>L'<strong>écoconduite</strong> repose sur 3 piliers :</p><p>1. <strong>Anticiper</strong> : voir loin, lever le pied au lieu de freiner brutalement.<br>2. <strong>Souplesse</strong> : accélérations et freinages progressifs.<br>3. <strong>Vitesse modérée et rapports adaptés</strong> : passer rapidement à un rapport supérieur, éviter les hauts régimes.</p><p>Bénéfices : jusqu'à <strong>20% d'économie de carburant</strong>, moins d'usure mécanique, et conduite moins fatigante.</p>",
+          tip: "Bonus examen : à l'examen pratique, l'écoconduite rapporte un point bonus. Lever le pied tôt, c'est noté."
+        },
+        {
+          q: "Tu es en tort dans un léger accrochage sans blessé. Que fais-tu ?",
+          answers: [
+            "Je pars avant que l'autre conducteur s'en aperçoive",
+            "Je remplis un constat amiable avec l'autre conducteur",
+            "Je propose de payer en espèces sur place",
+            "J'appelle obligatoirement la police"
+          ],
+          correct: 1,
+          explanation: "<p>Pour tout accrochage matériel <strong>sans blessé</strong>, le <strong>constat amiable</strong> rempli sur place et signé par les deux conducteurs suffit. Police inutile sauf désaccord majeur ou refus de l'autre conducteur de remplir le constat.</p><p>⚠️ Partir d'un accident, même mineur, = <strong>délit de fuite</strong>. Sanctions : jusqu'à 3 ans de prison, 75 000€ d'amende, retrait du permis. Très grave.</p>",
+          tip: "Constat = ton ami. Prends ton temps, schéma clair, signatures, photos. Ne déchire jamais ton exemplaire."
+        }
+      ]
+    },
+    {
+      title: "Examen — Vérifs",
+      questions: [
+        {
+          q: "Où se trouve la commande de réglage de la HAUTEUR DES FEUX (correcteur de site) ?",
+          answers: ["Sur la console centrale, près de la clim", "À gauche du volant, au tableau de bord (molette numérotée 0-1-2-3)", "Sur le levier de vitesses", "Dans la boîte à gants"],
+          correct: 1,
+          explanation: "<p>La <strong>molette de réglage</strong> est généralement <strong>à gauche du volant</strong>, au tableau de bord, graduée 0 à 3. <strong>0</strong> = conducteur seul, <strong>3</strong> = véhicule chargé à fond. Plus le chargement est lourd à l'arrière, plus la voiture pointe vers le haut → il faut abaisser les feux pour ne pas éblouir.</p>",
+          tip: "À chaque chargement coffre plein + passagers arrière, tourne la molette d'1 ou 2 crans. Reviens à 0 quand tu te retrouves seul."
+        },
+        {
+          q: "À quoi sert la position « nuit » du RÉTROVISEUR INTÉRIEUR ?",
+          answers: ["À nettoyer la vitre", "À ne pas être ébloui par les phares de la voiture derrière toi la nuit", "À mieux voir l'avant", "À chauffer la cabine"],
+          correct: 1,
+          explanation: "<p>La <strong>petite languette sous le rétroviseur</strong> bascule la surface réfléchissante. Position jour = réfléchit normalement. Position nuit = réfléchit moins → tu vois toujours derrière, mais les phares hauts ne t'aveuglent plus.</p><p>Sur les rétros modernes, c'est automatique (capteur de luminosité, effet électrochrome).</p>",
+          tip: "Tu pars de nuit ? Réflexe : un coup de doigt sur la languette dès que ça t'éblouit. Au retour de jour, repasse en position normale (sinon tu vois trop sombre)."
+        },
+        {
+          q: "Comment vérifies-tu la présence du GILET DE HAUTE VISIBILITÉ ?",
+          answers: ["Il faut l'enfiler immédiatement", "Tu montres son emplacement dans l'habitacle, à portée immédiate du conducteur", "Il est forcément dans le coffre", "Pas obligatoire"],
+          correct: 1,
+          explanation: "<p>Le gilet doit être <strong>à portée immédiate</strong> sans sortir du véhicule : portière, boîte à gants, sous le siège. <strong>JAMAIS dans le coffre</strong> — sinon tu dois sortir sans protection pour le récupérer.</p><p>Obligatoire à bord depuis 2008. Absence ou inaccessibilité : <strong>135 € d'amende</strong>.</p>",
+          tip: "Tu n'as pas à le sortir à l'examen, juste le DÉSIGNER. Tape sur la portière conducteur en disant « il est là »."
+        },
+        {
+          q: "Comment vérifies-tu la présence de l'ÉTHYLOTEST ?",
+          answers: ["Tu souffles dedans", "Tu montres son emplacement (présence dans le véhicule recommandée, plus sanctionnée depuis 2020)", "Au garage", "Pas obligatoire du tout"],
+          correct: 1,
+          explanation: "<p>Depuis <strong>mai 2020</strong>, l'absence d'éthylotest n'est <strong>plus sanctionnée</strong>, mais sa présence reste fortement recommandée. À l'examen, tu en montres simplement l'emplacement (boîte à gants, vide-poche).</p>",
+          tip: "Modèle chimique (à souffle unique) ou électronique. Vérifie la date de péremption — un éthylotest périmé est inutile."
+        },
+        {
+          q: "Comment montres-tu les FEUX DE DÉTRESSE (warning) ?",
+          answers: ["Bouton triangulaire rouge sur la console centrale, souvent au centre du tableau de bord", "Pédale au sol", "Une combinaison de 2 commodos", "Bouton sur la portière"],
+          correct: 0,
+          explanation: "<p>Le bouton <strong>warning</strong> est universellement un <strong>triangle rouge</strong> placé bien en évidence sur la console centrale. Quand activés, les 4 clignotants flashent en simultané + bip sonore.</p><p>Usage : <strong>panne</strong>, <strong>accident</strong>, ou <strong>ralentissement brutal du trafic</strong> (autoroute, embouteillage subit) pour prévenir ceux qui arrivent derrière.</p>",
+          tip: "Les warning fonctionnent moteur éteint et clé retirée. Pratique en cas de panne sèche."
+        },
+        {
+          q: "Comment actionnes-tu l'AVERTISSEUR SONORE (klaxon) ?",
+          answers: ["En appuyant au centre du volant ou sur le bouton dédié (souvent symbole trompette)", "Pédale au sol", "Bouton sur la portière", "En tirant le frein à main"],
+          correct: 0,
+          explanation: "<p>Sur la majorité des voitures, le klaxon s'active en appuyant au <strong>centre du volant</strong> (zone airbag). Sur certains modèles, c'est un <strong>bouton sur le commodo</strong> avec un pictogramme de trompette.</p><p><strong>Usage légal en ville :</strong> seulement en cas de <strong>danger immédiat</strong>. Klaxonner par énervement = 35 € d'amende.</p>",
+          tip: "Tu peux montrer les 2 emplacements (gauche + droite du volant) — l'inspecteur appréciera la précision."
+        },
+        {
+          q: "Comment règles-tu la hauteur des APPUIE-TÊTES ?",
+          answers: ["Au garage uniquement", "Système à la base du siège (bouton ou ergot) : sommet de l'appui-tête au niveau du haut du crâne", "On ne peut pas régler", "Avec une clé"],
+          correct: 1,
+          explanation: "<p>Un appui-tête mal réglé = <strong>coup du lapin garanti</strong> en cas de choc arrière. Le sommet doit être au niveau du <strong>haut du crâne</strong> (pas la nuque), et la distance tête/appui-tête maximum = 4 cm.</p>",
+          tip: "Test rapide : tu tires sur la tige, si tu sens 4 crans, c'est OK. Trop bas = pivot dangereux."
+        },
+        {
+          q: "Comment désactives-tu l'AIRBAG PASSAGER ?",
+          answers: ["Impossible", "Clé/interrupteur (souvent dans la boîte à gants ou sur la tranche du tableau de bord côté passager) ; témoin « PASSENGER AIRBAG OFF » s'allume", "Bouton volant", "Coffre"],
+          correct: 1,
+          explanation: "<p>La commande est généralement une <strong>fente à clé</strong> dans la <strong>boîte à gants</strong> ou sur la <strong>tranche du tableau de bord</strong> côté passager. À actionner <strong>impérativement</strong> quand on installe un siège enfant DOS À LA ROUTE à l'avant.</p><p>Ne pas oublier de RÉACTIVER une fois le siège enlevé.</p>",
+          tip: "Le témoin « PASSENGER AIRBAG OFF » est orange/jaune et reste allumé tant que désactivé."
+        },
+        {
+          q: "Comment montres-tu le VOYANT D'ABSENCE DE CEINTURE conducteur ?",
+          answers: ["Au tableau de bord, voyant rouge bonhomme avec ceinture, allumé tant que le conducteur n'est pas attaché (moteur démarré)", "Au coffre", "Sur le pare-brise", "Il n'existe pas"],
+          correct: 0,
+          explanation: "<p>Voyant <strong>rouge</strong> en forme de <strong>silhouette assise avec ceinture</strong>. S'allume contact mis, accompagné d'un bip insistant si tu roules au-dessus de ~10 km/h sans ceinture.</p><p>À l'examen, démarre <strong>SANS</strong> t'attacher pour le voyant s'allume — puis attache-toi.</p>",
+          tip: "Sur certains modèles, le voyant clignote, puis devient fixe. Sur d'autres, bip s'intensifie après 1-2 min."
+        },
+        {
+          q: "Quels sont les voyants ATTACHES ISOFIX pour siège enfant ?",
+          answers: ["Au tableau de bord", "Sur la banquette arrière : 2 anneaux métalliques entre l'assise et le dossier, identifiés par une étiquette « ISOFIX »", "Sous le siège conducteur", "Inexistants"],
+          correct: 1,
+          explanation: "<p>Système <strong>Isofix</strong> = points d'ancrage <strong>métalliques rigides</strong> standardisés depuis 2011. Au nombre de 2 par place arrière (gauche + droite généralement), accessibles entre l'assise et le dossier.</p><p>Avantage : siège enfant fixé directement à la structure, plus sûr qu'une ceinture seule. <strong>Vérifier la compatibilité</strong> du siège enfant avec Isofix (tous ne le sont pas).</p>",
+          tip: "Pour les montrer à l'examen, ouvre la portière arrière, glisse la main dans la rainure du dossier inférieur. Tu sens les 2 crochets."
+        },
+        {
+          q: "Comment allumes-tu les FEUX DE ROUTE (pleins phares) et où voir le voyant ?",
+          answers: ["Pousser le commodo gauche vers l'avant ; voyant BLEU au tableau de bord", "Bouton rouge", "Au pare-brise", "Pas de voyant"],
+          correct: 0,
+          explanation: "<p>Position : <strong>commodo gauche poussé vers l'avant</strong> (et tiré vers soi pour faire un appel de phares). Témoin = <strong>BLEU vif</strong> (silhouette de phare avec 5 traits horizontaux).</p><p>Usage : <strong>hors agglomération, route déserte</strong>. Tu DOIS revenir en croisement dès qu'un véhicule arrive en face OU est à moins de 150 m devant toi.</p>",
+          tip: "Le voyant BLEU = pleins phares. Pas vert (qui serait position) ni jaune (brouillard avant)."
+        },
+        {
+          q: "Comment allumes-tu les FEUX DE BROUILLARD ARRIÈRE et quel est leur voyant ?",
+          answers: ["Bague sur le commodo droit ou bouton dédié ; voyant ORANGE (ambre) au tableau, pictogramme phare avec lignes ondulées et flèche vers la droite", "Voyant vert", "Voyant bleu", "Pas de voyant"],
+          correct: 0,
+          explanation: "<p>Activés <strong>uniquement par mauvais temps</strong> (brouillard épais < 50 m, neige). Témoin <strong>orange</strong> au tableau. <strong>INTERDITS par forte pluie</strong> — éblouissement des suiveurs.</p><p>Oubli des feux de brouillard arrière allumés après le brouillard = amende ET tu agresses tous ceux qui te suivent.</p>",
+          tip: "Quand tu coupes le contact, beaucoup de voitures coupent automatiquement les brouillards arrière. À la remise en route, ils ne se rallument pas. Voyant vérifié = pas oublié."
+        },
+        {
+          q: "Comment activer le DÉGIVRAGE de la lunette arrière ?",
+          answers: ["Bouton sur la console centrale avec pictogramme « rectangle traversé de flèches montantes » ; voyant orange s'allume sur ce même bouton ou au tableau", "Avec un chiffon", "Au klaxon", "Impossible"],
+          correct: 0,
+          explanation: "<p>Pictogramme universel : <strong>rectangle hachuré + flèches</strong>. Active des fils chauffants intégrés à la lunette arrière qui font fondre buée/givre.</p><p>Très efficace mais consomme. Beaucoup de voitures le coupent automatiquement après 10-15 min.</p>",
+          tip: "Si tu sors d'un parking glacé en hiver, active-le AVANT de démarrer. Ça gagne 2 minutes."
+        },
+        {
+          q: "Comment vérifies-tu le NIVEAU DE LIQUIDE DE FREIN ?",
+          answers: ["Sur le tableau de bord", "Capot ouvert, bocal translucide (souvent côté gauche, identifié par pictogramme « cercle entre parenthèses »), niveau entre MIN et MAX", "Sous le siège", "Dans le coffre"],
+          correct: 1,
+          explanation: "<p>Sous le capot, bocal translucide, marqué « BRAKE FLUID » ou pictogramme <strong>cercle entre 2 parenthèses</strong>. Niveau visible entre les traits MIN et MAX.</p><p><strong>Si bas :</strong> soit fuite (urgence !), soit plaquettes très usées (les pistons sortent plus loin, le liquide « descend »). Dans les deux cas, garage immédiat.</p>",
+          tip: "Liquide de frein = hygroscopique : il absorbe l'humidité. À changer tous les 2 ans (même si niveau bon), sinon perte d'efficacité en freinage répété (vapor lock)."
+        },
+        {
+          q: "Comment vérifies-tu le NIVEAU D'HUILE moteur ?",
+          answers: ["Voyant uniquement", "Capot ouvert, sortir la jauge (tige à anneau jaune/orange), essuyer, replonger à fond, ressortir, lire entre MIN et MAX — MOTEUR FROID, sol plat", "À l'oreille", "Au garage seulement"],
+          correct: 1,
+          explanation: "<p>Procédure : <strong>moteur froid</strong> (ou arrêté > 10 min), <strong>sol plat</strong>. Sortir la jauge, essuyer avec un chiffon, replonger à FOND, ressortir, lire le niveau qui doit être entre MIN et MAX (préférablement vers MAX).</p><p>Vérifier <strong>tous les 1 000 km</strong> et avant tout long trajet.</p>",
+          tip: "Niveau trop haut (au-dessus du MAX) = mousse au moteur, aussi grave que niveau trop bas. Si tu fais l'appoint, vas-y doucement (50 cL à la fois)."
+        },
+        {
+          q: "Comment vérifies-tu le NIVEAU DE LIQUIDE DE REFROIDISSEMENT ?",
+          answers: ["Capot ouvert, MOTEUR FROID IMPÉRATIVEMENT, bocal translucide (vase d'expansion, bouchon souvent jaune ou bleu), niveau entre MIN et MAX", "À chaud sans risque", "Sous le siège", "Pas de niveau à vérifier"],
+          correct: 0,
+          explanation: "<p>Vase d'expansion sous le capot, identifié par <strong>pictogramme thermomètre dans une vague</strong>. <strong>JAMAIS</strong> ouvrir à chaud — le circuit est sous pression et le liquide atteint 120 °C. Risque de brûlure grave.</p><p>Niveau bas → faire l'appoint avec liquide de refroidissement adapté (pas d'eau seule, surtout en hiver — risque de gel).</p>",
+          tip: "Le bouchon a souvent un symbole « ! » + thermomètre = attention chaleur. Touche-le du dos de la main : trop chaud à toucher = laisser refroidir."
+        },
+        {
+          q: "Comment vérifies-tu le NIVEAU DE LAVE-GLACE ?",
+          answers: ["Pas vérifiable", "Capot ouvert, bocal souvent BLEU avec pictogramme « jet d'eau sur essuie-glace »", "Coffre", "Boîte à gants"],
+          correct: 1,
+          explanation: "<p>Bocal sous le capot, <strong>bouchon bleu</strong> (parfois jaune) avec pictogramme <strong>essuie-glace + jets d'eau</strong>. Pas de jauge formelle — on remplit jusqu'à ce qu'on voie le liquide.</p><p><strong>Hiver :</strong> impératif d'utiliser un liquide spécial antigel jusqu'à -20 °C, sinon le circuit gèle et les jets ne fonctionnent plus.</p>",
+          tip: "Tu n'es pas obligé d'utiliser du « lave-glace » coûteux : eau + quelques gouttes de liquide vaisselle fait l'affaire l'été. En hiver, antigel obligatoire."
+        },
+        {
+          q: "Comment vérifies-tu l'ÉTAT DU FLANC d'un pneumatique ?",
+          answers: ["À l'œil", "Tour du pneu : pas de coupures, hernies (boursouflures), déchirures, clous plantés", "Au son", "Impossible sans démontage"],
+          correct: 1,
+          explanation: "<p>Inspection visuelle du flanc : cherche les <strong>coupures profondes</strong>, <strong>hernies</strong> (bulles indiquant que la structure interne est cassée → risque d'éclatement à grande vitesse), <strong>déformations</strong>, et tout corps étranger fiché dedans.</p><p>Une hernie = changement immédiat du pneu, peu importe son âge.</p>",
+          tip: "Profite des arrêts station-service pour faire le tour. 30 secondes par pneu, ça peut sauver."
+        },
+        {
+          q: "Comment trouves-tu le TÉMOIN D'USURE (TWI) sur un pneu ?",
+          answers: ["Pas de témoin", "Petit marqueur (« TWI » ou triangle) sur le flanc, indique l'emplacement de petites bosses au fond des rainures — limite légale 1,6 mm", "Au tableau de bord", "Sur la portière"],
+          correct: 1,
+          explanation: "<p>Le <strong>TWI</strong> (Tread Wear Indicator) est un repère sur le flanc qui pointe vers les <strong>témoins d'usure</strong> = petites bosses dans le fond des rainures. Quand la gomme du pneu atteint ces bosses → profondeur = 1,6 mm, limite légale.</p><p>Sous 1,6 mm : <strong>135 € + 3 points par pneu</strong>, pneu illégal et dangereux (aquaplaning quasi-garanti).</p>",
+          tip: "Pièce de 1 € dans la rainure : si la couronne dorée disparaît, OK. Si visible, à changer (vers 3 mm en réalité = perte de performance pluie/neige)."
+        },
+        {
+          q: "Où trouves-tu la PRESSION RECOMMANDÉE des pneus ?",
+          answers: ["Sur le pneu (= pression max structure, à NE PAS suivre)", "Étiquette dans la portière conducteur (côté charnière), ou trappe à carburant ; et dans le manuel d'utilisation", "Au garage seulement", "Sur Internet (universel 2,5 bars)"],
+          correct: 1,
+          explanation: "<p>L'étiquette précise des <strong>pressions différentes</strong> : à vide, en charge (vacances), parfois éco. À mesurer <strong>à FROID</strong> (pneus pas roulé depuis 2h ou < 3 km), sinon la dilatation thermique fausse la lecture (+0,3 bar à chaud).</p>",
+          tip: "Sous-gonflage de 0,5 bar = +5 % de consommation et risque d'éclatement à grande vitesse. Surgonflage = usure centrale + tenue de route dégradée."
+        },
+        {
+          q: "À quelle FRÉQUENCE vérifier la pression des pneus ?",
+          answers: ["Une fois par an", "Tous les MOIS et avant chaque long trajet, à FROID", "Tous les 5 ans", "Jamais"],
+          correct: 1,
+          explanation: "<p>Tous les pneus perdent <strong>0,05 bar/mois</strong> environ par diffusion naturelle (caoutchouc poreux). Au bout de 6 mois sans vérif, tu peux être sous-gonflé de 0,3 bar = consommation + usure + risque.</p><p>Avant un long trajet : impératif. Vérifier aussi la roue de secours.</p>",
+          tip: "Pression du « voyant baisse pression pneu » au tableau = il s'allume tard, vers -25%. À ce stade le pneu est déjà très dégradé. Ne compte pas dessus."
+        },
+        {
+          q: "Comment ouvres-tu/fermes-tu correctement le CAPOT ?",
+          answers: ["À la clé extérieure", "Tirette intérieure (sous le tableau, côté conducteur) → levier sous le bord du capot pour le déverrouiller → soulever et caler avec la béquille → pour fermer : retirer béquille, laisser tomber les 30 derniers cm, vérifier la fermeture", "Au klaxon", "Impossible sans outil"],
+          correct: 1,
+          explanation: "<p>2 systèmes de sécurité : tirette intérieure ET <strong>loquet de sécurité</strong> sous le bord du capot — il faut désengager les DEUX pour ouvrir. Empêche l'ouverture accidentelle en roulant.</p><p><strong>Fermeture :</strong> ne pas claquer en plein. Lâcher des 30 derniers cm pour que le verrouillage s'enclenche par gravité. Tester en tirant : le capot ne doit pas se soulever.</p>",
+          tip: "Toujours vérifier la fermeture en tirant légèrement avant de partir. Capot mal fermé qui s'ouvre à 90 km/h = vision totalement obstruée."
+        },
+        {
+          q: "Comment vérifies-tu les FEUX DE STOP ?",
+          answers: ["Au tableau", "Demander à un tiers d'appuyer sur la pédale moteur tournant ; ou utiliser un mur ou la vitrine pour observer le reflet : 3 feux rouges (2 latéraux + 1 central haut souvent dans la lunette)", "Impossible", "Voyant au tableau"],
+          correct: 1,
+          explanation: "<p>Les feux de stop s'allument quand tu appuies sur la pédale de frein. Total = 3 feux rouges (2 latéraux + 1 « 3e feu stop » en hauteur, obligatoire depuis 1998).</p><p><strong>Panne d'un feu stop :</strong> les véhicules suiveurs ne savent pas que tu freines → risque de collision arrière. <strong>135 € d'amende</strong> en cas de contrôle.</p>",
+          tip: "À l'examen, c'est l'inspecteur qui appuie si tu n'as personne — ou tu utilises le rebord d'un mur ou une vitrine reflétant l'arrière."
+        },
+        {
+          q: "Comment vérifies-tu les FEUX DE RECUL ?",
+          answers: ["Passer la marche arrière moteur démarré et observer : 2 feux BLANCS à l'arrière (parfois 1 seul selon modèle)", "Pas de feux de recul", "Au tableau", "Au klaxon"],
+          correct: 0,
+          explanation: "<p>Les <strong>feux de recul</strong> (blancs) ont <strong>2 fonctions</strong> :</p><p>• <strong>Éclairer</strong> derrière toi la nuit pour voir où tu vas<br>• <strong>Avertir</strong> les autres usagers que tu recules</p><p>S'allument automatiquement dès que tu passes la marche arrière, contact mis.</p>",
+          tip: "Test rapide : moteur tournant, marche arrière enclenchée, jeter un œil au rétro extérieur ou se faire valider par un tiers."
+        },
+        {
+          q: "Où trouves-tu le TRIANGLE de présignalisation ?",
+          answers: ["Pas obligatoire", "Souvent dans le COFFRE (sous le plancher avec la roue de secours, ou dans un compartiment latéral)", "Sous le siège conducteur", "Dans le moteur"],
+          correct: 1,
+          explanation: "<p>Le triangle est <strong>obligatoire à bord</strong> depuis 2008. Généralement dans le coffre (sous le plancher amovible avec la roue de secours, ou dans une trappe latérale). Toujours dans son étui.</p><p><strong>Usage :</strong> 30 m en amont en cas de panne/accident hors autoroute. Sur autoroute, NE PAS poser le triangle (dangereux), on se met derrière la glissière.</p>",
+          tip: "Avant ton premier long trajet de l'année, vérifie qu'il est bien là ET en bon état. Beaucoup de gens découvrent qu'il manque le jour où ils en ont besoin."
+        }
+      ]
+    },
+    {
+      title: "Examen — Sécu & Secours",
+      questions: [
+        {
+          q: "Conséquence d'un dispositif lave-glace défaillant ?",
+          answers: ["Aucune", "Mauvaise visibilité — impossible de nettoyer le pare-brise des projections (insectes, boue, sel)", "Surconsommation", "Bruit"],
+          correct: 1,
+          explanation: "<p>Pas de lave-glace = pare-brise qui se salit jusqu'à devenir opaque (notamment sur route mouillée + camions devant qui projettent de l'eau sale). Visibilité fortement réduite = danger.</p>",
+          tip: "Avant un long trajet : remplir le réservoir + tester les jets. 30 secondes pour éviter une mauvaise surprise à 130 km/h sous la pluie."
+        },
+        {
+          q: "Pourquoi faut-il régler la HAUTEUR DES FEUX ?",
+          answers: ["Pour économiser du carburant", "Pour ne pas ÉBLOUIR les autres usagers (notamment quand le véhicule est chargé à l'arrière, ce qui relève les phares)", "Pour aller plus vite", "Aucune raison"],
+          correct: 1,
+          explanation: "<p>Un véhicule chargé à l'arrière (coffre plein, passagers arrière) pointe naturellement vers le haut. Sans correction, tes feux de croisement éblouissent les conducteurs en face = danger d'accident frontal.</p><p>Molette à 0 (seul) à 3 (charge max).</p>",
+          tip: "Tu rentres de vacances chargé ? Réflexe avant départ : régler la molette à 2 ou 3. Au retour à vide, remettre à 0."
+        },
+        {
+          q: "Pourquoi utiliser un LIQUIDE LAVE-GLACE SPÉCIAL en hiver ?",
+          answers: ["Aucun intérêt", "Pour éviter le gel du liquide dans le circuit (eau pure gèle à 0 °C → tuyaux qui éclatent)", "Pour sentir bon", "Pour économiser"],
+          correct: 1,
+          explanation: "<p>L'eau pure gèle à 0 °C. Si elle est dans tes tuyaux par -10 °C, elle se transforme en glace, augmente de volume et FAIT ÉCLATER les durites + pompe lave-glace. Réparation : 100-300 €.</p><p>Le liquide « hiver » contient de l'éthanol → reste liquide jusqu'à -20 °C voire -30 °C.</p>",
+          tip: "L'erreur typique : remplir d'eau pure tout l'été, puis première gelée d'octobre → boum. Mets du « -20 °C » dès septembre pour sécuriser."
+        },
+        {
+          q: "Conséquence d'un NIVEAU INSUFFISANT de liquide de frein ?",
+          answers: ["Aucune", "PERTE D'EFFICACITÉ du freinage, voire rupture totale du système hydraulique (pédale qui s'enfonce dans le vide)", "Plus de bruit", "Plus d'autonomie"],
+          correct: 1,
+          explanation: "<p>Le système de frein est hydraulique : ta pédale comprime du liquide qui pousse les pistons sur les disques. Niveau bas → <strong>air dans le circuit</strong> → pédale molle, puis pédale qui touche le plancher = plus de frein du tout.</p><p>Niveau qui baisse = soit fuite (urgence), soit plaquettes très usées.</p>",
+          tip: "Le voyant frein au tableau peut indiquer plein de choses : niveau bas, frein à main serré, plaquettes finies. Ne JAMAIS rouler avec ce voyant rouge allumé."
+        },
+        {
+          q: "Risque de BALAIS D'ESSUIE-GLACE défectueux ?",
+          answers: ["Aucun", "Mauvaise visibilité par temps de pluie/neige (traces, zones non balayées) — danger majeur d'accident", "Surconsommation", "Bruit"],
+          correct: 1,
+          explanation: "<p>Balais usés = traces, zones non essuyées, vibrations. Sur autoroute sous pluie battante, tu perds quasi-totalement la visibilité. Le caoutchouc s'use vite : durée de vie typique <strong>12 à 18 mois</strong>.</p>",
+          tip: "Test : balais qui couinent ou laissent des traînées = à changer. 15 € la paire en grande surface, 5 min à monter (clips simples)."
+        },
+        {
+          q: "Précautions au REMPLISSAGE DU RÉSERVOIR ?",
+          answers: ["Aucune", "Couper le MOTEUR, NE PAS FUMER, NE PAS TÉLÉPHONER (les vapeurs d'essence sont explosives)", "Klaxonner", "Téléphoner pour passer le temps"],
+          correct: 1,
+          explanation: "<p>Les <strong>vapeurs d'essence</strong> stagnent autour du véhicule et de la pompe (gaz plus lourd que l'air). Une étincelle (cigarette, statique d'un téléphone, démarrage moteur) peut les enflammer. Risque <strong>réel</strong> mais rare.</p><p>Plus banal : risque de débordement si le moteur tourne (anti-débordement de la pompe peut bugger).</p>",
+          tip: "Avant de manipuler le pistolet, touche du métal (carrosserie) pour décharger l'électricité statique. Geste pro."
+        },
+        {
+          q: "DANGER si on ouvre le bocal de liquide de refroidissement MOTEUR CHAUD ?",
+          answers: ["Aucun", "Risque de BRÛLURE GRAVE (jet de liquide bouillant sous pression, à 120 °C, sur le visage)", "Petit jet inoffensif", "Risque de feu"],
+          correct: 1,
+          explanation: "<p>Le circuit de refroidissement est <strong>sous pression</strong> (1,5 bar typiquement) — c'est ce qui permet à l'eau de dépasser 100 °C sans bouillir. Ouvrir le bouchon à chaud = explosion en geyser de liquide bouillant.</p><p>Brûlures au 2e/3e degré sur le visage, les mains, le torse.</p>",
+          tip: "Voyant température au rouge en route ? Coupe la clim, allume CHAUFFAGE à fond (oui, l'été aussi — ça évacue les calories du moteur), arrête-toi dès que possible. NE PAS ouvrir."
+        },
+        {
+          q: "Conséquence d'une PANNE DE DÉGIVRAGE LUNETTE ARRIÈRE ?",
+          answers: ["Aucune", "Insuffisance ou absence de visibilité vers l'arrière (buée, givre persistants)", "Surconsommation", "Voyant rouge fixe"],
+          correct: 1,
+          explanation: "<p>Sans dégivrage arrière, la lunette reste embuée → tu ne vois rien dans le rétroviseur intérieur → angles morts géants pour changement de voie, marche arrière, etc.</p>",
+          tip: "En attendant la réparation : ouvrir brièvement les vitres avant pour faire circuler l'air, ou monter la clim qui assèche."
+        },
+        {
+          q: "Que signifie un CLIGNOTANT qui flashe PLUS RAPIDEMENT que d'habitude ?",
+          answers: ["Voyant économique", "Une AMPOULE de clignotant est GRILLÉE (avant ou arrière, du même côté)", "Réussite de manœuvre", "Aucune signification"],
+          correct: 1,
+          explanation: "<p>Système intelligent : le clignotant détecte la résistance électrique du circuit. Une ampoule grillée = résistance changée = système accélère le rythme pour t'alerter.</p><p>Sur les voitures à LED, c'est plus subtil mais un voyant au tableau s'allume.</p>",
+          tip: "Clignotant qui flashe vite = sortir de voiture au prochain feu et regarder : avant ou arrière ? Côté gauche ou droit ? Ampoule à changer (souvent ~5 €)."
+        },
+        {
+          q: "Conditions pour vérifier le NIVEAU D'HUILE ?",
+          answers: ["Moteur chaud après autoroute", "Moteur FROID (ou éteint > 10 min) et véhicule sur TERRAIN PLAT", "Sur une pente", "N'importe quand"],
+          correct: 1,
+          explanation: "<p>Moteur chaud → l'huile est encore en circulation dans le haut moteur, la jauge sous-estime. Sol incliné → niveau faussé.</p><p>Procédure : moteur froid, sol plat, sortir jauge, essuyer, replonger à fond, ressortir, lire.</p>",
+          tip: "Le matin avant de démarrer, c'est l'idéal. Niveau exact, conditions parfaites, 30 secondes chrono."
+        },
+        {
+          q: "Quand utilise-t-on les FEUX DE BROUILLARD ARRIÈRE ?",
+          answers: ["Toujours quand il pleut", "Uniquement par BROUILLARD épais ou CHUTE DE NEIGE — interdits par forte pluie (éblouissement)", "Quand on est pressé", "En ville"],
+          correct: 1,
+          explanation: "<p>Les feux de brouillard arrière sont <strong>très puissants</strong> (intensité ~25 fois supérieure aux feux de position). Légitimes seulement quand la visibilité tombe sous ~50 m (brouillard, neige). Sous la pluie, ils éblouissent les voitures derrière sans bénéfice réel.</p><p>Allumés sans nécessité = 35 € d'amende et beaucoup d'agacement.</p>",
+          tip: "Réflexe : sors du brouillard ? Voyant ambre allumé ? Coupe-les. Sinon tu deviens un agresseur lumineux pour les 50 km suivants."
+        },
+        {
+          q: "TAUX D'ALCOOLÉMIE MAX en permis probatoire (3 premières années) ?",
+          answers: ["0,5 g/L (comme tout le monde)", "0,2 g/L (= dès le premier verre, on peut être en infraction)", "0,8 g/L", "0 g/L absolu"],
+          correct: 1,
+          explanation: "<p>Pour les permis probatoires (3 ans, ou 2 si conduite accompagnée) : seuil <strong>0,2 g/L de sang</strong>. C'est l'équivalent d'environ <strong>UN demi de bière</strong> chez un homme moyen — souvent moins.</p><p>Sanction si dépassé : 135 € + 6 points (sur 6 disponibles en probatoire = retour au permis blanc + stage obligatoire).</p>",
+          tip: "Règle simple en probatoire : ZÉRO alcool. C'est plus simple à gérer qu'un calcul de demi."
+        },
+        {
+          q: "Quand utiliser les FEUX DE DÉTRESSE (warning) ?",
+          answers: ["Tout le temps en ville", "En cas de PANNE, d'ACCIDENT, ou de RALENTISSEMENT BRUTAL du trafic (autoroute embouteillage soudain)", "Pour se garer en double file", "Sous la pluie"],
+          correct: 1,
+          explanation: "<p>Usage légitime :</p><p>• <strong>Panne</strong> immobilisée sur ou en bord de chaussée<br>• <strong>Accident</strong><br>• <strong>Ralentissement subit</strong> du trafic (autoroute fluide → bouchon en 100 m) : 2-3 flashes pour alerter ceux derrière</p><p>Stationnement gênant n'est PAS une raison légitime — c'est juste pour se donner bonne conscience.</p>",
+          tip: "Sur autoroute : voir des feux de détresse devant = tu ralentis IMMÉDIATEMENT. C'est probablement un bouchon à 100 m, pas un mec garé."
+        },
+        {
+          q: "Risque principal d'un MANQUE D'HUILE moteur ?",
+          answers: ["Surconsommation", "CASSE MOTEUR (grippage : les pièces métalliques mobiles soudent par friction). Réparation 3000-8000 €", "Bruit", "Démarrage difficile"],
+          correct: 1,
+          explanation: "<p>L'huile lubrifie et refroidit les pièces internes. Sans huile : friction métal-métal → chaleur extrême → soudure des pièces (bielle, vilebrequin, pistons) → moteur HS.</p><p>Réparation = remplacement complet du bas moteur, souvent plus cher que la valeur résiduelle de la voiture.</p>",
+          tip: "Voyant rouge huile allumé en roulant = arrêt IMMÉDIAT, dépanneuse. Pas même 1 km de plus. Le moteur peut casser en 30 secondes."
+        },
+        {
+          q: "Différence entre voyant ORANGE et voyant ROUGE ?",
+          answers: ["Aucune", "ROUGE = anomalie ou DANGER, arrêt dès que possible. ORANGE = élément important à surveiller, pas urgent immédiat", "Rouge = info, orange = danger", "Couleurs cosmétiques"],
+          correct: 1,
+          explanation: "<p><strong>Rouge</strong> = sang = urgence vitale (huile, frein, température, batterie, airbag…). Tu t'arrêtes dès que possible en sécurité.</p><p><strong>Orange</strong> = chantier = vigilance (pression pneus, témoin moteur, niveau lave-glace…). Tu peux finir ton trajet et vérifier rapidement après.</p><p><strong>Vert/bleu</strong> = info de fonctionnement (clignotant, feu, croisement).</p>",
+          tip: "Mnémo couleurs : rouge → URGENCE, orange → VIGILANCE, vert/bleu → OK."
+        },
+        {
+          q: "À quelle distance les FEUX DE POSITION doivent-ils être visibles par temps clair ?",
+          answers: ["50 m", "150 mètres", "300 m", "Aucune obligation"],
+          correct: 1,
+          explanation: "<p>Les <strong>feux de position</strong> (avant + arrière) doivent être visibles à <strong>150 m</strong> par temps clair. C'est la distance minimale pour qu'un autre conducteur ait le temps d'anticiper ta présence.</p><p>Pour comparaison : les feux de croisement portent à 30 m, les feux de route à 100 m.</p>",
+          tip: "Position = juste signaler ta présence. Pas faits pour éclairer. À utiliser : arrêt sur bord de route, ou en compagnie des autres feux."
+        },
+        {
+          q: "Qu'est-ce que l'AQUAPLANING (ou aquaplanage) ?",
+          answers: ["Un sport", "Un FILM D'EAU qui s'intercale entre le pneu et la chaussée → perte d'adhérence et de contrôle directionnel + freinage", "Une marque de pneu", "Un système ABS"],
+          correct: 1,
+          explanation: "<p>Sur chaussée très mouillée et à vitesse élevée, les rainures du pneu ne peuvent plus évacuer assez d'eau. Le pneu « flotte » sur un mince film d'eau → adhérence nulle, direction inopérante.</p><p>Réaction : <strong>NE PAS freiner brutalement</strong>, NE PAS braquer. Lever le pied, garder le volant droit, attendre que les pneus reprennent contact.</p>",
+          tip: "Risque maximal à partir de 80 km/h sur route mouillée avec flaques. Pneus à 1,6 mm : aquaplaning quasi-garanti. À 6 mm : marge confortable."
+        },
+        {
+          q: "Comment DÉSACTIVER RAPIDEMENT le régulateur de vitesse ?",
+          answers: ["Couper le moteur", "Appuyer sur la pédale de FREIN ou d'EMBRAYAGE (le régulateur se met en pause instantanément)", "Au klaxon", "Impossible"],
+          correct: 1,
+          explanation: "<p>Sécurité essentielle : toute action sur frein ou embrayage interrompt immédiatement le régulateur. Plus rapide que de chercher le bouton « OFF ».</p><p><strong>Différence avec le limiteur</strong> : le régulateur MAINTIENT la vitesse (tu lâches l'accélérateur), le limiteur EMPÊCHE de dépasser (tu accélères mais ça plafonne).</p>",
+          tip: "Cas vu en stage : panique, plus de connaissance des boutons. Réflexe enseigné : « pied au frein = tout s'arrête, le régulateur en premier ». Toujours fiable."
+        },
+        {
+          q: "Quand utiliser l'AVERTISSEUR SONORE (klaxon) en agglomération ?",
+          answers: ["Pour saluer", "Uniquement en cas de DANGER IMMÉDIAT (piéton qui traverse sans regarder, voiture qui sort sans voir...)", "Pour faire avancer la file", "Quand on est énervé"],
+          correct: 1,
+          explanation: "<p>En agglomération, le klaxon est réservé au <strong>danger immédiat</strong>. Klaxonner pour faire avancer un retardataire, exprimer son mécontentement, ou de nuit (sauf danger) = 35 € d'amende.</p>",
+          tip: "Klaxon de nuit en ville = interdit sauf danger réel. Les amendes ne sont pas systématiques, mais légalement c'est le cas."
+        },
+        {
+          q: "Quand DÉSACTIVER l'airbag passager avant ?",
+          answers: ["Jamais", "Quand on installe un enfant dans un siège auto DOS À LA ROUTE à l'avant — sinon airbag = force mortelle sur la nuque du bébé", "Quand le passager est grand", "En hiver"],
+          correct: 1,
+          explanation: "<p>L'airbag se déploie à <strong>300 km/h</strong> en quelques millisecondes. Un bébé dos à la route a la tête à 30 cm du tableau de bord → impact mortel.</p><p>Désactivation par clé ou interrupteur, vérifier que le témoin « PASSENGER AIRBAG OFF » est bien allumé.</p>",
+          tip: "Pas d'interrupteur d'airbag sur ta voiture ? Tu n'as PAS le droit de mettre un siège dos route à l'avant. Banquette arrière obligatoire."
+        },
+        {
+          q: "À partir de quel ÂGE un enfant peut-il être assis à l'AVANT (règle générale) ?",
+          answers: ["3 ans", "10 ANS (avant : siège enfant adapté, à l'arrière)", "15 ans", "Aucun âge minimum"],
+          correct: 1,
+          explanation: "<p>En règle générale, les enfants doivent voyager à <strong>l'arrière</strong> jusqu'à <strong>10 ans</strong>, dans un siège ou rehausseur adapté à leur taille/poids.</p><p>Exceptions à l'avant possibles : pas de place arrière (utilitaire 2 places), bébé dos à la route avec airbag DÉSACTIVÉ, transport ponctuel — toujours avec siège adapté.</p>",
+          tip: "Banquette arrière = ~3x moins de risque mortel que l'avant pour un enfant en cas d'accident frontal. Justifie largement le confort sacrifié."
+        },
+        {
+          q: "Risque d'une MAUVAISE FERMETURE DU CAPOT en roulant ?",
+          answers: ["Aucun", "Ouverture BRUTALE du capot en circulation, qui obstrue totalement la vision → accident grave probable", "Surconsommation", "Bruit"],
+          correct: 1,
+          explanation: "<p>Capot mal verrouillé → à partir de 60-80 km/h, la pression de l'air sous le capot le soulève. À 100 km/h, il peut se rabattre violemment sur le pare-brise → vision zéro instantanée.</p><p>Ne JAMAIS rouler si tu n'as pas vérifié la fermeture après avoir fait un appoint.</p>",
+          tip: "Après chaque ouverture, ferme + TIRE sur le bord pour vérifier que c'est bien verrouillé. 2 secondes, ça sauve la vie."
+        },
+        {
+          q: "Délai pour transmettre un CONSTAT AMIABLE à l'assureur ?",
+          answers: ["1 jour", "5 jours ouvrés", "1 mois", "Aucun délai"],
+          correct: 1,
+          explanation: "<p>Le constat doit être envoyé à ton assurance dans les <strong>5 jours ouvrés</strong> suivant l'accident. Au-delà, l'assureur peut refuser le dossier ou réduire l'indemnisation.</p><p>Envoi possible : papier (LRAR de préférence), photo via app mobile de l'assurance, e-constat (depuis 2014 en France).</p>",
+          tip: "Photo de chaque case du constat avec ton téléphone avant signature. Si l'autre tente de modifier après, tu as la preuve."
+        },
+        {
+          q: "Utilise-t-on le TRIANGLE de présignalisation sur AUTOROUTE ?",
+          answers: ["Oui, toujours", "NON — c'est dangereux pour les autres usagers (et pour toi qui le pose). On se met derrière la glissière de sécurité", "Oui, à 100 m", "Oui sur la chaussée"],
+          correct: 1,
+          explanation: "<p>Sur autoroute, vitesses élevées + visibilité courte = poser le triangle sur la BAU est extrêmement dangereux. Tu risques d'être fauché par un poids lourd ou un véhicule en aquaplaning.</p><p><strong>Procédure :</strong> gilet jaune, sortir du véhicule par la portière côté droit (côté glissière), se mettre derrière la glissière, appeler les secours par borne orange ou téléphone. Allumer warning + position antibrouillard arrière éventuellement.</p>",
+          tip: "En cas de panne autoroute : pas d'héroïsme. Glissière entre toi et la route, et tu attends. Les autoroutes ont des dépanneuses agréées qui te trouveront par le PK."
+        },
+        {
+          q: "Sur AUTOROUTE, comment indiquer le LIEU d'un accident aux secours ?",
+          answers: ["Avec le GPS", "Donner : NUMÉRO d'autoroute + SENS de circulation + POINT KILOMÉTRIQUE (PK indiqué sur petites bornes carrées tous les 100 m)", "Décrire le paysage", "Nommer la ville la plus proche"],
+          correct: 1,
+          explanation: "<p>Sans le sens de circulation, les secours peuvent prendre la mauvaise direction de l'autoroute et perdre 15 min. Le PK est l'identifiant unique du lieu.</p><p>Les <strong>bornes d'appel orange</strong> tous les 2 km transmettent ta position GPS automatiquement — pratique si tu paniques.</p>",
+          tip: "Tu n'as pas vu de PK ? Regarde les panneaux de sortie ou les bornes ALU sur le bord. Si rien, donne au moins le sens (« A6 vers Lyon »)."
+        },
+        {
+          q: "Quels NUMÉROS d'urgence composer ?",
+          answers: ["Seulement le 15", "15 (SAMU médical) • 17 (police) • 18 (pompiers) • 112 (européen toutes urgences) • 114 (SMS pour sourds/malentendants)", "Le numéro de mon assurance", "Le 911"],
+          correct: 1,
+          explanation: "<p>En cas de doute → <strong>112</strong>. C'est le numéro européen qui aiguille vers le bon service. Fonctionne gratuitement sans crédit, sans carte SIM, et sur tous les réseaux.</p><p>Le <strong>114</strong> permet d'alerter par SMS — vital si tu ne peux pas parler (agression silencieuse, malentendant).</p>",
+          tip: "Programme le 112 et le 114 en favoris dans ton téléphone. Une seconde gagnée peut compter."
+        },
+        {
+          q: "Comment et pourquoi PROTÉGER une zone de danger en cas d'accident ?",
+          answers: ["Aucune protection nécessaire", "Délimiter LARGEMENT et VISIBLEMENT la zone (gilet, triangle 30 m, feux de détresse, écarter les valides) pour éviter un SUR-ACCIDENT", "Photographier", "Téléphoner d'abord"],
+          correct: 1,
+          explanation: "<p>Si tu te jettes sur les blessés sans sécuriser, une 2e voiture peut arriver et tout aggraver. Ta première mission = <strong>matérialiser le danger</strong> pour que personne d'autre n'y rentre.</p><p>Outils : gilet (toi visible), triangle (véhicule visible), warning (signal lumineux), distance (éloigner les piétons valides hors chaussée).</p>",
+          tip: "Étape « P » de PAS = Protéger. Tu protèges TOI d'abord (gilet), PUIS le véhicule (warning + triangle), PUIS les autres (éloigner). Hiérarchie qui sauve."
+        },
+        {
+          q: "Quelles sont les 3 INFOS à transmettre aux secours ?",
+          answers: ["Juste mon nom", "Le numéro de TÉLÉPHONE depuis lequel j'appelle, la NATURE du problème, et la LOCALISATION la plus précise possible", "L'heure", "Aucune info nécessaire"],
+          correct: 1,
+          explanation: "<p><strong>1. Numéro de téléphone</strong> : pour que l'opérateur puisse te rappeler si la communication coupe ou pour préciser.<br><strong>2. Nature du problème</strong> : accident, malaise, incendie, nombre de victimes, victimes conscientes/inconscientes…<br><strong>3. Localisation précise</strong> : adresse exacte, autoroute + PK, repère visuel.</p>",
+          tip: "Reste calme, parle clairement, réponds aux questions de l'opérateur. Ne raccroche PAS avant son autorisation."
+        },
+        {
+          q: "Une victime inconsciente mais qui RESPIRE — que faire ?",
+          answers: ["La laisser sur le dos", "La placer en PLS (Position Latérale de Sécurité), alerter les secours, surveiller la respiration jusqu'à leur arrivée", "Lui donner à boire", "La secouer"],
+          correct: 1,
+          explanation: "<p><strong>PLS</strong> : tournée sur le côté, tête légèrement en arrière, bouche vers le sol → empêche l'étouffement par la langue ou un vomissement.</p><p>Couvrir, parler à la victime (même si elle ne répond pas), surveiller la respiration toutes les minutes. Si elle s'arrête de respirer → RCP.</p>",
+          tip: "PLS s'utilise UNIQUEMENT si la victime RESPIRE. Si elle ne respire pas, c'est arrêt cardiaque → massage cardiaque immédiat, pas PLS."
+        },
+        {
+          q: "Comment ARRÊTER UNE HÉMORRAGIE ?",
+          answers: ["Verser de l'eau", "COMPRESSION DIRECTE sur la plaie, avec un linge propre (ou la main en urgence vitale). Appuyer fort, sans relâcher", "Mettre un garrot tout de suite", "Surélever uniquement"],
+          correct: 1,
+          explanation: "<p>La compression directe est <strong>la</strong> réponse à 95 % des hémorragies. Tu appuies fort et tu ne lâches pas.</p><p>Le <strong>garrot</strong> est un geste de dernier recours (membre arraché, plaie inaccessible). Mal posé il peut faire perdre le membre. Toujours noter l'heure de pose.</p>",
+          tip: "Pas de linge propre ? Ton t-shirt, ta veste, tout vaut mieux qu'attendre. Sauver une vie passe avant l'hygiène — les pros nettoieront."
+        },
+        {
+          q: "Hors autoroute, à quelle DISTANCE poser le TRIANGLE ?",
+          answers: ["Juste derrière la voiture", "Environ 30 mètres en amont — et plus loin si VIRAGE, sommet de côte, ou DOS D'ÂNE", "100 mètres", "Pas besoin"],
+          correct: 1,
+          explanation: "<p>30 m permet à un conducteur arrivant à 90 km/h d'avoir le temps de freiner. Avant un virage ou un sommet, le triangle doit être placé AVANT la zone aveugle pour être vu suffisamment tôt.</p>",
+          tip: "Tu marches gilet jaune, FACE au trafic, pour pouvoir te plaquer dans le fossé si une voiture déboule mal. JAMAIS dos à la route."
+        },
+        {
+          q: "Quels sont les SIGNES d'un ARRÊT CARDIAQUE ?",
+          answers: ["Douleur poitrine seulement", "La victime NE RÉPOND PAS, NE RÉAGIT PAS, NE RESPIRE PAS (ou respire de manière agonique : gasps espacés)", "Pâleur uniquement", "Inconscience mais respiration normale"],
+          correct: 1,
+          explanation: "<p>Les 3 signes simultanés :</p><p>1. <strong>Ne répond pas</strong> à l'appel<br>2. <strong>Ne réagit pas</strong> au stimulus (pincement, secousse épaule)<br>3. <strong>Ne respire pas</strong> normalement (ou respiration agonique = lents soubresauts)</p><p>Action immédiate : <strong>112 + RCP + DAE</strong>. Sans massage, le cerveau meurt en 3-5 min. -10% chance de survie par minute perdue.</p>",
+          tip: "Tempo RCP : chanson « Stayin' Alive » des Bee Gees (oui, vraiment : c'est exactement 100 BPM, le bon rythme)."
+        },
+        {
+          q: "Qu'est-ce qu'un DAE (Défibrillateur Automatisé Externe) ?",
+          answers: ["Un appareil de massage", "Un appareil qui peut RÉTABLIR UNE ACTIVITÉ CARDIAQUE NORMALE chez une victime en arrêt cardiaque, par un choc électrique automatique", "Une lampe", "Un détecteur d'incendie"],
+          correct: 1,
+          explanation: "<p>Le DAE est <strong>automatique</strong> : il analyse seul le rythme cardiaque et ne déclenche un choc QUE si nécessaire (fibrillation ventriculaire). Aucun risque de l'utiliser sur quelqu'un qui n'en a pas besoin.</p><p>L'appareil <strong>parle et te guide</strong> étape par étape. Tu ne peux pas te tromper.</p>",
+          tip: "DAE = présent dans tous les lieux publics (mairies, gares, stades). Localiser le plus proche dès que tu identifies un arrêt cardiaque. App « SAUV Life » ou « Staying Alive » te montre les DAE autour."
+        },
+        {
+          q: "Quel comportement adopter face à une victime en ARRÊT CARDIAQUE ?",
+          answers: ["L'asseoir", "ALERTER (112) + MASSER (RCP 100-120 compressions/min) + DÉFIBRILLER (DAE dès que disponible)", "Lui parler", "Attendre"],
+          correct: 1,
+          explanation: "<p>Chaîne de survie : <strong>3 maillons</strong>.</p><p><strong>ALERTER</strong> : 112, dire « arrêt cardiaque » → ambulance avec défibrillateur envoyée. Demander à un témoin de chercher un DAE.<br><strong>MASSER</strong> : 100-120 compressions/min, milieu du sternum, profondeur 5-6 cm. Ne pas arrêter, même si tu fatigues (relais avec un autre témoin).<br><strong>DÉFIBRILLER</strong> : poser le DAE dès qu'il arrive. L'appareil analyse + choc si besoin. Reprendre RCP entre les chocs.</p>",
+          tip: "Tu n'es pas obligé de souffler dans la bouche (bouche-à-bouche) — la RCP « hands only » fonctionne très bien et est largement suffisante pour un témoin non formé."
+        },
+        {
+          q: "Quand peut-on DÉPLACER une victime ?",
+          answers: ["Toujours", "Jamais", "Uniquement si DANGER RÉEL, IMMÉDIAT ET NON CONTRÔLABLE (feu, immersion, risque d'écrasement). Sinon ne pas bouger", "Si elle gêne"],
+          correct: 2,
+          explanation: "<p>Les victimes de la route ont souvent des <strong>traumatismes rachidiens invisibles</strong>. Un mauvais déplacement = paralysie définitive. Les pros utilisent minerve + brancard rigide pour une raison.</p><p>Cas où on déplace QUAND MÊME :</p><p>• Véhicule en feu<br>• Victime dans l'eau<br>• Risque d'écrasement (voiture instable)<br>• Risque d'explosion (fuite carburant + étincelle)</p>",
+          tip: "Si tu DOIS déplacer : prends par les chevilles ou sous les aisselles, garde la tête dans l'axe du corps, le moins de torsion possible. Geste appelé « dégagement d'urgence »."
+        },
+        {
+          q: "Pourquoi ATTENDRE L'AUTORISATION pour raccrocher avec les secours ?",
+          answers: ["Pour respecter l'opérateur", "Car ils peuvent te GUIDER en direct dans les gestes à faire (RCP, PLS, compression) jusqu'à l'arrivée des secours, et préciser l'évolution", "Question de politesse", "Aucune raison"],
+          correct: 1,
+          explanation: "<p>L'opérateur 112/15 est formé pour <strong>encadrer les gestes</strong> à distance : il te dictera le rythme du massage cardiaque, te guidera pour mettre en PLS, te dira quand reprendre une compression.</p><p>Raccrocher = tu perds ce coaching essentiel.</p>",
+          tip: "Active le HAUT-PARLEUR dès le début de l'appel. Tu gardes les mains libres pour agir, et l'opérateur entend ce qui se passe — il adapte ses conseils."
+        },
+        {
+          q: "Comment ÉVALUER L'ÉTAT DE CONSCIENCE d'une victime (3 manières) ?",
+          answers: ["La regarder", "Lui POSER DES QUESTIONS simples (« Vous m'entendez ? »), lui SECOUER doucement les épaules, lui demander un GESTE simple (« Serrez ma main »)", "La gifler", "Un seul test suffit"],
+          correct: 1,
+          explanation: "<p>3 niveaux croissants de stimulation :</p><p>1. <strong>Verbal</strong> : « Vous m'entendez ? Comment vous appelez-vous ? »<br>2. <strong>Tactile</strong> : prendre par les épaules et secouer doucement.<br>3. <strong>Action demandée</strong> : « Serrez ma main, ouvrez les yeux. »</p><p>Aucune réponse aux 3 = victime <strong>inconsciente</strong> → vérifier la respiration → PLS ou RCP.</p>",
+          tip: "Ne jamais secouer brutalement, surtout après un choc de la route — risque d'aggraver une lésion cervicale."
+        },
+        {
+          q: "Risques pour une personne INCONSCIENTE ALLONGÉE SUR LE DOS ?",
+          answers: ["Aucun", "ÉTOUFFEMENT (langue qui retombe, liquides/vomissements qui s'inhalent) pouvant aller jusqu'à l'arrêt respiratoire puis cardiaque", "Confort", "Échauffement"],
+          correct: 1,
+          explanation: "<p>Inconscient = muscles relâchés. La <strong>langue</strong> peut basculer en arrière et obstruer les voies respiratoires. La <strong>salive</strong>, le sang, les vomissements peuvent s'écouler dans les poumons (fausse route).</p><p>D'où la PLS : tournée sur le côté → langue tombe vers la joue, fluides s'écoulent au sol.</p>",
+          tip: "Trouver un inconscient sur le dos = mise en PLS immédiate. Tu n'attends pas que ça s'aggrave."
+        },
+        {
+          q: "Qu'est-ce que le SAIP (Signal d'Alerte et d'Information des Populations) ?",
+          answers: ["Une alarme incendie", "Un système d'ALERTE NATIONAL qui prévient la population d'un danger imminent (catastrophe, attentat) via sirènes + médias + appli", "Un GPS", "Un système GPS"],
+          correct: 1,
+          explanation: "<p>Le <strong>SAIP</strong> diffuse une alerte par :</p><p>• <strong>Sirènes</strong> (le 1er mercredi de chaque mois à midi, c'est le test)<br>• <strong>Radio</strong> (Radio France) et <strong>TV</strong> (France Télévisions)<br>• <strong>Cell Broadcast</strong> (notification d'alerte directement sur ton téléphone, sans appli, depuis 2022)</p><p>Signal sonore : 3 cycles de 1 min 41 s, espacés de 5 s. Fin d'alerte : signal continu de 30 s.</p>",
+          tip: "Sirène SAIP en pleine journée hors test mensuel = mettre à l'abri, allumer la radio, suivre les consignes officielles. Ne pas paniquer."
+        },
+        {
+          q: "À partir de quel ÂGE peut-on suivre une formation aux PREMIERS SECOURS ?",
+          answers: ["18 ans", "10 ans (formation PSC1)", "16 ans", "Aucune limite d'âge"],
+          correct: 1,
+          explanation: "<p>La <strong>PSC1</strong> (Prévention et Secours Civiques niveau 1) est accessible <strong>dès 10 ans</strong>. Durée : 7 heures, environ 60 €, dispensée par la Croix-Rouge, la Protection Civile, les Pompiers...</p><p>Inclut : PAS, PLS, RCP, DAE, hémorragie, étouffement, malaise.</p>",
+          tip: "Investissement temps/argent extraordinaire. Une seule formation peut sauver une vie sur toute ta carrière de conducteur. Plus utile que la majorité des stages."
+        }
+      ]
+    },
+    {
+      title: "Fautes éliminatoires",
+      questions: [
+        {
+          q: "Tu arrives à un STOP. Que se passe-t-il si tu ne marques PAS un arrêt total ?",
+          answers: [
+            "Rien, l'inspecteur passera sur ce point",
+            "Faute éliminatoire — ajournement direct, peu importe la suite de l'examen",
+            "Tu perds 1 point",
+            "Tu dois recommencer le carrefour"
+          ],
+          correct: 1,
+          explanation: "<p><strong>NE PAS MARQUER L'ARRÊT À UN STOP = FAUTE ÉLIMINATOIRE AUTOMATIQUE.</strong></p><p><strong>Définition précise :</strong> le panneau STOP impose un <strong>arrêt total, roues immobiles</strong>, avant la ligne d'effet du panneau (ligne blanche transversale, ou à défaut à hauteur du panneau). Ralentir fortement, même à 5 km/h, ne suffit pas — c'est ce qu'on appelle un « stop roulé » et c'est éliminatoire.</p><p><strong>Pourquoi éliminatoire :</strong> le STOP est placé à des intersections où la visibilité est mauvaise et où la voie sécante est <strong>prioritaire absolue</strong>. Ne pas s'arrêter = ne pas pouvoir évaluer le trafic = mise en danger directe.</p><p><strong>Comment l'éviter à l'examen :</strong></p><p>• Anticiper : repérer le panneau loin, ralentir progressivement.<br>• <strong>Compter 1 seconde minimum</strong> à l'arrêt (« un... ») avant de repartir, même si la voie est dégagée et que tu vois loin.<br>• <strong>Vérification droite-gauche-droite</strong> avant de redémarrer.<br>• Si la ligne d'effet n'est pas visible (effacée), s'arrêter à hauteur du panneau.</p><p><strong>Hors examen :</strong> 135 € d'amende + 4 points retirés.</p>",
+          tip: "À l'examen, exagère délibérément : compte « un crocodile, deux crocodiles » avant de repartir. L'inspecteur préfère 3 secondes d'arrêt à un doute sur ton arrêt."
+        },
+        {
+          q: "Tu approches d'un feu qui passe au rouge. Tu décides de continuer car « tu peux passer ». Conséquence à l'examen ?",
+          answers: [
+            "Acceptable si rapide",
+            "Faute éliminatoire — franchissement de feu rouge = ajournement direct",
+            "1 point en moins",
+            "Demande à l'inspecteur"
+          ],
+          correct: 1,
+          explanation: "<p><strong>FRANCHIR UN FEU ROUGE = FAUTE ÉLIMINATOIRE.</strong> Aucune marge de négociation.</p><p><strong>Nuance importante — le feu ORANGE :</strong></p><p>• Feu orange FIXE : tu dois t'arrêter <strong>si tu peux le faire en sécurité</strong>. Si tu es déjà engagé (ligne blanche franchie) ou trop près pour freiner sans danger, tu CONTINUES à dégager le carrefour. Mais accélérer pour « passer à l'orange » est une faute.<br>• Feu ROUGE : arrêt total, point. Même 0,5 seconde après le passage à rouge = faute éliminatoire à l'examen.</p><p><strong>Stratégie à l'examen :</strong></p><p>• Quand tu vois un feu vert depuis longtemps, ANTICIPE qu'il va passer à l'orange. Lève le pied dès 50 m.<br>• Au moindre doute → tu freines. Mieux vaut un freinage net qu'un franchissement.<br>• Ligne d'arrêt = ligne blanche large devant le feu : tu t'arrêtes <strong>avant</strong>, pas dessus.</p><p><strong>Hors examen :</strong> 135 € + <strong>4 points retirés</strong>, suspension de permis possible.</p>",
+          tip: "Règle simple : si tu te demandes « est-ce que je passe ? » → la réponse est NON. Quand tu peux passer en sécurité, tu n'y penses même pas."
+        },
+        {
+          q: "Sur une route à double sens, tu franchis brièvement une ligne CONTINUE pour doubler un cycliste lent. Conséquence à l'examen ?",
+          answers: [
+            "Légal car le cycliste impose un dépassement",
+            "Faute éliminatoire — franchissement de ligne continue = ajournement",
+            "Aucune sanction",
+            "L'inspecteur peut accepter"
+          ],
+          correct: 1,
+          explanation: "<p><strong>FRANCHIR UNE LIGNE CONTINUE = FAUTE ÉLIMINATOIRE.</strong></p><p><strong>Le piège du cycliste :</strong> beaucoup pensent qu'on a le droit de franchir une ligne continue pour dépasser un cycliste en respectant la distance de 1 m / 1,50 m. <strong>C'est VRAI dans la vie réelle mais l'inspecteur n'a aucun moyen de juger ton appréciation</strong>. À l'examen, on attend de toi que tu :</p><p>• <strong>Suives le cycliste</strong> à distance respectueuse jusqu'à ce que la ligne devienne discontinue, OU<br>• Te déportes <strong>sans franchir</strong> la ligne (rester du bon côté en serrant à droite).</p><p><strong>Cas concernés (TOUS éliminatoires) :</strong></p><p>• Dépassement franchissant une ligne continue<br>• Tourne-à-gauche par-dessus une ligne continue<br>• Demi-tour par-dessus une ligne continue<br>• Sortie/entrée de parking à travers une ligne continue<br>• Même un <strong>chevauchement</strong> (roue sur la ligne) compte comme franchissement à l'examen</p><p><strong>Hors examen :</strong> 135 € + 3 points.</p>",
+          tip: "Mantra : « ligne continue = mur invisible ». Tu n'es pas obligé d'aller vite à l'examen — la patience est valorisée, l'impatience punie."
+        },
+        {
+          q: "Tu prends une rue en SENS INTERDIT (panneau rond rouge à barre blanche). Conséquence ?",
+          answers: [
+            "Faute éliminatoire — engagement en sens interdit = ajournement",
+            "1 point en moins",
+            "Tu peux faire demi-tour discrètement",
+            "Aucune conséquence si tu sors vite"
+          ],
+          correct: 0,
+          explanation: "<p><strong>ENGAGEMENT EN SENS INTERDIT = FAUTE ÉLIMINATOIRE IMMÉDIATE.</strong> L'examen s'arrête, retour à l'auto-école.</p><p><strong>Reconnaître le sens interdit :</strong></p><p>• Panneau <strong>rond rouge avec barre blanche horizontale</strong> (le plus fréquent)<br>• Panneau <strong>« sens unique »</strong> (flèche bleue) côté autorisé, sens interdit dans l'autre sens<br>• Marquage au sol : ligne continue large à l'entrée, parfois flèche blanche barrée</p><p><strong>Comment l'éviter :</strong></p><p>• <strong>LIRE LES PANNEAUX</strong> avant chaque entrée dans une nouvelle rue. C'est le réflexe qu'on perd avec la routine.<br>• En cas d'hésitation : ralentir et regarder dans la rue → si toutes les voitures garées sont dans le même sens que toi, c'est probablement OK. Si elles sont à contresens, ALERTE.<br>• Suivre le flux des autres véhicules dans la même direction.</p><p><strong>Hors examen :</strong> 135 € + <strong>4 points</strong>, suspension de permis jusqu'à 3 ans, perte du véhicule possible. C'est <strong>l'une des causes principales d'accidents frontaux graves</strong>.</p>",
+          tip: "Tu réalises 10 m après être engagé que tu es en sens interdit ? À l'examen, c'est cuit. Hors examen : warning + recule lentement (avec aide d'un piéton si possible), JAMAIS de demi-tour rapide."
+        },
+        {
+          q: "Sur autoroute, tu roules quelques mètres sur la BANDE D'ARRÊT D'URGENCE pour gagner du temps dans un bouchon. À l'examen, conséquence ?",
+          answers: [
+            "Acceptable si bref",
+            "Faute éliminatoire — circulation sur la BAU = ajournement",
+            "Toléré en cas de trafic dense",
+            "Avec warning, c'est OK"
+          ],
+          correct: 1,
+          explanation: "<p><strong>CIRCULER SUR LA BANDE D'ARRÊT D'URGENCE = FAUTE ÉLIMINATOIRE.</strong></p><p><strong>Définition :</strong> la BAU est l'espace bétonné/asphalté à droite de la voie de droite sur autoroute (et certaines voies express), séparée par une <strong>ligne continue large</strong>. Elle est réservée aux véhicules en panne, aux véhicules de secours, et aux dépanneuses.</p><p><strong>Usages STRICTEMENT autorisés :</strong></p><p>• Véhicule en panne (warning + sortir par la droite, derrière la glissière)<br>• Véhicule prioritaire en intervention<br>• Cas de force majeure (malaise du conducteur)</p><p><strong>Tout le reste est éliminatoire :</strong> ralentir le temps de prendre un appel, contourner un bouchon, sortir une fraction de seconde par accident.</p><p><strong>Comment l'éviter :</strong></p><p>• Garder la voie de droite, même si la file est lente.<br>• Si bouchon : warning, ralentissement progressif, vigilance sur les véhicules derrière.<br>• <strong>Toute action sur la BAU = sortir par la droite définitivement, avec gilet</strong>, pas un « petit arrêt ».</p><p><strong>Hors examen :</strong> 135 € + <strong>3 points</strong>, et causes principales d'accidents mortels autoroutiers (collision arrière sur véhicule en panne).</p>",
+          tip: "Sur autoroute, la BAU n'est PAS une voie. Mentalement, traite-la comme un fossé profond — tu n'as juste pas le droit d'y rouler."
+        },
+        {
+          q: "Un piéton s'avance vers un passage piéton, regarde ta voiture. Tu continues parce qu'il n'est « pas encore engagé ». Conséquence à l'examen ?",
+          answers: [
+            "Légal car non engagé",
+            "Faute éliminatoire — refus de priorité piéton",
+            "Tu perds 0,5 point",
+            "L'inspecteur ne le verra pas"
+          ],
+          correct: 1,
+          explanation: "<p><strong>REFUS DE PRIORITÉ À UN PIÉTON = FAUTE ÉLIMINATOIRE.</strong></p><p><strong>La règle depuis 2018 (durcie) :</strong> le piéton est prioritaire dès qu'il <strong>manifeste l'intention de traverser</strong> sur un passage piéton non régulé par feu. Tu n'attends PAS qu'il soit engagé sur la chaussée.</p><p><strong>Signaux qui imposent l'arrêt :</strong></p><p>• Piéton qui s'avance vers le passage en regardant la voiture<br>• Piéton qui met un pied sur la chaussée<br>• Piéton arrêté juste devant le passage, qui te regarde<br>• Piéton déjà engagé (évident)</p><p><strong>Cas particulier des piétons « vulnérables » :</strong> personnes âgées, enfants, personnes en fauteuil ou avec une canne blanche → priorité absolue, partout, même hors passage.</p><p><strong>Comment réagir à l'examen :</strong></p><p>• Décéler le piéton tôt (regarde les trottoirs en approche).<br>• Lever le pied dès le doute → freinage doux, puis arrêt complet.<br>• Ne <strong>JAMAIS</strong> faire signe au piéton de traverser (geste qui dégage ta responsabilité légalement, mais l'inspecteur l'interprète comme une distraction).</p><p><strong>Hors examen :</strong> 135 € + <strong>6 points</strong> (une des plus lourdes sanctions du code).</p>",
+          tip: "Mentalité d'examen : tout piéton sur un trottoir près d'un passage est un candidat-traversant. Tu ralentis, tu observes, tu t'arrêtes au moindre signal."
+        },
+        {
+          q: "Tu arrives à un carrefour sans feu ni panneau. Une voiture arrive de ta droite. Tu passes en premier car tu vas plus vite. Conséquence ?",
+          answers: [
+            "Légal, le plus rapide passe",
+            "Faute éliminatoire — refus de priorité à droite",
+            "Tu dois klaxonner d'abord",
+            "Acceptable si bref"
+          ],
+          correct: 1,
+          explanation: "<p><strong>REFUS DE PRIORITÉ = FAUTE ÉLIMINATOIRE,</strong> en particulier quand cela <strong>force l'autre conducteur à freiner brusquement ou à modifier sa trajectoire</strong>.</p><p><strong>Les cas couverts :</strong></p><p>• Refus de priorité à droite (carrefour sans signalisation)<br>• Refus de priorité à un véhicule sur route prioritaire (losange jaune)<br>• Non-respect d'un « Cédez le passage »<br>• Sortie de parking, station-service, chemin privé sans céder le passage à la chaussée<br>• Tourne-à-gauche sans céder la voie aux véhicules arrivant en face<br>• Insertion sur autoroute sans laisser passer les véhicules déjà sur la voie de droite<br>• Refus de priorité à un véhicule prioritaire (police, pompiers, SAMU en intervention avec gyrophare/sirène)</p><p><strong>Mesure objective de l'inspecteur :</strong> si l'autre conducteur klaxonne, freine brutalement, ou doit faire une embardée pour t'éviter → faute. <strong>Tu n'es pas obligé d'entrer en collision pour que la faute soit comptée</strong>.</p><p><strong>Comment l'éviter :</strong></p><p>• À chaque intersection : tu ralentis SYSTÉMATIQUEMENT et tu regardes à droite EN PREMIER (priorité à droite par défaut).<br>• Si tu vois un véhicule à droite et que tu hésites : tu t'arrêtes. La perte de temps est ridicule, l'examen continue.<br>• Devant un « Cédez le passage » : on attend une fenêtre claire, pas une opportunité serrée.</p><p><strong>Hors examen :</strong> 135 € + <strong>4 points</strong>.</p>",
+          tip: "Règle d'or à l'examen : dans le doute, tu cèdes. L'inspecteur juge ta SÉCURITÉ, pas ton efficacité chronométrique."
+        },
+        {
+          q: "Tu doubles un véhicule à 40 cm de lui en agglomération. L'inspecteur réagit. Quelle est la sanction ?",
+          answers: [
+            "Faute éliminatoire — distance latérale insuffisante au dépassement",
+            "1 point en moins",
+            "Rien si pas de contact",
+            "Acceptable en ville"
+          ],
+          correct: 0,
+          explanation: "<p><strong>DÉPASSEMENT AVEC DISTANCE LATÉRALE INSUFFISANTE = FAUTE ÉLIMINATOIRE.</strong></p><p><strong>Les distances légales obligatoires :</strong></p><p>• <strong>1 mètre</strong> minimum en agglomération<br>• <strong>1,50 mètre</strong> minimum hors agglomération</p><p>Cette distance s'applique au dépassement d'un cycliste, piéton, cavalier, trottinette, deux-roues motorisé léger. <strong>Tout véhicule plus vulnérable que toi</strong>.</p><p><strong>Si la route ne permet pas de respecter cette distance :</strong></p><p>• Tu <strong>ATTENDS</strong> derrière le cycliste, point.<br>• Tu peux franchir une <strong>ligne continue</strong> si nécessaire pour respecter la distance latérale (la loi t'y autorise EXPLICITEMENT depuis 2015) — mais à l'examen, l'inspecteur préfère que tu attendes.<br>• Tu ne tentes JAMAIS un dépassement « serré » en pensant que ça va passer.</p><p><strong>Autres dépassements éliminatoires :</strong></p><p>• Dépasser alors qu'on est soi-même en train d'être dépassé<br>• Dépasser un véhicule qui tourne à gauche<br>• Dépasser à un endroit sans visibilité (sommet de côte, virage)<br>• Dépasser par la droite (sauf cas d'usage légal)<br>• Dépasser un véhicule arrêté à un passage piéton (le « bouchon » devant lui peut cacher un piéton qui traverse)</p><p><strong>Hors examen :</strong> 135 € + 3 points.</p>",
+          tip: "À l'examen, ne dépasse aucun cycliste si tu n'as pas franchement la place. Roule derrière à 25 km/h, accepte la perte de temps. L'inspecteur valorise la prudence."
+        },
+        {
+          q: "L'inspecteur appuie sur la pédale de frein côté passager pour éviter un incident. Conséquence ?",
+          answers: [
+            "Faute éliminatoire automatique — l'inspecteur a dû reprendre les commandes",
+            "Tu peux continuer comme si de rien n'était",
+            "Tu perds 5 points",
+            "L'inspecteur t'aide gentiment"
+          ],
+          correct: 0,
+          explanation: "<p><strong>INTERVENTION PHYSIQUE DE L'INSPECTEUR SUR LES COMMANDES = FAUTE ÉLIMINATOIRE AUTOMATIQUE.</strong></p><p><strong>Le véhicule d'examen est équipé d'une double commande</strong> (pédale de frein, parfois embrayage, et accès au frein à main) du côté passager. L'inspecteur peut intervenir à tout moment, mais s'il <strong>doit</strong> intervenir pour éviter un accident ou rectifier une trajectoire dangereuse → c'est la preuve objective que tu n'as <strong>pas la maîtrise</strong> du véhicule en sécurité.</p><p><strong>Cas typiques d'intervention :</strong></p><p>• Tu n'as pas vu un piéton et tu continues vers lui<br>• Tu n'as pas vu un feu rouge<br>• Tu vas heurter le trottoir / un autre véhicule<br>• Tu pars trop fort en marche arrière / en croisée<br>• Tu fais un écart sur la voie d'en face</p><p><strong>Distinction importante :</strong> l'inspecteur peut t'orienter à la voix sans que ce soit éliminatoire (« attention au piéton à droite »). C'est l'<strong>action physique</strong> sur les commandes qui est rédhibitoire.</p><p><strong>Comment l'éviter :</strong></p><p>• <strong>Anticipation visuelle</strong> : regarde loin, balaye le champ, vérifie systématiquement les angles morts.<br>• <strong>Ne pas hésiter à ralentir</strong> dès le moindre doute. Tu ne perds pas de points pour rouler doucement.<br>• Si l'inspecteur te corrige verbalement, écoute et <strong>applique immédiatement</strong>.</p>",
+          tip: "L'inspecteur n'intervient JAMAIS pour le plaisir. S'il a posé la main sur le frein à main ou enfoncé sa pédale, l'examen est terminé même s'il te dit de continuer pour la forme."
+        },
+        {
+          q: "Tu cales 4 fois au démarrage au même feu, bloquant la circulation. Conséquence ?",
+          answers: [
+            "Acceptable, c'est du stress",
+            "Faute éliminatoire — calages répétitifs en zone dangereuse, perturbation du trafic",
+            "1 calage = -1 point",
+            "Aucune sanction"
+          ],
+          correct: 1,
+          explanation: "<p><strong>CALAGES RÉPÉTITIFS DANS UNE ZONE DANGEREUSE = FAUTE ÉLIMINATOIRE.</strong></p><p><strong>Précision importante :</strong> un calage isolé n'est PAS éliminatoire. C'est la <strong>répétition</strong> (3-4+ calages) ou un calage qui crée une situation dangereuse (au milieu d'un carrefour, sur des rails de tramway, en haut d'une côte avec recul important) qui devient rédhibitoire.</p><p><strong>Les calages problématiques :</strong></p><p>• Calage au démarrage répété au même feu → trafic bloqué derrière toi<br>• Calage en plein milieu d'un carrefour, surtout si voitures arrivent en face<br>• Calage en démarrage en côte avec recul de plus d'1 m vers la voiture derrière<br>• Calage dans un rond-point lors de l'insertion (autres conducteurs forcés de freiner)<br>• Calage sur passage à niveau, rails de tramway, voie de bus</p><p><strong>Sur démarrage en côte, le recul EXCESSIF est aussi éliminatoire</strong> (typiquement > 30 cm en boîte manuelle). D'où l'utilité du frein à main au démarrage.</p><p><strong>Comment l'éviter :</strong></p><p>• <strong>Technique du frein à main</strong> en côte : main droite tient le frein à main, pied droit accélère, pied gauche relâche progressivement l'embrayage, et tu libères le frein à main quand tu sens le véhicule pousser.<br>• Régime moteur suffisant au démarrage (1500-2000 tr/min), surtout en côte.<br>• Si tu cales : reste calme, embraye, redémarre proprement. Ne paniques pas en faisant 3 calages d'affilée.</p><p>Sur boîte automatique : pas de calage possible, donc cette faute n'existe pas. C'est l'un des arguments commerciaux du permis automatique.</p>",
+          tip: "Tu sens que tu vas caler ? Embraye à fond IMMÉDIATEMENT (pédale gauche enfoncée). Ça donne 3 secondes pour recommencer sans caler. Geste vital à automatiser."
+        },
+        {
+          q: "Tu fais une marche arrière pour te garer et tu MONTES violemment sur le trottoir. Conséquence ?",
+          answers: [
+            "Pas grave si pas d'accident",
+            "Faute éliminatoire — heurter ou monter sur le trottoir = perte de contrôle, risque pour piétons",
+            "Sanction légère",
+            "L'examen continue"
+          ],
+          correct: 1,
+          explanation: "<p><strong>HEURTER VIOLEMMENT OU ESCALADER UN TROTTOIR = FAUTE ÉLIMINATOIRE,</strong> notamment quand il y a un risque pour des piétons.</p><p><strong>Pourquoi :</strong></p><p>• Le trottoir est <strong>l'espace des piétons</strong>. Une voiture qui y monte par accident peut écraser un piéton invisible derrière un mur, un poteau, ou simplement masqué.<br>• Un trottoir percuté à vive allure peut <strong>endommager les pneus</strong> (déjantage, hernie) et la géométrie du train (perte d'alignement, freinage déséquilibré).<br>• L'inspecteur en déduit une <strong>perte de contrôle du véhicule</strong>, donc une inaptitude.</p><p><strong>Cas typiques :</strong></p><p>• Marche arrière sur créneau qui se finit sur le trottoir<br>• Tourner trop court à droite et monter sur le bord<br>• Stationnement en bataille mal calibré, vitesse trop forte<br>• Demi-tour qui finit sur l'accotement</p><p><strong>Comment l'éviter :</strong></p><p>• <strong>Vitesse ULTRA-RÉDUITE</strong> dans les manœuvres : pédale d'embrayage 3/4 enfoncée, ou frein à 80 % en boîte auto. Allure d'escargot.<br>• <strong>Contrôles visuels permanents</strong> : 360° toutes les 2 secondes pendant une manœuvre. Coup d'œil rétro droite, gauche, lunette arrière, rétro intérieur, avant.<br>• <strong>Marges</strong> : on apprend en auto-école qu'on doit voir <strong>la base du bord du trottoir</strong> au moins. Si tu ne le vois plus, c'est que tu es trop près.<br>• <strong>Ne pas hésiter à ressortir</strong> de la manœuvre pour recommencer. À l'examen, faire un créneau en 2-3 mouvements est mieux qu'en 1 mouvement raté.</p><p><strong>Léger contact :</strong> un effleurement sans choc, sans dommage et sans piéton à proximité peut être toléré par certains inspecteurs comme une « erreur de manœuvre » (non éliminatoire). Mais ne compte pas dessus.</p>",
+          tip: "À l'examen, mieux vaut faire 4 mouvements lents pour réussir un créneau que 2 mouvements rapides en mordant le trottoir. Le temps n'est pas chronométré, l'erreur l'est."
+        },
+        {
+          q: "Tu négliges un contrôle dans le rétroviseur avant un changement de voie sur autoroute. Un véhicule te dépassait. Conséquence ?",
+          answers: [
+            "Pas grave, c'est mineur",
+            "Faute éliminatoire — mise en danger d'un autre usager par défaut de contrôle",
+            "0,5 point en moins",
+            "L'inspecteur ne le sait pas"
+          ],
+          correct: 1,
+          explanation: "<p><strong>DÉFAUT DE CONTRÔLE ENTRAÎNANT UNE MISE EN DANGER = FAUTE ÉLIMINATOIRE.</strong></p><p><strong>L'inspecteur observe constamment 3 choses :</strong></p><p>1. Tes <strong>yeux</strong> (contrôles dans les rétroviseurs, regards par-dessus l'épaule)<br>2. Tes <strong>actions</strong> (clignotants, déports)<br>3. La <strong>conséquence</strong> (l'autre conducteur a-t-il dû freiner ?)</p><p>Un changement de voie sans contrôle visuel <strong>complet</strong> (rétro intérieur + rétro extérieur côté concerné + <strong>regard par-dessus l'épaule</strong> pour l'angle mort) est sanctionné comme dangereux.</p><p><strong>Les contrôles obligatoires (mémoriser !) :</strong></p><p>• <strong>Avant chaque changement de voie</strong> : rétro intérieur, rétro extérieur, clignotant, angle mort, manœuvre.<br>• <strong>Avant chaque démarrage</strong> (depuis le bord, ou au feu vert) : rétro + angle mort gauche.<br>• <strong>Avant ouverture de portière</strong> à l'arrivée : rétro + angle mort (un cycliste peut arriver).<br>• <strong>Avant marche arrière</strong> : rétro intérieur, rétros latéraux, regard par-dessus l'épaule droite (le mouvement de tête est OBLIGATOIRE).<br>• <strong>Avant tourne-à-droite</strong> : rétro droit + angle mort (cycliste qui pourrait remonter par la droite).</p><p><strong>L'inspecteur veut VOIR ta tête bouger.</strong> Un contrôle « mental » sans mouvement visible ne compte pas. Exagère légèrement les mouvements de tête.</p>",
+          tip: "Routine inviolable pour tout changement de direction : « MIROIR – CLIGNOTANT – ANGLE MORT – MANŒUVRE ». Récite-le mentalement à l'examen, dans cet ordre, à chaque fois."
+        },
+        {
+          q: "Quelles sont les fautes qui peuvent entraîner un AJOURNEMENT immédiat même si tu fais tout bien par ailleurs ?",
+          answers: [
+            "Seulement les accidents",
+            "TOUTE faute mettant en jeu la sécurité d'autrui : franchissement stop/rouge/ligne continue, refus de priorité, sens interdit, BAU, intervention inspecteur, choc, etc.",
+            "Aucune, l'inspecteur additionne tout",
+            "Seules les vitesses excessives"
+          ],
+          correct: 1,
+          explanation: "<p><strong>Récapitulatif des fautes éliminatoires officielles (grille REMC) :</strong></p><p><strong>1. Infractions au code (automatiques) :</strong></p><p>• Franchissement d'un STOP sans arrêt total<br>• Franchissement d'un feu ROUGE<br>• Franchissement ou chevauchement d'une LIGNE CONTINUE<br>• Circulation en SENS INTERDIT<br>• Circulation sur la BANDE D'ARRÊT D'URGENCE<br>• Circulation sur une voie réservée (bus, taxis, cyclistes)<br>• Dépassement de la VITESSE limite de façon significative<br>• Circulation à GAUCHE de la chaussée</p><p><strong>2. Priorités :</strong></p><p>• Refus de priorité à un piéton<br>• Refus de priorité à droite<br>• Refus de priorité à un véhicule prioritaire en intervention<br>• Non-respect d'un « Cédez le passage »<br>• Engagement dangereux à une intersection</p><p><strong>3. Maîtrise du véhicule :</strong></p><p>• Calages répétitifs en zone dangereuse<br>• Recul excessif en démarrage en côte<br>• Choc avec un obstacle (mur, poteau, trottoir, autre véhicule)<br>• Perte de contrôle (sortie de voie, dérapage)</p><p><strong>4. Dépassements :</strong></p><p>• Distance latérale insuffisante (< 1 m ville / 1,50 m route)<br>• Dépassement par la droite (hors cas autorisés)<br>• Dépassement d'un véhicule tournant à gauche<br>• Dépassement franchissant une ligne continue<br>• Dépassement à un endroit sans visibilité (virage, sommet de côte)<br>• Tenter de dépasser pendant qu'on est dépassé</p><p><strong>5. Intervention de l'examinateur :</strong></p><p>• L'inspecteur appuie sur la pédale de frein, le frein à main, ou prend le volant<br>• L'inspecteur doit donner une instruction de sauvetage (« freine ! »)</p><p><strong>6. Comportement général :</strong></p><p>• Manque de précaution avec les autres usagers<br>• Manque de contrôles visuels (angles morts, rétros) ayant entraîné une situation dangereuse<br>• Conduite agressive (klaxon abusif, dépassement forcé, gestes)</p><p><strong>Score requis pour réussir :</strong> 20 points minimum sur 31 (28 du barème + 3 bonus questions). <strong>UNE seule</strong> de ces fautes éliminatoires = ajournement, peu importe le reste.</p>",
+          tip: "Mantra de l'examen : « SÉCURITÉ d'abord, fluidité ensuite, vitesse en dernier ». Inverser cet ordre = quasi-certitude d'échec."
+        }
+      ]
+    }
+  ]
+};
+
+// ===== ÉTAT ET LOGIQUE =====
+let currentSection = 0;
+let currentQuestion = 0;
+// Pour chaque section, on stocke l'index de la réponse choisie par question (null = non répondu)
+let answersBySection = QUIZ_DATA.sections.map(s => new Array(s.questions.length).fill(null));
+
+const quizArea = document.getElementById('quiz-area');
+const resultsScreen = document.getElementById('results-screen');
+const progressText = document.getElementById('progress-text');
+const scoreText = document.getElementById('score-text');
+const progressFill = document.getElementById('progress-fill');
+const finalScore = document.getElementById('final-score');
+const verdict = document.getElementById('verdict');
+const restartBtn = document.getElementById('restart-btn');
+
+function computeScore(sectionIdx) {
+  const section = QUIZ_DATA.sections[sectionIdx];
+  const picks = answersBySection[sectionIdx];
+  let s = 0;
+  for (let i = 0; i < section.questions.length; i++) {
+    if (picks[i] !== null && picks[i] === section.questions[i].correct) s++;
+  }
+  return s;
+}
+
+function renderQuestion() {
+  const section = QUIZ_DATA.sections[currentSection];
+  const q = section.questions[currentQuestion];
+  const total = section.questions.length;
+  const score = computeScore(currentSection);
+  const previousPick = answersBySection[currentSection][currentQuestion];
+  const alreadyAnswered = previousPick !== null;
+
+  progressText.textContent = `Question ${currentQuestion + 1} / ${total} — ${section.title}`;
+  scoreText.textContent = `Score : ${score}`;
+  progressFill.style.width = `${((currentQuestion + (alreadyAnswered ? 1 : 0)) / total) * 100}%`;
+
+  resultsScreen.classList.remove('show');
+  quizArea.style.display = 'block';
+
+  const visualHTML = q.visual ? `<div class="visual-aid">${q.visual}</div>` : '';
+  const letters = ['A', 'B', 'C', 'D'];
+  const isLast = currentQuestion === total - 1;
+
+  quizArea.innerHTML = `
+    <div class="question-card">
+      <div class="question-header">
+        <span class="q-num">Q.${currentQuestion + 1}</span>
+        <span>${section.title.toUpperCase()}</span>
+      </div>
+      <div class="question-body">
+        <div class="question-text">${q.q}</div>
+        ${visualHTML}
+        <div class="answers">
+          ${q.answers.map((ans, i) => `
+            <button class="answer-btn" data-index="${i}">
+              <span class="letter">${letters[i]}</span>
+              <span>${ans}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation" id="explanation">
+        <h4>Pourquoi cette réponse</h4>
+        ${q.explanation}
+        <div class="tip">${q.tip}</div>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn" id="prev-btn" ${currentQuestion === 0 ? 'disabled' : ''}>← Précédent</button>
+        <button class="nav-btn" id="skip-btn" style="${alreadyAnswered ? 'display:none' : ''}">Passer (0 pt) →</button>
+        <button class="nav-btn primary" id="next-btn">${isLast ? 'Voir le score →' : 'Suivant →'}</button>
+      </div>
+    </div>
+  `;
+
+  // Si déjà répondu : afficher l'état figé (bonne / mauvaise) + explication
+  if (alreadyAnswered) {
+    const buttons = document.querySelectorAll('.answer-btn');
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === q.correct) btn.classList.add('correct');
+      else if (i === previousPick) btn.classList.add('incorrect');
+      else btn.classList.add('faded');
+    });
+    document.getElementById('explanation').classList.add('show');
+  } else {
+    document.querySelectorAll('.answer-btn').forEach(btn => {
+      btn.addEventListener('click', () => handleAnswer(parseInt(btn.dataset.index)));
+    });
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', () => {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  });
+
+  const skipBtn = document.getElementById('skip-btn');
+  if (skipBtn) {
+    skipBtn.addEventListener('click', () => {
+      // Marquer comme volontairement non répondu (compte 0, mais on enregistre une réponse "invalide")
+      answersBySection[currentSection][currentQuestion] = -1;
+      goNext();
+    });
+  }
+
+  document.getElementById('next-btn').addEventListener('click', () => {
+    // Si rien n'a été sélectionné, on marque comme passé (= 0)
+    if (answersBySection[currentSection][currentQuestion] === null) {
+      answersBySection[currentSection][currentQuestion] = -1;
+    }
+    goNext();
+  });
+}
+
+function goNext() {
+  const total = QUIZ_DATA.sections[currentSection].questions.length;
+  if (currentQuestion === total - 1) {
+    showResults();
+  } else {
+    currentQuestion++;
+    renderQuestion();
+  }
+}
+
+function handleAnswer(index) {
+  const section = QUIZ_DATA.sections[currentSection];
+  const q = section.questions[currentQuestion];
+
+  // Verrouille la réponse pour cette question (pas de re-saisie)
+  answersBySection[currentSection][currentQuestion] = index;
+
+  const buttons = document.querySelectorAll('.answer-btn');
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    else if (i === index) btn.classList.add('incorrect');
+    else btn.classList.add('faded');
+  });
+
+  scoreText.textContent = `Score : ${computeScore(currentSection)}`;
+  document.getElementById('explanation').classList.add('show');
+  const skip = document.getElementById('skip-btn');
+  if (skip) skip.style.display = 'none';
+
+  const total = section.questions.length;
+  progressFill.style.width = `${((currentQuestion + 1) / total) * 100}%`;
+}
+
+function showResults() {
+  const total = QUIZ_DATA.sections[currentSection].questions.length;
+  const score = computeScore(currentSection);
+  const pct = (score / total) * 100;
+  quizArea.style.display = 'none';
+  resultsScreen.classList.add('show');
+
+  finalScore.textContent = `${score}/${total}`;
+  finalScore.className = 'score-display';
+
+  if (pct >= 80) {
+    finalScore.classList.add('good');
+    verdict.textContent = "Excellent ! Tu maîtrises cette section. Passe à la suivante.";
+  } else if (pct >= 50) {
+    finalScore.classList.add('medium');
+    verdict.textContent = "Pas mal. Quelques notions à revoir avant de passer à la suite.";
+  } else {
+    finalScore.classList.add('bad');
+    verdict.textContent = "Cette section nécessite une vraie reprise. Recommence après avoir relu les explications.";
+  }
+}
+
+restartBtn.addEventListener('click', () => {
+  // Reset complet des réponses pour cette section uniquement
+  const total = QUIZ_DATA.sections[currentSection].questions.length;
+  answersBySection[currentSection] = new Array(total).fill(null);
+  currentQuestion = 0;
+  renderQuestion();
+});
+
+// Navigation des sections
+document.querySelectorAll('.section-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.section-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    currentSection = parseInt(card.dataset.section);
+    currentQuestion = 0;
+    // On NE réinitialise PAS answersBySection — l'utilisateur retrouve son état dans cette section
+    renderQuestion();
+  });
+});
+
+// Initialisation
+renderQuestion();
+</script>
+
+</body>
+</html>

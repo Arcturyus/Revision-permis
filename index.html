@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1a1a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Permis B — 100 fiches</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ÉCRAN D'ACCUEIL -->
+  <section id="screen-home" class="screen is-active">
+    <header class="home-header">
+      <h1>PERMIS <span class="hl">B</span></h1>
+      <p class="tagline">100 fiches d'interrogation orale — vérifications, sécurité routière &amp; premiers secours</p>
+    </header>
+
+    <div class="stats" id="stats">
+      <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-lbl">fiches</span></div>
+      <div class="stat stat-due"><span class="stat-num" id="stat-due">0</span><span class="stat-lbl">à réviser</span></div>
+      <div class="stat stat-ok"><span class="stat-num" id="stat-mastered">0</span><span class="stat-lbl">maîtrisées</span></div>
+    </div>
+
+    <div class="progress-line"><div class="progress-line-fill" id="home-progress"></div></div>
+
+    <nav class="modes">
+      <button class="mode-btn mode-primary" data-mode="today">
+        <span class="mode-title">Révision du jour</span>
+        <span class="mode-sub" id="today-sub">Cartes dues aujourd'hui</span>
+      </button>
+      <button class="mode-btn" data-mode="all">
+        <span class="mode-title">Toutes les fiches</span>
+        <span class="mode-sub">Les 100 dans l'ordre mélangé</span>
+      </button>
+      <div class="theme-row">
+        <button class="mode-btn mode-small" data-mode="theme" data-theme="verification"><span class="dot dot-verif"></span>Vérifications</button>
+        <button class="mode-btn mode-small" data-mode="theme" data-theme="securite_routiere"><span class="dot dot-secu"></span>Sécurité routière</button>
+        <button class="mode-btn mode-small" data-mode="theme" data-theme="premiers_secours"><span class="dot dot-secours"></span>Premiers secours</button>
+      </div>
+    </nav>
+
+    <button class="reset-link" id="reset-btn">↺ Réinitialiser ma progression</button>
+  </section>
+
+  <!-- ÉCRAN DE RÉVISION -->
+  <section id="screen-study" class="screen">
+    <div class="study-top">
+      <button class="icon-btn" id="back-btn" aria-label="Retour">‹</button>
+      <div class="study-progress"><div class="study-progress-fill" id="study-progress"></div></div>
+      <span class="study-count" id="study-count">0/0</span>
+    </div>
+
+    <div class="card-wrap">
+      <article class="card" id="card">
+        <div class="card-scroll">
+          <div class="card-badge" id="card-badge">Fiche 1</div>
+          <figure class="card-photo" id="card-photo" hidden><img id="card-photo-img" alt="Illustration de la fiche"></figure>
+          <div id="card-questions"></div>
+          <div id="card-answers" class="answers" hidden></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="actions">
+      <button class="reveal-btn" id="reveal-btn">Voir les réponses</button>
+      <div class="grade-row" id="grade-row" hidden>
+        <button class="grade grade-again" data-grade="again">À revoir</button>
+        <button class="grade grade-hard" data-grade="hard">Difficile</button>
+        <button class="grade grade-good" data-grade="good">Je savais</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉCRAN FIN DE SESSION -->
+  <section id="screen-done" class="screen">
+    <div class="done-inner">
+      <div class="done-emoji">🎉</div>
+      <h2>Session terminée</h2>
+      <p id="done-summary"></p>
+      <button class="mode-btn mode-primary" id="done-home">Retour à l'accueil</button>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/srs.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

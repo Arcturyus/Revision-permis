@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>body{margin:0}</style></head><body>
+<div id="o">x</div>
+<script>
+window.addEventListener('load',function(){
+ document.getElementById('o').textContent =
+   'innerWidth='+window.innerWidth+
+   ' docScrollW='+document.documentElement.scrollWidth+
+   ' dpr='+window.devicePixelRatio;
+ document.title='M:'+document.getElementById('o').textContent;
+});
+</script></body></html>
