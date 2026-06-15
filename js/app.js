@@ -121,6 +121,12 @@
     }).join('');
     $('card-answers').innerHTML = aHtml;
 
+    // délai avant prochaine révision selon l'état sauvegardé de la fiche
+    var pv = SRS.preview(fiche.id);
+    $('iv-again').textContent = fmtInterval(pv.again);
+    $('iv-hard').textContent = fmtInterval(pv.hard);
+    $('iv-good').textContent = fmtInterval(pv.good);
+
     // affichage : recto seul
     $('card-answers').hidden = true;
     $('card-questions').style.display = '';
@@ -168,6 +174,13 @@
     show('screen-done');
   }
 
+  // formate un nombre de jours en libellé court pour les boutons de note
+  function fmtInterval(d) {
+    if (d <= 0) return "auj.";
+    if (d < 7) return d + " j";
+    return Math.round(d / 7) + " sem";
+  }
+
   function escapeHtml(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
@@ -190,15 +203,34 @@
     $('done-home').addEventListener('click', function () { show('screen-home'); });
     $('reset-btn').addEventListener('click', function () {
       if (confirm('Effacer toute ta progression enregistrée sur cet appareil ?')) {
-        SRS.reset(); refreshHome();
+        SRS.reset(); renderNpd(); refreshHome();
       }
     });
-    var npdInput = $('setting-new-per-day');
-    npdInput.value = SRS.getSettings().newPerDay;
-    npdInput.addEventListener('change', function () {
-      var v = parseInt(npdInput.value, 10);
-      if (v > 0) { SRS.setSetting('newPerDay', v); refreshHome(); }
+
+    // réglages repliables
+    var sToggle = $('settings-toggle'), sPanel = $('settings-panel');
+    sToggle.addEventListener('click', function () {
+      var open = sPanel.hidden;
+      sPanel.hidden = !open;
+      sToggle.classList.toggle('is-open', open);
+      sToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+
+    // stepper « nouvelles fiches / jour »
+    function changeNpd(delta) {
+      var v = SRS.getSettings().newPerDay + delta;
+      v = Math.max(1, Math.min(100, v));
+      SRS.setSetting('newPerDay', v);
+      renderNpd();
+      refreshHome();
+    }
+    $('npd-minus').addEventListener('click', function () { changeNpd(-1); });
+    $('npd-plus').addEventListener('click', function () { changeNpd(1); });
+    renderNpd();
+  }
+
+  function renderNpd() {
+    $('setting-new-per-day-val').textContent = SRS.getSettings().newPerDay;
   }
 
   // ---------- init ----------

@@ -73,18 +73,30 @@
     return state[id] || { box: 0, due: 0, lapses: 0, seen: 0, last: 0 };
   }
 
+  // boîte résultante pour une note, sans rien modifier
+  function nextBox(box, g) {
+    if (g === 'again') return 1;
+    if (g === 'hard') return Math.max(1, box); // reste dans sa boîte (au moins 1)
+    return Math.min(box + 1, MAX_BOX);         // good
+  }
+
+  // intervalles (en jours) que donnerait chaque note, vu l'état actuel
+  function preview(id) {
+    var s = state[id];
+    var box = s ? s.box : 0;
+    return {
+      again: INTERVALS[nextBox(box, 'again')],
+      hard:  INTERVALS[nextBox(box, 'hard')],
+      good:  INTERVALS[nextBox(box, 'good')]
+    };
+  }
+
   // applique une note : 'again' | 'hard' | 'good'
   function grade(id, g) {
     var firstTime = !state[id];
     var s = get(id);
-    if (g === 'again') {
-      s.box = 1;
-      s.lapses += 1;
-    } else if (g === 'hard') {
-      s.box = Math.max(1, s.box); // reste dans sa boîte (au moins 1)
-    } else { // good
-      s.box = Math.min(s.box + 1, MAX_BOX);
-    }
+    s.box = nextBox(s.box, g);
+    if (g === 'again') s.lapses += 1;
     s.seen += 1;
     s.last = Date.now();
     s.due = Date.now() + INTERVALS[s.box] * DAY;
@@ -140,7 +152,7 @@
 
   global.SRS = {
     get: get, grade: grade, isDue: isDue, isMastered: isMastered,
-    isNew: isNew, counts: counts, reset: reset,
+    isNew: isNew, counts: counts, reset: reset, preview: preview,
     getSettings: getSettings, setSetting: setSetting,
     newAllowanceToday: newAllowanceToday
   };

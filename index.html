@@ -3,21 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#1a1a1a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#FBF4F2">
   <title>Permis B — 100 fiches</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- décor abstrait -->
+  <div class="bg-decor" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+
+    <!-- petites étoiles SVG (recolorées via la palette) -->
+    <svg class="doodle spark spark-1" viewBox="0 0 24 24"><path d="M12 0c1.1 6.3 5.7 10.9 12 12-6.3 1.1-10.9 5.7-12 12-1.1-6.3-5.7-10.9-12-12C6.3 10.9 10.9 6.3 12 0Z"/></svg>
+    <svg class="doodle spark spark-2" viewBox="0 0 24 24"><path d="M12 0c1.1 6.3 5.7 10.9 12 12-6.3 1.1-10.9 5.7-12 12-1.1-6.3-5.7-10.9-12-12C6.3 10.9 10.9 6.3 12 0Z"/></svg>
+    <svg class="doodle spark spark-3" viewBox="0 0 24 24"><path d="M12 0c1.1 6.3 5.7 10.9 12 12-6.3 1.1-10.9 5.7-12 12-1.1-6.3-5.7-10.9-12-12C6.3 10.9 10.9 6.3 12 0Z"/></svg>
+  </div>
+
   <!-- ÉCRAN D'ACCUEIL -->
   <section id="screen-home" class="screen is-active">
     <header class="home-header">
       <h1>PERMIS <span class="hl">B</span></h1>
-      <p class="tagline">100 fiches d'interrogation orale — vérifications, sécurité routière &amp; premiers secours</p>
+      <p class="tagline">100 fiches d'interrogation orale</p>
     </header>
 
     <div class="stats" id="stats">
@@ -44,10 +54,22 @@
       </div>
     </nav>
 
-    <button class="reset-link" id="reset-btn">↺ Réinitialiser ma progression</button>
-    <div class="settings-row">
-      <label for="setting-new-per-day">Nouvelles fiches / jour</label>
-      <input type="number" id="setting-new-per-day" min="1" max="100" value="10">
+    <div class="settings">
+      <button class="settings-toggle" id="settings-toggle" aria-expanded="false" aria-controls="settings-panel">
+        <span>⚙ Réglages</span>
+        <span class="chev">⌄</span>
+      </button>
+      <div class="settings-panel" id="settings-panel" hidden>
+        <div class="setting">
+          <span class="setting-label">Nouvelles fiches / jour</span>
+          <div class="stepper">
+            <button class="step-btn" id="npd-minus" aria-label="Diminuer">−</button>
+            <span class="step-val" id="setting-new-per-day-val">10</span>
+            <button class="step-btn" id="npd-plus" aria-label="Augmenter">+</button>
+          </div>
+        </div>
+        <button class="reset-link" id="reset-btn">↺ Réinitialiser ma progression</button>
+      </div>
     </div>
   </section>
 
@@ -73,9 +95,9 @@
     <div class="actions">
       <button class="reveal-btn" id="reveal-btn">Voir les réponses</button>
       <div class="grade-row" id="grade-row" hidden>
-        <button class="grade grade-again" data-grade="again">À revoir</button>
-        <button class="grade grade-hard" data-grade="hard">Difficile</button>
-        <button class="grade grade-good" data-grade="good">Je savais</button>
+        <button class="grade grade-again" data-grade="again">À revoir<small id="iv-again"></small></button>
+        <button class="grade grade-hard" data-grade="hard">Difficile<small id="iv-hard"></small></button>
+        <button class="grade grade-good" data-grade="good">Je savais<small id="iv-good"></small></button>
       </div>
     </div>
   </section>
