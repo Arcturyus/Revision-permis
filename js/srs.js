@@ -9,6 +9,7 @@
   var KEY          = 'permis-srs-v1';
   var SETTINGS_KEY = 'permis-settings-v1';
   var DAILY_KEY    = 'permis-daily-v1';
+  var EDITS_KEY    = 'permis-edits-v1';
   var DAY = 24 * 60 * 60 * 1000;
   // intervalle (en jours) avant la prochaine révision, par boîte
   var INTERVALS = { 0: 0, 1: 0, 2: 1, 3: 3, 4: 7, 5: 16, 6: 45 };
@@ -150,10 +151,34 @@
     try { global.localStorage.removeItem(KEY); } catch (e) {}
   }
 
+  // ---------- corrections de texte (questions / réponses) ----------
+  // Stockage : { [ficheId]: { [indexOriginalDeLItem]: { q?: string, a?: string } } }
+  // L'index est TOUJOURS celui d'origine dans fiche.items, jamais la position
+  // d'affichage (qui est réordonnée).
+  function loadEdits() {
+    try { return JSON.parse(global.localStorage.getItem(EDITS_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveEdits(e) {
+    try { global.localStorage.setItem(EDITS_KEY, JSON.stringify(e)); } catch (e2) {}
+  }
+  function getEdits() { return loadEdits(); }
+  function setEdit(id, idx, field, val) {
+    var e = loadEdits();
+    if (!e[id]) e[id] = {};
+    if (!e[id][idx]) e[id][idx] = {};
+    e[id][idx][field] = val;
+    saveEdits(e);
+  }
+  function resetEdits() {
+    try { global.localStorage.removeItem(EDITS_KEY); } catch (e) {}
+  }
+
   global.SRS = {
     get: get, grade: grade, isDue: isDue, isMastered: isMastered,
     isNew: isNew, counts: counts, reset: reset, preview: preview,
     getSettings: getSettings, setSetting: setSetting,
-    newAllowanceToday: newAllowanceToday
+    newAllowanceToday: newAllowanceToday,
+    getEdits: getEdits, setEdit: setEdit, resetEdits: resetEdits
   };
 })(window);

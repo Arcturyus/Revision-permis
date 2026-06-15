@@ -17,12 +17,37 @@
     premiers_secours: 'Premiers secours'
   };
 
+  // ordre d'affichage des items dans une fiche (« À faire » avant « Vérification »)
+  var ROLE_ORDER = { manipulation: 0, verification: 1 };
+  function roleRank(role) {
+    return ROLE_ORDER[role] === undefined ? 2 : ROLE_ORDER[role];
+  }
+
   // état de session
   var queue = [];      // file d'ids à voir
   var pos = 0;         // index courant dans queue
   var sessionTotal = 0;
   var stats = { good: 0, again: 0 };
   var revealed = false;
+  var editMode = false;          // édition du texte de la fiche courante
+  var currentFiche = null;       // fiche affichée
+  var currentItems = [];         // items réordonnés : [{ it, idx }] (idx = index d'origine)
+
+  // applique les corrections de texte sauvegardées sur les données en mémoire
+  function applyEdits() {
+    var edits = SRS.getEdits();
+    Object.keys(edits).forEach(function (id) {
+      var fiche = BY_ID[id];
+      if (!fiche) return;
+      var perItem = edits[id];
+      Object.keys(perItem).forEach(function (idx) {
+        var item = fiche.items[idx];
+        if (!item) return;
+        if (perItem[idx].q != null) item.q = perItem[idx].q;
+        if (perItem[idx].a != null) item.a = perItem[idx].a;
+      });
+    });
+  }
 
   // ---------- helpers DOM ----------
   function $(id) { return document.getElementById(id); }
@@ -84,11 +109,27 @@
     renderCard();
   }
 
+  // réordonne les items pour l'affichage tout en conservant l'index d'origine
+  function orderedItems(items) {
+    return items.map(function (it, idx) { return { it: it, idx: idx }; })
+      .sort(function (a, b) {
+        var d = roleRank(a.it.role) - roleRank(b.it.role);
+        return d !== 0 ? d : a.idx - b.idx; // tri stable
+      });
+  }
+
+  function itemTag(it) {
+    return '<span class="role-tag role-' + it.role + '">' + ROLE_LABEL[it.role] + '</span>';
+  }
+
   // ---------- rendu d'une carte ----------
   function renderCard() {
     if (pos >= queue.length) { finish(); return; }
     revealed = false;
+    editMode = false;
     var fiche = BY_ID[queue[pos]];
+    currentFiche = fiche;
+    currentItems = orderedItems(fiche.items);
 
     $('card-badge').textContent = 'Fiche ' + fiche.id;
 
@@ -100,26 +141,8 @@
       photo.hidden = true;
     }
 
-    // questions (recto)
-    var qHtml = fiche.items.map(function (it) {
-      return '<div class="qitem">' +
-        '<span class="role-tag role-' + it.role + '">' + ROLE_LABEL[it.role] + '</span>' +
-        '<div class="qtext">' + escapeHtml(it.q) + '</div>' +
-        '</div>';
-    }).join('');
-    $('card-questions').innerHTML = qHtml;
-
-    // réponses (verso) — masquées au départ
-    var aHtml = fiche.items.map(function (it) {
-      var a = it.a && it.a.trim()
-        ? '<div class="atext">' + escapeHtml(it.a) + '</div>'
-        : '<div class="atext empty">Geste à réaliser — pas de réponse orale.</div>';
-      return '<div class="qitem">' +
-        '<span class="role-tag role-' + it.role + '">' + ROLE_LABEL[it.role] + '</span>' +
-        '<div class="qtext">' + escapeHtml(it.q) + '</div>' + a +
-        '</div>';
-    }).join('');
-    $('card-answers').innerHTML = aHtml;
+    renderQuestions();
+    renderAnswers();
 
     // délai avant prochaine révision selon l'état sauvegardé de la fiche
     var pv = SRS.preview(fiche.id);
@@ -132,6 +155,7 @@
     $('card-questions').style.display = '';
     $('reveal-btn').hidden = false;
     $('grade-row').hidden = true;
+    $('edit-toggle').hidden = true;
     $('card').querySelector('.card-scroll').scrollTop = 0;
 
     // progression (le dénominateur grandit si des fiches « à revoir » reviennent)
@@ -140,12 +164,87 @@
     $('study-progress').style.width = (pos / denom * 100) + '%';
   }
 
+  // questions seules (recto)
+  function renderQuestions() {
+    $('card-questions').innerHTML = currentItems.map(function (o) {
+      return '<div class="qitem">' + itemTag(o.it) +
+        '<div class="qtext">' + escapeHtml(o.it.q) + '</div></div>';
+    }).join('');
+  }
+
+  // questions + réponses (verso) — en lecture ou en édition selon editMode
+  function renderAnswers() {
+    $('card-answers').innerHTML = currentItems.map(function (o) {
+      var it = o.it, idx = o.idx;
+      if (editMode) {
+        return '<div class="qitem" data-idx="' + idx + '">' + itemTag(it) +
+          '<textarea class="edit-field edit-q" data-idx="' + idx + '" data-field="q" ' +
+          'aria-label="Question">' + escapeHtml(it.q) + '</textarea>' +
+          '<textarea class="edit-field edit-a" data-idx="' + idx + '" data-field="a" ' +
+          'placeholder="Réponse (laisser vide si aucune)">' + escapeHtml(it.a || '') + '</textarea>' +
+          '</div>';
+      }
+      var a = it.a && it.a.trim()
+        ? '<div class="atext">' + escapeHtml(it.a) + '</div>'
+        : '<div class="atext empty">Geste à réaliser — pas de réponse orale.</div>';
+      return '<div class="qitem" data-idx="' + idx + '">' + itemTag(it) +
+        '<div class="qtext">' + escapeHtml(it.q) + '</div>' + a + '</div>';
+    }).join('');
+    if (editMode) {
+      $('card-answers').querySelectorAll('textarea.edit-field').forEach(autosize);
+    }
+  }
+
+  function autosize(ta) {
+    ta.style.height = 'auto';
+    ta.style.height = (ta.scrollHeight + 2) + 'px';
+  }
+
   function reveal() {
     revealed = true;
+    editMode = false;
     $('card-questions').style.display = 'none'; // on remplace par questions+réponses
     $('card-answers').hidden = false;
     $('reveal-btn').hidden = true;
     $('grade-row').hidden = false;
+    $('edit-toggle').hidden = false;
+    $('edit-toggle').textContent = '✎ Modifier le texte';
+  }
+
+  // bascule entre lecture et édition du texte de la fiche courante
+  function toggleEdit() {
+    if (!revealed) return;
+    if (!editMode) {
+      editMode = true;
+      $('edit-toggle').textContent = '✓ Enregistrer';
+      $('grade-row').hidden = true;
+      renderAnswers();
+    } else {
+      saveEdits();
+      editMode = false;
+      $('edit-toggle').textContent = '✎ Modifier le texte';
+      $('grade-row').hidden = false;
+      renderAnswers();
+    }
+  }
+
+  // lit les champs d'édition et persiste les changements (clé = index d'origine)
+  function saveEdits() {
+    var changed = false;
+    $('card-answers').querySelectorAll('textarea.edit-field').forEach(function (ta) {
+      var idx = parseInt(ta.dataset.idx, 10);
+      var field = ta.dataset.field;
+      var it = currentFiche.items[idx];
+      if (!it) return;
+      var current = field === 'a' ? (it.a || '') : it.q;
+      var val = ta.value;
+      if (val !== current) {
+        it[field] = val;                              // données en mémoire
+        SRS.setEdit(currentFiche.id, idx, field, val); // localStorage
+        changed = true;
+      }
+    });
+    if (changed) renderQuestions(); // garde le recto cohérent
   }
 
   function grade(g) {
@@ -196,6 +295,11 @@
     });
     $('reveal-btn').addEventListener('click', reveal);
     $('card').addEventListener('click', function () { if (!revealed) reveal(); });
+    $('edit-toggle').addEventListener('click', function (e) { e.stopPropagation(); toggleEdit(); });
+    // auto-ajustement de la hauteur des champs d'édition pendant la saisie
+    $('card-answers').addEventListener('input', function (e) {
+      if (e.target.classList.contains('edit-field')) autosize(e.target);
+    });
     document.querySelectorAll('.grade').forEach(function (b) {
       b.addEventListener('click', function (e) { e.stopPropagation(); grade(b.dataset.grade); });
     });
@@ -239,6 +343,7 @@
   } else {
     console.log('100 fiches chargées ✓');
   }
+  applyEdits();
   bind();
   refreshHome();
 })();

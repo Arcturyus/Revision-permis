@@ -215,6 +215,22 @@ body{
 .grade-hard{background:var(--coral);}
 .grade-good{background:var(--sage);}
 
+/* ---------- édition du texte ---------- */
+.edit-toggle-btn{
+  width:100%;margin-top:10px;padding:12px;cursor:pointer;
+  font-family:inherit;font-weight:700;font-size:.96rem;
+  background:var(--surface);color:var(--muted);
+  border:1.5px solid var(--line-soft);border-radius:14px;
+}
+.edit-toggle-btn:active{transform:scale(.99);}
+.edit-field{
+  display:block;width:100%;margin-top:7px;box-sizing:border-box;
+  font-family:inherit;font-size:1.05rem;color:var(--ink);line-height:1.35;
+  background:var(--surface-2);border:1.5px dashed var(--rose);
+  border-radius:10px;padding:8px 10px;resize:vertical;overflow:hidden;
+}
+.edit-field.edit-q{font-weight:700;}
+
 /* ---------- fin ---------- */
 #screen-done .done-inner{margin:auto;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;}
 .done-emoji{font-size:4rem;}
