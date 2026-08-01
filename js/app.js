@@ -187,12 +187,27 @@
       var a = it.a && it.a.trim()
         ? '<div class="atext">' + escapeHtml(it.a) + '</div>'
         : '<div class="atext empty">Geste à réaliser — pas de réponse orale.</div>';
+      var imgs = it.img && it.img.length
+        ? '<div class="qimgs">' + it.img.map(function (src) {
+            return '<a class="qimg-link" href="' + src + '" data-lightbox="' + src +
+              '"><img src="' + src + '" alt="Illustration : ' + escapeHtml(it.q) + '" loading="lazy"></a>';
+          }).join('') + '</div>'
+        : '';
       return '<div class="qitem" data-idx="' + idx + '">' + itemTag(it) +
-        '<div class="qtext">' + escapeHtml(it.q) + '</div>' + a + '</div>';
+        '<div class="qtext">' + escapeHtml(it.q) + '</div>' + a + imgs + '</div>';
     }).join('');
     if (editMode) {
       $('card-answers').querySelectorAll('textarea.edit-field').forEach(autosize);
     }
+  }
+
+  function openLightbox(src) {
+    $('lightbox-img').src = src;
+    $('lightbox').hidden = false;
+  }
+  function closeLightbox() {
+    $('lightbox').hidden = true;
+    $('lightbox-img').src = '';
   }
 
   function autosize(ta) {
@@ -295,6 +310,15 @@
     });
     $('reveal-btn').addEventListener('click', reveal);
     $('card').addEventListener('click', function () { if (!revealed) reveal(); });
+    // ouvre/ferme la visionneuse plein écran pour les photos illustrant une question
+    $('card-answers').addEventListener('click', function (e) {
+      var link = e.target.closest('.qimg-link');
+      if (!link) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openLightbox(link.dataset.lightbox);
+    });
+    $('lightbox').addEventListener('click', closeLightbox);
     $('edit-toggle').addEventListener('click', function (e) { e.stopPropagation(); toggleEdit(); });
     // auto-ajustement de la hauteur des champs d'édition pendant la saisie
     $('card-answers').addEventListener('input', function (e) {

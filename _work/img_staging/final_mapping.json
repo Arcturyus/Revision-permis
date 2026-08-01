@@ -1,0 +1,114 @@
+{
+  "reglage-hauteur-feux": [
+    "assets/img/reglage-hauteur-feux-1.jpg"
+  ],
+  "remplissage-laveglace": [
+    "assets/img/remplissage-laveglace-1.jpg"
+  ],
+  "niveau-liquide-frein": [
+    "assets/img/niveau-liquide-frein-1.jpg",
+    "assets/img/niveau-liquide-frein-2.jpg"
+  ],
+  "indicateur-niveau-carburant": [
+    "assets/img/indicateur-niveau-carburant-1.jpg"
+  ],
+  "remplissage-liquide-refroidissement": [
+    "assets/img/remplissage-liquide-refroidissement-1.jpg",
+    "assets/img/remplissage-liquide-refroidissement-2.jpg"
+  ],
+  "degivrage-lunette-arriere": [
+    "assets/img/degivrage-lunette-arriere-1.png",
+    "assets/img/degivrage-lunette-arriere-2.jpg",
+    "assets/img/degivrage-lunette-arriere-3.jpg"
+  ],
+  "voyant-pression-huile": [
+    "assets/img/voyant-pression-huile-1.png",
+    "assets/img/voyant-pression-huile-2.jpg",
+    "assets/img/voyant-pression-huile-3.jpg"
+  ],
+  "reglage-volant-commande": [
+    "assets/img/reglage-volant-commande-1.jpg"
+  ],
+  "niveau-huile-moteur": [
+    "assets/img/niveau-huile-moteur-1.jpg",
+    "assets/img/niveau-huile-moteur-2.jpg"
+  ],
+  "voyant-defaut-batterie": [
+    "assets/img/voyant-defaut-batterie-1.png",
+    "assets/img/voyant-defaut-batterie-2.jpg",
+    "assets/img/voyant-defaut-batterie-3.jpg"
+  ],
+  "emplacement-batterie": [
+    "assets/img/emplacement-batterie-1.jpg"
+  ],
+  "voyant-temperature-liquide-refroidissement": [
+    "assets/img/voyant-temperature-liquide-refroidissement-1.png",
+    "assets/img/voyant-temperature-liquide-refroidissement-2.jpg",
+    "assets/img/voyant-temperature-liquide-refroidissement-3.jpg"
+  ],
+  "voyant-porte-ouverte": [
+    "assets/img/voyant-porte-ouverte-1.jpg",
+    "assets/img/voyant-porte-ouverte-2.jpg"
+  ],
+  "temoin-usure-pneu": [
+    "assets/img/temoin-usure-pneu-1.jpg"
+  ],
+  "commande-regulateur-vitesse": [
+    "assets/img/commande-regulateur-vitesse-1.jpg"
+  ],
+  "commande-avertisseur-sonore": [
+    "assets/img/commande-avertisseur-sonore-1.jpg"
+  ],
+  "remplissage-huile-moteur": [
+    "assets/img/remplissage-huile-moteur-1.jpg",
+    "assets/img/remplissage-huile-moteur-2.jpg"
+  ],
+  "commande-airbag-passager": [
+    "assets/img/commande-airbag-passager-1.jpg"
+  ],
+  "voyant-ceinture-securite": [
+    "assets/img/voyant-ceinture-securite-1.png",
+    "assets/img/voyant-ceinture-securite-2.jpg",
+    "assets/img/voyant-ceinture-securite-3.jpg"
+  ],
+  "securite-enfant-portiere": [
+    "assets/img/securite-enfant-portiere-1.jpg"
+  ],
+  "voyant-feu-brouillard-arriere": [
+    "assets/img/voyant-feu-brouillard-arriere-1.png",
+    "assets/img/voyant-feu-brouillard-arriere-2.jpg",
+    "assets/img/voyant-feu-brouillard-arriere-3.jpg"
+  ],
+  "reglage-appuietete": [
+    "assets/img/reglage-appuietete-1.jpg"
+  ],
+  "commande-recyclage-air": [
+    "assets/img/commande-recyclage-air-1.png"
+  ],
+  "changement-ampoule-avant": [
+    "assets/img/changement-ampoule-avant-1.jpg"
+  ],
+  "voyant-feux-route": [
+    "assets/img/voyant-feux-route-1.png",
+    "assets/img/voyant-feux-route-2.jpg",
+    "assets/img/voyant-feux-route-3.jpg"
+  ],
+  "changement-ampoule-arriere": [
+    "assets/img/changement-ampoule-arriere-1.jpg"
+  ],
+  "commande-limiteur-vitesse": [
+    "assets/img/commande-limiteur-vitesse-1.jpg",
+    "assets/img/commande-limiteur-vitesse-2.jpg"
+  ],
+  "attaches-isofix": [
+    "assets/img/attaches-isofix-1.jpg"
+  ],
+  "voyant-pression-pneus": [
+    "assets/img/voyant-pression-pneus-1.png",
+    "assets/img/voyant-pression-pneus-2.jpg",
+    "assets/img/voyant-pression-pneus-3.jpg"
+  ],
+  "gicleurs-laveglace-avant": [
+    "assets/img/gicleurs-laveglace-avant-1.jpg"
+  ]
+}

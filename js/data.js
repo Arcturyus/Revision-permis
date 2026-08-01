@@ -18,7 +18,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande de réglage de hauteur des feux.",
-        "a": "Ce dispositif se situe en général à gauche du volant."
+        "a": "Ce dispositif se situe en général à gauche du volant.",
+        "img": [
+          "assets/img/reglage-hauteur-feux-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -39,7 +42,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le remplissage du produit lave-glace.",
-        "a": "Ouvrir le capot et montrer le bocal."
+        "a": "Ouvrir le capot et montrer le bocal.",
+        "img": [
+          "assets/img/remplissage-laveglace-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -165,7 +171,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le contrôle du niveau du liquide de frein.",
-        "a": "Montrer que le niveau est entre le « mini » et le « maxi »."
+        "a": "Montrer que le niveau est entre le « mini » et le « maxi ».",
+        "img": [
+          "assets/img/niveau-liquide-frein-1.jpg",
+          "assets/img/niveau-liquide-frein-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -228,7 +238,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez l’indicateur de niveau de carburant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/indicateur-niveau-carburant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -249,7 +262,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le remplissage du liquide de refroidissement.",
-        "a": "Ouvrir le capot et montrer le bocal."
+        "a": "Ouvrir le capot et montrer le bocal.",
+        "img": [
+          "assets/img/remplissage-liquide-refroidissement-1.jpg",
+          "assets/img/remplissage-liquide-refroidissement-2.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -270,7 +287,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Actionnez le dégivrage de la lunette arrière et montrez le voyant ou le repère correspondant.",
-        "a": "Le voyant n’existe pas dans certains véhicules."
+        "a": "Le voyant n’existe pas dans certains véhicules.",
+        "img": [
+          "assets/img/degivrage-lunette-arriere-1.png",
+          "assets/img/degivrage-lunette-arriere-2.jpg",
+          "assets/img/degivrage-lunette-arriere-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -312,7 +334,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant d'alerte signalant une pression insuffisante d'huile dans le moteur.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-pression-huile-1.png",
+          "assets/img/voyant-pression-huile-2.jpg",
+          "assets/img/voyant-pression-huile-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -396,7 +423,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande de réglage du volant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/reglage-volant-commande-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -459,7 +489,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où doit s'effectuer le contrôle du niveau d'huile moteur.",
-        "a": "Montrer la jauge. La manipulation n'est pas demandée."
+        "a": "Montrer la jauge. La manipulation n'est pas demandée.",
+        "img": [
+          "assets/img/niveau-huile-moteur-1.jpg",
+          "assets/img/niveau-huile-moteur-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -480,7 +514,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant d'alerte signalant un défaut de batterie.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-defaut-batterie-1.png",
+          "assets/img/voyant-defaut-batterie-2.jpg",
+          "assets/img/voyant-defaut-batterie-3.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -501,7 +540,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez l'emplacement de la batterie du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/emplacement-batterie-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -564,7 +606,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant d'alerte signalant une température trop élevée du liquide de refroidissement.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-temperature-liquide-refroidissement-1.png",
+          "assets/img/voyant-temperature-liquide-refroidissement-2.jpg",
+          "assets/img/voyant-temperature-liquide-refroidissement-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -606,7 +653,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant signalant la mauvaise fermeture d'une portière.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-porte-ouverte-1.jpg",
+          "assets/img/voyant-porte-ouverte-2.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -669,7 +720,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Sur le flanc d’un pneumatique, désignez le repère du témoin d’usure de la bande de roulement.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/temoin-usure-pneu-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -690,7 +744,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande permettant d'actionner le régulateur de vitesse.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-regulateur-vitesse-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -732,7 +789,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Sans l'actionner, montrer la commande de l'avertisseur sonore.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-avertisseur-sonore-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -753,7 +813,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le remplissage de l'huile moteur.",
-        "a": "Montrer le bouchon de remplissage."
+        "a": "Montrer le bouchon de remplissage.",
+        "img": [
+          "assets/img/remplissage-huile-moteur-1.jpg",
+          "assets/img/remplissage-huile-moteur-2.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -774,7 +838,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande permettant de désactiver l'airbag du passager avant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-airbag-passager-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -816,7 +883,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant signalant l'absence de bouclage de la ceinture de sécurité du conducteur.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-ceinture-securite-1.png",
+          "assets/img/voyant-ceinture-securite-2.jpg",
+          "assets/img/voyant-ceinture-securite-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -879,7 +951,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Indiquez où se situe la sécurité enfant sur l'une des portières à l'arrière du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/securite-enfant-portiere-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -900,7 +975,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Allumez le(s) feu(x) de brouillard arrière et montrez le voyant correspondant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-feu-brouillard-arriere-1.png",
+          "assets/img/voyant-feu-brouillard-arriere-2.jpg",
+          "assets/img/voyant-feu-brouillard-arriere-3.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -942,7 +1022,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez comment régler la hauteur de l’appui-tête du siège conducteur.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/reglage-appuietete-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1026,7 +1109,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrer la commande de recyclage de l'air.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-recyclage-air-1.png"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1047,7 +1133,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez l'orifice de remplissage du produit lave-glace.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/remplissage-laveglace-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1068,7 +1157,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Allumez les feux de route et montrez le voyant correspondant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-feux-route-1.png",
+          "assets/img/voyant-feux-route-2.jpg",
+          "assets/img/voyant-feux-route-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1173,7 +1267,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le changement d'une ampoule à l'avant du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/changement-ampoule-avant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1194,7 +1291,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Si le véhicule en est équipé, montrez la commande du limiteur de vitesse.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-limiteur-vitesse-1.jpg",
+          "assets/img/commande-limiteur-vitesse-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1215,7 +1316,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le changement d'une ampoule à l'arrière du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/changement-ampoule-arriere-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1278,7 +1382,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Indiquez où se situent les attaches de type Isofix dans le véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/attaches-isofix-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1320,7 +1427,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez, sur le tableau de bord, le voyant indiquant une baisse de pression d'air de pneumatiques.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-pression-pneus-1.png",
+          "assets/img/voyant-pression-pneus-2.jpg",
+          "assets/img/voyant-pression-pneus-3.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1362,7 +1474,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande de réglage de hauteur des feux.",
-        "a": "Ce dispositif se situe en général à gauche du volant"
+        "a": "Ce dispositif se situe en général à gauche du volant",
+        "img": [
+          "assets/img/reglage-hauteur-feux-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1383,7 +1498,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où se situent les gicleurs de lave-glace avant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/gicleurs-laveglace-avant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1467,7 +1585,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le contrôle du niveau du liquide de frein.",
-        "a": "Montrer que le niveau est entre le « mini » et le « maxi »."
+        "a": "Montrer que le niveau est entre le « mini » et le « maxi ».",
+        "img": [
+          "assets/img/niveau-liquide-frein-1.jpg",
+          "assets/img/niveau-liquide-frein-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1509,7 +1631,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le remplissage du liquide de refroidissement.",
-        "a": "Ouvrir le capot et montrer le bocal."
+        "a": "Ouvrir le capot et montrer le bocal.",
+        "img": [
+          "assets/img/remplissage-liquide-refroidissement-1.jpg",
+          "assets/img/remplissage-liquide-refroidissement-2.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1530,7 +1656,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Actionnez le dégivrage de la lunette arrière et montrez le voyant ou le repère correspondant.",
-        "a": "Le voyant n’existe pas dans certains véhicules."
+        "a": "Le voyant n’existe pas dans certains véhicules.",
+        "img": [
+          "assets/img/degivrage-lunette-arriere-1.png",
+          "assets/img/degivrage-lunette-arriere-2.jpg",
+          "assets/img/degivrage-lunette-arriere-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1572,7 +1703,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant d'alerte signalant une pression insuffisante d'huile dans le moteur.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-pression-huile-1.png",
+          "assets/img/voyant-pression-huile-2.jpg",
+          "assets/img/voyant-pression-huile-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1677,7 +1813,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où doit s'effectuer le contrôle du niveau d'huile moteur.",
-        "a": "Montrer la jauge. La manipulation n'est pas demandée."
+        "a": "Montrer la jauge. La manipulation n'est pas demandée.",
+        "img": [
+          "assets/img/niveau-huile-moteur-1.jpg",
+          "assets/img/niveau-huile-moteur-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1740,7 +1880,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant d'alerte signalant une température trop élevée du liquide de refroidissement.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-temperature-liquide-refroidissement-1.png",
+          "assets/img/voyant-temperature-liquide-refroidissement-2.jpg",
+          "assets/img/voyant-temperature-liquide-refroidissement-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1761,7 +1906,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Sur le flanc d’un pneumatique, désignez le repère du témoin d’usure de la bande de roulement.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/temoin-usure-pneu-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1824,7 +1972,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande permettant de désactiver l'airbag du passager avant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-airbag-passager-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1845,7 +1996,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Indiquez où se situe la sécurité enfant sur l'une des portières à l'arrière du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/securite-enfant-portiere-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1866,7 +2020,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez le voyant signalant l'absence de bouclage de la ceinture de sécurité du conducteur.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-ceinture-securite-1.png",
+          "assets/img/voyant-ceinture-securite-2.jpg",
+          "assets/img/voyant-ceinture-securite-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1908,7 +2067,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Allumez le(s) feu(x) de brouillard arrière et montrez le voyant correspondant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-feu-brouillard-arriere-1.png",
+          "assets/img/voyant-feu-brouillard-arriere-2.jpg",
+          "assets/img/voyant-feu-brouillard-arriere-3.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1950,7 +2114,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez la commande de recyclage de l'air.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/commande-recyclage-air-1.png"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1992,7 +2159,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Allumez les feux de route et montrez le voyant correspondant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-feux-route-1.png",
+          "assets/img/voyant-feux-route-2.jpg",
+          "assets/img/voyant-feux-route-3.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -2013,7 +2185,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le changement d’une ampoule à l’avant du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/changement-ampoule-avant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -2055,7 +2230,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où s’effectue le changement d'une ampoule à l'arrière du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/changement-ampoule-arriere-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -2076,7 +2254,12 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez, sur le tableau de bord, le voyant indiquant une baisse de pression d'air de pneumatiques.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/voyant-pression-pneus-1.png",
+          "assets/img/voyant-pression-pneus-2.jpg",
+          "assets/img/voyant-pression-pneus-3.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -2097,7 +2280,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Montrez où se situent les gicleurs de lave-glace avant.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/gicleurs-laveglace-avant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
