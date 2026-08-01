@@ -15,6 +15,13 @@
       "license": "incertain",
       "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
       "note": "Photo d'une main versant du liquide lave-glace dans le bocal (bouchon bleu, symbole pare-brise+jet). Page Ornikar 'verifications exterieures'."
+    },
+    {
+      "file": "2.jpg",
+      "source_url": "https://images.pexels.com/photos/7854087/pexels-photo-7854087.jpeg?cs=srgb&dl=pexels-kampus-7854087.jpg&fm=jpg",
+      "license": "Pexels License (gratuit, usage personnel et commercial autorise)",
+      "credit": "Kampus Production (Pexels)",
+      "note": "2e image (2e passe): photo d'un bidon de liquide lave-glace verse dans le bocal sous le capot (bouchon jaune visible a droite), vue nette et bien cadree. Verifie visuellement: tres bonne correspondance, complementaire a la photo Ornikar."
     }
   ],
   "orifice_laveglace": [
@@ -49,6 +56,13 @@
       "license": "incertain",
       "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
       "note": "Gros plan sur la jauge a essence du tableau de bord: aiguille rouge pres de F, symbole pompe a essence. Page Ornikar interieur."
+    },
+    {
+      "file": "2.jpg",
+      "source_url": "https://images.pexels.com/photos/12996956/pexels-photo-12996956.jpeg?cs=srgb&dl=pexels-srattha-nualsate-2695613-12996956.jpg&fm=jpg",
+      "license": "Pexels License (gratuit, usage personnel et commercial autorise)",
+      "credit": "Srattha Nualsate (Pexels)",
+      "note": "2e image (2e passe): gros plan tres net sur une jauge a essence analogique (E/F, symbole pompe), aiguille pres du vide. Verifie visuellement: tres bonne illustration complementaire."
     }
   ],
   "remplissage_liquide_refroidissement": [
@@ -147,6 +161,13 @@
       "license": "incertain",
       "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
       "note": "Photo de la batterie 12V visible dans le compartiment moteur (meme photo que voyant_defaut_batterie, la batterie physique y est bien visible a droite). Page Ornikar interieur."
+    },
+    {
+      "file": "2.jpg",
+      "source_url": "https://images.pexels.com/photos/37177070/pexels-photo-37177070.jpeg?cs=srgb&dl=pexels-ayyeee-ayyeee-434363205-37177070.jpg&fm=jpg",
+      "license": "Pexels License (gratuit, usage personnel et commercial autorise)",
+      "credit": "Ayyeee Ayyeee (Pexels)",
+      "note": "2e image (2e passe): gros plan net sur une batterie 12V orange dans le compartiment moteur, bornes +/- et cosses bien visibles. Verifie visuellement: tres bonne illustration complementaire, plus nette que la photo Ornikar."
     }
   ],
   "voyant_temperature_liquide_refroidissement": [
@@ -197,6 +218,13 @@
       "license": "incertain",
       "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
       "note": "Photo d'une commande combinee regulateur/limiteur de vitesse (manette derriere le volant, boutons SET+/SET-/LIMIT/CRUISE). Page Ornikar interieur."
+    },
+    {
+      "file": "2.jpg",
+      "source_url": "https://images.pexels.com/photos/36949712/pexels-photo-36949712.jpeg?cs=srgb&dl=pexels-04iraq-1272398525-36949712.jpg&fm=jpg",
+      "license": "Pexels License (gratuit, usage personnel et commercial autorise)",
+      "credit": "04iraq (Pexels)",
+      "note": "2e image (2e passe): gros plan sur des boutons de regulateur de vitesse integres au rayon du volant (icone compteur 1/0, +/- SET, MODE), sur une BMW. Verifie visuellement: bonne illustration complementaire d'un type different de commande (boutons au volant plutot que manette derriere le volant)."
     }
   ],
   "commande_avertisseur_sonore": [

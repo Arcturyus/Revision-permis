@@ -13,7 +13,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Pourquoi doit-on régler la hauteur des feux ?",
-        "a": "Pour ne pas éblouir les autres usagers."
+        "a": "Pour ne pas éblouir les autres usagers.",
+        "img": [
+          "assets/img/reglage-hauteur-feux-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -66,7 +69,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Mettez le rétroviseur intérieur en position « nuit ».",
-        "a": "Si le véhicule possède un système automatique, le candidat doit l’indiquer."
+        "a": "Si le véhicule possède un système automatique, le candidat doit l’indiquer.",
+        "img": [
+          "assets/img/retroviseur-nuit-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -82,12 +88,18 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Citez un endroit où l'on peut trouver les pressions préconisées pour les pneumatiques.",
-        "a": "Elles sont indiquées :\n• Soit sur une plaque à l’intérieur de la portière conducteur,\n• Soit dans la notice d’utilisation,\n• Soit au niveau de la trappe à carburant."
+        "a": "Elles sont indiquées :\n• Soit sur une plaque à l’intérieur de la portière conducteur,\n• Soit dans la notice d’utilisation,\n• Soit au niveau de la trappe à carburant.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Contrôlez l'état du flanc sur l'un des pneumatiques.",
-        "a": "En bon état. (signaler toute anomalie observée)."
+        "a": "En bon état. (signaler toute anomalie observée).",
+        "img": [
+          "assets/img/temoin-usure-pneu-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -103,12 +115,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Comment détecter leur usure en circulation ?",
-        "a": "En cas de pluie, lorsqu'ils laissent des traces sur le pare-brise."
+        "a": "En cas de pluie, lorsqu'ils laissent des traces sur le pare-brise.",
+        "img": [
+          "assets/img/temoin-usure-pneu-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Faites fonctionner les essuie-glaces avant du véhicule sur la position la plus rapide.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/essuie-glace-avant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -129,7 +147,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Vérifiez l'état et la propreté des plaques d’immatriculation.",
-        "a": "Vérification des plaques à l'avant et à l'arrière : propre, en bon état. (signaler toute anomalie observée)."
+        "a": "Vérification des plaques à l'avant et à l'arrière : propre, en bon état. (signaler toute anomalie observée).",
+        "img": [
+          "assets/img/plaque-immatriculation-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -150,7 +171,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Vérifiez la présence du gilet haute visibilité.",
-        "a": "Le candidat doit montrer où il se trouve sans obligation de le sortir."
+        "a": "Le candidat doit montrer où il se trouve sans obligation de le sortir.",
+        "img": [
+          "assets/img/gilet-haute-visibilite-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -166,7 +190,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la conséquence d'un niveau insuffisant du liquide de frein ?",
-        "a": "Une perte d'efficacité du freinage."
+        "a": "Une perte d'efficacité du freinage.",
+        "img": [
+          "assets/img/niveau-liquide-frein-1.jpg",
+          "assets/img/niveau-liquide-frein-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -180,7 +208,10 @@ window.QUESTIONS = [
       {
         "role": "securite_routiere",
         "q": "En cas de panne ou d'accident quel équipement de sécurité doit être porté avant de quitter le véhicule ?",
-        "a": "Il faut porter le gilet haute visibilité avant de quitter le véhicule. (le terme « gilet jaune » est accepté)"
+        "a": "Il faut porter le gilet haute visibilité avant de quitter le véhicule. (le terme « gilet jaune » est accepté)",
+        "img": [
+          "assets/img/gilet-haute-visibilite-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -191,12 +222,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quels sont les deux autres documents obligatoires à présenter en cas de contrôle par les forces de l’ordre ?",
-        "a": "L’attestation d’assurance et le permis de conduire."
+        "a": "L’attestation d’assurance et le permis de conduire.",
+        "img": [
+          "assets/img/vignette-assurance-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez la présence du certificat d'immatriculation du véhicule. (carte grise)",
-        "a": "La photocopie est acceptée."
+        "a": "La photocopie est acceptée.",
+        "img": [
+          "assets/img/carte-grise-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -212,12 +249,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le risque de circuler avec des balais d’essuie-glaces défectueux ?",
-        "a": "Une mauvaise visibilité en cas d’intempéries."
+        "a": "Une mauvaise visibilité en cas d’intempéries.",
+        "img": [
+          "assets/img/balais-essuie-glace-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Contrôlez l'état de tous les balais d'essuie-glaces du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/balais-essuie-glace-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -233,7 +276,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles sont les précautions à prendre lors du remplissage du réservoir ?",
-        "a": "Arrêter le moteur, ne pas fumer, ne pas téléphoner."
+        "a": "Arrêter le moteur, ne pas fumer, ne pas téléphoner.",
+        "img": [
+          "assets/img/trappe-carburant-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -257,7 +303,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le danger si l'on complète le niveau du liquide lorsque le moteur est chaud ?",
-        "a": "Un risque de brûlure."
+        "a": "Un risque de brûlure.",
+        "img": [
+          "assets/img/remplissage-liquide-refroidissement-1.jpg",
+          "assets/img/remplissage-liquide-refroidissement-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -282,7 +332,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle peut être la conséquence d'une panne de dégivrage de la lunette arrière ?",
-        "a": "Une insuffisance ou une absence de visibilité vers l’arrière."
+        "a": "Une insuffisance ou une absence de visibilité vers l’arrière.",
+        "img": [
+          "assets/img/degivrage-lunette-arriere-1.png",
+          "assets/img/degivrage-lunette-arriere-2.jpg",
+          "assets/img/degivrage-lunette-arriere-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -297,7 +352,10 @@ window.QUESTIONS = [
       {
         "role": "securite_routiere",
         "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
-        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
+        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte.",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -308,12 +366,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la signification d'un clignotement plus rapide ?",
-        "a": "Le non-fonctionnement de l'une des ampoules."
+        "a": "Le non-fonctionnement de l'une des ampoules.",
+        "img": [
+          "assets/img/clignotants-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Contrôlez l'état, la propreté et le fonctionnement de tous les clignotants côté trottoir.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/clignotants-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -329,7 +393,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles sont les conditions à respecter pour contrôler le niveau d'huile ?",
-        "a": "Moteur froid et sur terrain plat."
+        "a": "Moteur froid et sur terrain plat.",
+        "img": [
+          "assets/img/niveau-huile-moteur-1.jpg",
+          "assets/img/niveau-huile-moteur-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -360,7 +428,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Contrôlez l’état, la propreté et le fonctionnement du ou des feux de brouillard arrière.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-brouillard-arriere-exterieur-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -381,12 +452,18 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Vérifiez la présence de l’éthylotest.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/ethylotest-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
         "q": "Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?",
-        "a": "• Alerter : alerter immédiatement les secours ;\n• Masser : pratiquer une réanimation cardio-pulmonaire ;\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible."
+        "a": "• Alerter : alerter immédiatement les secours ;\n• Masser : pratiquer une réanimation cardio-pulmonaire ;\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -402,12 +479,19 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Contrôlez l’état, la propreté et le fonctionnement des feux de détresse à l’avant et à l’arrière.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-detresse-1.jpg",
+          "assets/img/feux-detresse-2.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
         "q": "Dans quel cas peut-on positionner une victime en position latérale de sécurité (PLS) ?",
-        "a": "Si la victime ne répond pas, ne réagit pas mais respire."
+        "a": "Si la victime ne répond pas, ne réagit pas mais respire.",
+        "img": [
+          "assets/img/position-laterale-securite-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -418,7 +502,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Pourquoi est-il important de bien régler son volant ? Citez deux exemples.",
-        "a": "• Pour un confort de conduite,\n• Pour l'accessibilité aux commandes,\n• Pour la visibilité du tableau de bord,\n• Pour l'efficacité des airbags."
+        "a": "• Pour un confort de conduite,\n• Pour l'accessibilité aux commandes,\n• Pour la visibilité du tableau de bord,\n• Pour l'efficacité des airbags.",
+        "img": [
+          "assets/img/reglage-volant-commande-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -447,12 +534,18 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Contrôlez l'état, la propreté et le fonctionnement des feux de route.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-route-exterieur-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
         "q": "En cas de panne ou d'accident, quel équipement de sécurité doit être porté avant de quitter le véhicule ?",
-        "a": "Il faut porter le gilet de haute visibilité avant de quitter le véhicule. Le terme « gilet jaune » est accepté."
+        "a": "Il faut porter le gilet de haute visibilité avant de quitter le véhicule. Le terme « gilet jaune » est accepté.",
+        "img": [
+          "assets/img/gilet-haute-visibilite-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -468,7 +561,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Positionnez la commande pour diriger l'air vers le pare-brise.",
-        "a": "La position « auto » (désembuage automatique) peut être utilisée si le véhicule en est équipé."
+        "a": "La position « auto » (désembuage automatique) peut être utilisée si le véhicule en est équipé.",
+        "img": [
+          "assets/img/commande-air-parebrise-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -484,7 +580,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le principal risque de manque d'huile moteur ?",
-        "a": "Un risque de détérioration ou de casse du moteur."
+        "a": "Un risque de détérioration ou de casse du moteur.",
+        "img": [
+          "assets/img/voyant-pression-huile-1.png",
+          "assets/img/voyant-pression-huile-2.jpg",
+          "assets/img/voyant-pression-huile-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -509,7 +610,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Qu'est-ce qui peut provoquer la décharge de la batterie, moteur éteint ?",
-        "a": "Les feux ou accessoires électriques en fonctionnement."
+        "a": "Les feux ou accessoires électriques en fonctionnement.",
+        "img": [
+          "assets/img/voyant-defaut-batterie-1.png",
+          "assets/img/voyant-defaut-batterie-2.jpg",
+          "assets/img/voyant-defaut-batterie-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -535,7 +641,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la solution en cas de panne de batterie pour démarrer le véhicule sans le déplacer ?",
-        "a": "Brancher une deuxième batterie en parallèle (les « + » ensemble et les « - » ensemble) ou la remplacer."
+        "a": "Brancher une deuxième batterie en parallèle (les « + » ensemble et les « - » ensemble) ou la remplacer.",
+        "img": [
+          "assets/img/emplacement-batterie-1.jpg",
+          "assets/img/emplacement-batterie-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -569,7 +679,10 @@ window.QUESTIONS = [
       {
         "role": "securite_routiere",
         "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
-        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
+        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte.",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -580,7 +693,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles sont les conséquences d'un mauvais réglage de ses feux ?",
-        "a": "• Une mauvaise vision vers l'avant,\n• Un risque d'éblouissement des autres usagers."
+        "a": "• Une mauvaise vision vers l'avant,\n• Un risque d'éblouissement des autres usagers.",
+        "img": [
+          "assets/img/reglage-hauteur-feux-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -601,7 +717,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la conséquence d'une température trop élevée de ce liquide ?",
-        "a": "Une surchauffe ou une casse du moteur."
+        "a": "Une surchauffe ou une casse du moteur.",
+        "img": [
+          "assets/img/voyant-temperature-liquide-refroidissement-1.png",
+          "assets/img/voyant-temperature-liquide-refroidissement-2.jpg",
+          "assets/img/voyant-temperature-liquide-refroidissement-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -627,12 +748,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est l'utilité des dispositifs réfléchissants ?",
-        "a": "Rendre visible le véhicule la nuit."
+        "a": "Rendre visible le véhicule la nuit.",
+        "img": [
+          "assets/img/dispositifs-reflechissants-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez l'état et la propreté des dispositifs réfléchissants.",
-        "a": "« Propres et en bon état » Signaler toute anomalie."
+        "a": "« Propres et en bon état » Signaler toute anomalie.",
+        "img": [
+          "assets/img/dispositifs-reflechissants-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -648,7 +775,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles précautions dois-je prendre pour que les enfants installés à l'arrière ne puissent pas ouvrir la portière ?",
-        "a": "Actionner la sécurité enfant sur les deux portières arrière."
+        "a": "Actionner la sécurité enfant sur les deux portières arrière.",
+        "img": [
+          "assets/img/securite-enfant-portiere-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -699,7 +829,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Actionnez les feux de détresse.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/feux-detresse-1.jpg",
+          "assets/img/feux-detresse-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -739,7 +873,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Sans actionner la commande du régulateur, comment le désactiver rapidement ?",
-        "a": "En appuyant sur la pédale de frein ou d'embrayage."
+        "a": "En appuyant sur la pédale de frein ou d'embrayage.",
+        "img": [
+          "assets/img/commande-regulateur-vitesse-1.jpg",
+          "assets/img/commande-regulateur-vitesse-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -763,12 +901,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles sont les précautions à prendre lors du remplissage du réservoir ?",
-        "a": "Arrêter le moteur, ne pas fumer, ne pas téléphoner."
+        "a": "Arrêter le moteur, ne pas fumer, ne pas téléphoner.",
+        "img": [
+          "assets/img/trappe-carburant-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Ouvrez la trappe à carburant et vérifier la bonne fermeture du bouchon.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/trappe-carburant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -784,7 +928,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Dans quel cas peut-on utiliser l'avertisseur sonore en agglomération ?",
-        "a": "En cas de danger immédiat."
+        "a": "En cas de danger immédiat.",
+        "img": [
+          "assets/img/commande-avertisseur-sonore-1.jpg"
+        ]
       },
       {
         "role": "verification",
@@ -808,7 +955,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le risque de manque d'huile moteur ?",
-        "a": "Un risque de détérioration ou de casse du moteur."
+        "a": "Un risque de détérioration ou de casse du moteur.",
+        "img": [
+          "assets/img/voyant-pression-huile-1.png",
+          "assets/img/voyant-pression-huile-2.jpg",
+          "assets/img/voyant-pression-huile-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -822,7 +974,10 @@ window.QUESTIONS = [
       {
         "role": "premiers_secours",
         "q": "L’utilisation d’un défibrillateur automatisé sur une victime qui n’est pas en arrêt cardiaque présente-t-elle un risque ?",
-        "a": "Non, car le défibrillateur est automatisé et se déclenche uniquement quand la victime est en arrêt cardiaque."
+        "a": "Non, car le défibrillateur est automatisé et se déclenche uniquement quand la victime est en arrêt cardiaque.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -857,12 +1012,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "À quelle fréquence est-il préconisé de vérifier la pression des pneus ?",
-        "a": "Chaque mois pour une utilisation normale de son véhicule et avant chaque long trajet."
+        "a": "Chaque mois pour une utilisation normale de son véhicule et avant chaque long trajet.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "verification",
         "q": "À l'aide de la plaque indicative, donnez la pression préconisée pour les pneumatiques arrières, véhicule chargé.",
-        "a": "La plaque se situe à l'intérieur de la portière conducteur ou de la trappe à carburant."
+        "a": "La plaque se situe à l'intérieur de la portière conducteur ou de la trappe à carburant.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -904,12 +1065,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Un défaut d'éclairage de la plaque lors du contrôle technique entraîne-t-il une contre-visite ?",
-        "a": "Oui."
+        "a": "Oui.",
+        "img": [
+          "assets/img/eclairage-plaque-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez le fonctionnement de l'éclairage de la plaque d'immatriculation à l'arrière.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/eclairage-plaque-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -925,12 +1092,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quels sont les deux autres documents obligatoires à présenter en cas de contrôle par les forces de l'ordre ?",
-        "a": "• Le certificat d'immatriculation,\n• Le permis de conduire."
+        "a": "• Le certificat d'immatriculation,\n• Le permis de conduire.",
+        "img": [
+          "assets/img/vignette-assurance-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez la présence de l'attestation d'assurance du véhicule et de sa vignette sur le pare-brise.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/vignette-assurance-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -946,7 +1119,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Si la sécurité enfant est enclenchée, est-il possible d'ouvrir la portière arrière depuis l'extérieur ?",
-        "a": "Oui."
+        "a": "Oui.",
+        "img": [
+          "assets/img/securite-enfant-portiere-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1006,7 +1182,10 @@ window.QUESTIONS = [
       {
         "role": "premiers_secours",
         "q": "Qu'est-ce qu'un défibrillateur automatisé externe (DAE) ?",
-        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque."
+        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1041,12 +1220,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la conséquence en cas de panne des feux stop ?",
-        "a": "Un manque d'information pour les usagers suiveurs et un risque de collision."
+        "a": "Un manque d'information pour les usagers suiveurs et un risque de collision.",
+        "img": [
+          "assets/img/feux-stop-1.jpg"
+        ]
       },
       {
         "role": "verification",
         "q": "Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux stop.",
-        "a": "« Propres et en bon état » Signaler toute anomalie."
+        "a": "« Propres et en bon état » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-stop-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1067,7 +1252,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "De quelle couleur est le voyant qui indique aux conducteurs que le feu de brouillard arrière est allumé ?",
-        "a": "Orange."
+        "a": "Orange.",
+        "img": [
+          "assets/img/voyant-feu-brouillard-arriere-1.png",
+          "assets/img/voyant-feu-brouillard-arriere-2.jpg",
+          "assets/img/voyant-feu-brouillard-arriere-3.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1104,7 +1294,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel peut être le risque de maintenir le recyclage de l'air de manière prolongée ?",
-        "a": "Un risque de mauvaise visibilité par l'apparition de buée sur les surfaces vitrées."
+        "a": "Un risque de mauvaise visibilité par l'apparition de buée sur les surfaces vitrées.",
+        "img": [
+          "assets/img/commande-recyclage-air-1.png"
+        ]
       },
       {
         "role": "manipulation",
@@ -1128,7 +1321,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le principal risque d'une absence de liquide lave-glace ?",
-        "a": "Une mauvaise visibilité."
+        "a": "Une mauvaise visibilité.",
+        "img": [
+          "assets/img/remplissage-laveglace-1.jpg",
+          "assets/img/remplissage-laveglace-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1152,7 +1349,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le risque de maintenir les feux de route lors d'un croisement avec d'autres usagers ?",
-        "a": "Un risque d'éblouissement des autres usagers."
+        "a": "Un risque d'éblouissement des autres usagers.",
+        "img": [
+          "assets/img/voyant-feux-route-1.png",
+          "assets/img/voyant-feux-route-2.jpg",
+          "assets/img/voyant-feux-route-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1199,12 +1401,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "En cas d'accident, dans quel délai doit-il être transmis à l’assureur ?",
-        "a": "5 jours."
+        "a": "5 jours.",
+        "img": [
+          "assets/img/constat-amiable-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez la présence du constat amiable dans le véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/constat-amiable-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1220,17 +1428,26 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Utilise-t-on le triangle de présignalisation sur autoroute ?",
-        "a": "Non."
+        "a": "Non.",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez la présence du triangle de présignalisation.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
         "q": "Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?",
-        "a": "• Alerter : alerter immédiatement les secours.\n• Masser : pratiquer une réanimation cardio-pulmonaire.\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible."
+        "a": "• Alerter : alerter immédiatement les secours.\n• Masser : pratiquer une réanimation cardio-pulmonaire.\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1286,7 +1503,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est l'utilité d'un limiteur de vitesse ?",
-        "a": "Ne pas dépasser la vitesse programmée par le conducteur."
+        "a": "Ne pas dépasser la vitesse programmée par le conducteur.",
+        "img": [
+          "assets/img/commande-limiteur-vitesse-1.jpg",
+          "assets/img/commande-limiteur-vitesse-2.jpg"
+        ]
       },
       {
         "role": "verification",
@@ -1340,7 +1561,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Faites fonctionner l'essuie-glace arrière du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/essuie-glace-arriere-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1366,7 +1590,10 @@ window.QUESTIONS = [
       {
         "role": "premiers_secours",
         "q": "L’utilisation d’un défibrillateur automatisé sur une victime qui n’est pas en arrêt cardiaque présente-t-elle un risque ?",
-        "a": "Non, car le défibrillateur est automatisé et se déclenche uniquement quand la victime est en arrêt cardiaque."
+        "a": "Non, car le défibrillateur est automatisé et se déclenche uniquement quand la victime est en arrêt cardiaque.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1377,7 +1604,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Peut-on fixer tous types de siège enfant sur des attaches de type Isofix ?",
-        "a": "Non ; uniquement ceux compatibles avec ce type d'attache."
+        "a": "Non ; uniquement ceux compatibles avec ce type d'attache.",
+        "img": [
+          "assets/img/attaches-isofix-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1422,7 +1652,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "À quelle fréquence est-il préconisé de vérifier la pression des pneumatiques ?",
-        "a": "Tous les mois."
+        "a": "Tous les mois.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1469,7 +1702,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Pourquoi doit-on régler la hauteur des feux ?",
-        "a": "Pour ne pas éblouir les autres usagers"
+        "a": "Pour ne pas éblouir les autres usagers",
+        "img": [
+          "assets/img/reglage-hauteur-feux-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1493,7 +1729,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la principale conséquence d'un dispositif de lave-glace défaillant ?",
-        "a": "Une mauvaise visibilité due à l'impossibilité de nettoyer le pare-brise."
+        "a": "Une mauvaise visibilité due à l'impossibilité de nettoyer le pare-brise.",
+        "img": [
+          "assets/img/remplissage-laveglace-1.jpg",
+          "assets/img/remplissage-laveglace-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1506,7 +1746,10 @@ window.QUESTIONS = [
       {
         "role": "premiers_secours",
         "q": "Qu'est-ce qu'un défibrillateur automatisé externe (DAE) ?",
-        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque."
+        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1522,7 +1765,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Mettez le rétroviseur intérieur en position « nuit ».",
-        "a": "Si le véhicule possède un système automatique, le candidat doit l’indiquer"
+        "a": "Si le véhicule possède un système automatique, le candidat doit l’indiquer",
+        "img": [
+          "assets/img/retroviseur-nuit-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1538,12 +1784,18 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Citez un endroit où l'on peut trouver les pressions préconisées pour les pneumatiques.",
-        "a": "Elles sont indiquées :\n• Soit sur une plaque à l’intérieur de la portière conducteur,\n• Soit dans la notice d’utilisation,\n• Soit au niveau de la trappe à carburant."
+        "a": "Elles sont indiquées :\n• Soit sur une plaque à l’intérieur de la portière conducteur,\n• Soit dans la notice d’utilisation,\n• Soit au niveau de la trappe à carburant.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Contrôlez l'état du flanc sur l'un des pneumatiques.",
-        "a": "En bon état. (signaler toute anomalie observée)."
+        "a": "En bon état. (signaler toute anomalie observée).",
+        "img": [
+          "assets/img/temoin-usure-pneu-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1559,12 +1811,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Comment détecter leur usure en circulation ?",
-        "a": "En cas de pluie, lorsqu'ils laissent des traces sur le pare-brise."
+        "a": "En cas de pluie, lorsqu'ils laissent des traces sur le pare-brise.",
+        "img": [
+          "assets/img/temoin-usure-pneu-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Faites fonctionner les essuie-glaces avant du véhicule sur la position la plus rapide.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/essuie-glace-avant-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1580,7 +1838,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la conséquence d'un niveau insuffisant du liquide de frein ?",
-        "a": "Une perte d'efficacité du freinage"
+        "a": "Une perte d'efficacité du freinage",
+        "img": [
+          "assets/img/niveau-liquide-frein-1.jpg",
+          "assets/img/niveau-liquide-frein-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1594,7 +1856,10 @@ window.QUESTIONS = [
       {
         "role": "securite_routiere",
         "q": "En cas de panne ou d'accident quel équipement de sécurité doit être porté avant de quitter le véhicule ?",
-        "a": "Il faut porter le gilet haute visibilité avant de quitter le véhicule. (le terme « gilet jaune » est accepté)"
+        "a": "Il faut porter le gilet haute visibilité avant de quitter le véhicule. (le terme « gilet jaune » est accepté)",
+        "img": [
+          "assets/img/gilet-haute-visibilite-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1610,7 +1875,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Vérifiez la présence du gilet haute visibilité.",
-        "a": "Le candidat doit montrer où il se trouve sans obligation de le sortir."
+        "a": "Le candidat doit montrer où il se trouve sans obligation de le sortir.",
+        "img": [
+          "assets/img/gilet-haute-visibilite-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1626,7 +1894,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le danger si l'on complète le niveau du liquide lorsque le moteur est chaud ?",
-        "a": "Un risque de brûlure."
+        "a": "Un risque de brûlure.",
+        "img": [
+          "assets/img/remplissage-liquide-refroidissement-1.jpg",
+          "assets/img/remplissage-liquide-refroidissement-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1651,7 +1923,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle peut être la conséquence d'une panne de dégivrage de la lunette arrière ?",
-        "a": "Une insuffisance ou une absence de visibilité vers l’arrière."
+        "a": "Une insuffisance ou une absence de visibilité vers l’arrière.",
+        "img": [
+          "assets/img/degivrage-lunette-arriere-1.png",
+          "assets/img/degivrage-lunette-arriere-2.jpg",
+          "assets/img/degivrage-lunette-arriere-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1666,7 +1943,10 @@ window.QUESTIONS = [
       {
         "role": "securite_routiere",
         "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
-        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
+        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte.",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1677,12 +1957,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la signification d'un clignotement plus rapide ?",
-        "a": "Le non-fonctionnement de l'une des ampoules."
+        "a": "Le non-fonctionnement de l'une des ampoules.",
+        "img": [
+          "assets/img/clignotants-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Contrôlez l'état, la propreté et le fonctionnement de tous les clignotants côté trottoir.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/clignotants-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1698,7 +1984,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles sont les conditions à respecter pour contrôler le niveau d'huile ?",
-        "a": "Moteur froid et sur terrain plat."
+        "a": "Moteur froid et sur terrain plat.",
+        "img": [
+          "assets/img/niveau-huile-moteur-1.jpg",
+          "assets/img/niveau-huile-moteur-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1729,12 +2019,19 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Contrôlez l’état, la propreté et le fonctionnement des feux de détresse à l’avant et à l’arrière.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-detresse-1.jpg",
+          "assets/img/feux-detresse-2.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
         "q": "Dans quel cas peut-on positionner une victime en position latérale de sécurité (PLS) ?",
-        "a": "Si la victime ne répond pas, ne réagit pas mais respire."
+        "a": "Si la victime ne répond pas, ne réagit pas mais respire.",
+        "img": [
+          "assets/img/position-laterale-securite-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1750,12 +2047,18 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Vérifiez la présence de l’éthylotest.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/ethylotest-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
         "q": "Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?",
-        "a": "• Alerter : alerter immédiatement les secours,\n• Masser : pratiquer une réanimation cardio-pulmonaires,\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible."
+        "a": "• Alerter : alerter immédiatement les secours,\n• Masser : pratiquer une réanimation cardio-pulmonaires,\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1771,12 +2074,18 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Contrôlez l'état, la propreté et le fonctionnement des feux de route.",
-        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie."
+        "a": "« Propres, en bon état et fonctionnent » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-route-exterieur-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
         "q": "En cas de panne ou d'accident, quel équipement de sécurité doit être porté avant de quitter le véhicule ?",
-        "a": "Il faut porter le gilet de haute visibilité avant de quitter le véhicule. Le terme « gilet jaune » est accepté."
+        "a": "Il faut porter le gilet de haute visibilité avant de quitter le véhicule. Le terme « gilet jaune » est accepté.",
+        "img": [
+          "assets/img/gilet-haute-visibilite-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1792,7 +2101,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Positionnez la commande pour diriger l'air vers le pare-brise.",
-        "a": "La position « auto » (désembuage automatique) peut être utilisée si le véhicule en est équipé."
+        "a": "La position « auto » (désembuage automatique) peut être utilisée si le véhicule en est équipé.",
+        "img": [
+          "assets/img/commande-air-parebrise-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1808,7 +2120,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le principal risque de manque d'huile moteur ?",
-        "a": "Un risque de détérioration ou de casse du moteur."
+        "a": "Un risque de détérioration ou de casse du moteur.",
+        "img": [
+          "assets/img/voyant-pression-huile-1.png",
+          "assets/img/voyant-pression-huile-2.jpg",
+          "assets/img/voyant-pression-huile-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1843,7 +2160,10 @@ window.QUESTIONS = [
       {
         "role": "securite_routiere",
         "q": "Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de présignalisation ?",
-        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."
+        "a": "Le triangle doit être placé à une distance d'environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte.",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -1854,7 +2174,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelles sont les conséquences d'un mauvais réglage de ses feux ?",
-        "a": "• Une mauvaise vision vers l'avant,\n• Un risque d'éblouissement des autres usagers."
+        "a": "• Une mauvaise vision vers l'avant,\n• Un risque d'éblouissement des autres usagers.",
+        "img": [
+          "assets/img/reglage-hauteur-feux-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1875,7 +2198,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la conséquence d'une température trop élevée de ce liquide ?",
-        "a": "Une surchauffe ou une casse du moteur."
+        "a": "Une surchauffe ou une casse du moteur.",
+        "img": [
+          "assets/img/voyant-temperature-liquide-refroidissement-1.png",
+          "assets/img/voyant-temperature-liquide-refroidissement-2.jpg",
+          "assets/img/voyant-temperature-liquide-refroidissement-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -1930,7 +2258,11 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Actionnez les feux de détresse.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/feux-detresse-1.jpg",
+          "assets/img/feux-detresse-2.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -1946,12 +2278,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "À quelle fréquence est-il préconisé de vérifier la pression des pneus ?",
-        "a": "Chaque mois pour une utilisation normale de son véhicule et avant chaque long trajet."
+        "a": "Chaque mois pour une utilisation normale de son véhicule et avant chaque long trajet.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "verification",
         "q": "À l'aide de la plaque indicative, donnez la pression préconisée pour les pneumatiques arrières, véhicule chargé.",
-        "a": "La plaque se situe à l'intérieur de la portière conducteur ou de la trappe à carburant."
+        "a": "La plaque se situe à l'intérieur de la portière conducteur ou de la trappe à carburant.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -1991,7 +2329,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Si la sécurité enfant est enclenchée, est-il possible d'ouvrir la portière arrière depuis l'extérieur ?",
-        "a": "Oui."
+        "a": "Oui.",
+        "img": [
+          "assets/img/securite-enfant-portiere-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -2041,12 +2382,18 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la conséquence en cas de panne des feux stop ?",
-        "a": "Un manque d'informations pour les usagers suiveurs et un risque de collision."
+        "a": "Un manque d'informations pour les usagers suiveurs et un risque de collision.",
+        "img": [
+          "assets/img/feux-stop-1.jpg"
+        ]
       },
       {
         "role": "verification",
         "q": "Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux stop.",
-        "a": "« Propres et en bon état » Signaler toute anomalie."
+        "a": "« Propres et en bon état » Signaler toute anomalie.",
+        "img": [
+          "assets/img/feux-stop-1.jpg"
+        ]
       },
       {
         "role": "securite_routiere",
@@ -2109,7 +2456,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel peut être le risque de maintenir le recyclage de l'air de manière prolongée ?",
-        "a": "Un risque de mauvaise visibilité par l'apparition de buée sur les surfaces vitrées."
+        "a": "Un risque de mauvaise visibilité par l'apparition de buée sur les surfaces vitrées.",
+        "img": [
+          "assets/img/commande-recyclage-air-1.png"
+        ]
       },
       {
         "role": "manipulation",
@@ -2133,17 +2483,26 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Utilise-t-on le triangle de présignalisation sur autoroute ?",
-        "a": "Non."
+        "a": "Non.",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
         "q": "Vérifiez la présence du triangle de présignalisation.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/triangle-presignalisation-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
         "q": "Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?",
-        "a": "• Alerter : alerter immédiatement les secours,\n• Masser : pratiquer une réanimation cardio-pulmonaires,\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible."
+        "a": "• Alerter : alerter immédiatement les secours,\n• Masser : pratiquer une réanimation cardio-pulmonaires,\n• Défibriller : utiliser un défibrillateur automatique (DAE) si possible.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null
@@ -2154,7 +2513,12 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quel est le risque de maintenir les feux de route lors d'un croisement avec d'autres usagers ?",
-        "a": "Un risque d'éblouissement des autres usagers."
+        "a": "Un risque d'éblouissement des autres usagers.",
+        "img": [
+          "assets/img/voyant-feux-route-1.png",
+          "assets/img/voyant-feux-route-2.jpg",
+          "assets/img/voyant-feux-route-3.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -2209,7 +2573,10 @@ window.QUESTIONS = [
       {
         "role": "manipulation",
         "q": "Faites fonctionner l'essuie-glace arrière du véhicule.",
-        "a": ""
+        "a": "",
+        "img": [
+          "assets/img/essuie-glace-arriere-1.jpg"
+        ]
       },
       {
         "role": "premiers_secours",
@@ -2249,7 +2616,10 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "À quelle fréquence est-il préconisé de vérifier la pression des pneumatiques ?",
-        "a": "Tous les mois."
+        "a": "Tous les mois.",
+        "img": [
+          "assets/img/plaque-pression-pneus-1.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -2275,7 +2645,11 @@ window.QUESTIONS = [
       {
         "role": "verification",
         "q": "Quelle est la principale conséquence d'un dispositif de lave-glace défaillant ?",
-        "a": "Une mauvaise visibilité due à l'impossibilité de nettoyer le pare-brise."
+        "a": "Une mauvaise visibilité due à l'impossibilité de nettoyer le pare-brise.",
+        "img": [
+          "assets/img/remplissage-laveglace-1.jpg",
+          "assets/img/remplissage-laveglace-2.jpg"
+        ]
       },
       {
         "role": "manipulation",
@@ -2288,7 +2662,10 @@ window.QUESTIONS = [
       {
         "role": "premiers_secours",
         "q": "Qu'est-ce qu'un défibrillateur automatisé externe (DAE) ?",
-        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque."
+        "a": "C'est un appareil qui peut permettre de rétablir une activité cardiaque normale à une victime en arrêt cardiaque.",
+        "img": [
+          "assets/img/defibrillateur-1.jpg"
+        ]
       }
     ],
     "image": null

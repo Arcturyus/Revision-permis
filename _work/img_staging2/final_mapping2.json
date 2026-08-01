@@ -1,0 +1,72 @@
+{
+  "ethylotest": [
+    "assets/img/ethylotest-1.jpg"
+  ],
+  "triangle-presignalisation": [
+    "assets/img/triangle-presignalisation-1.jpg"
+  ],
+  "gilet-haute-visibilite": [
+    "assets/img/gilet-haute-visibilite-1.jpg"
+  ],
+  "feux-detresse": [
+    "assets/img/feux-detresse-1.jpg",
+    "assets/img/feux-detresse-2.jpg"
+  ],
+  "carte-grise": [
+    "assets/img/carte-grise-1.jpg"
+  ],
+  "vignette-assurance": [
+    "assets/img/vignette-assurance-1.jpg"
+  ],
+  "constat-amiable": [
+    "assets/img/constat-amiable-1.jpg"
+  ],
+  "plaque-immatriculation": [
+    "assets/img/plaque-immatriculation-1.jpg"
+  ],
+  "dispositifs-reflechissants": [
+    "assets/img/dispositifs-reflechissants-1.jpg"
+  ],
+  "balais-essuie-glace": [
+    "assets/img/balais-essuie-glace-1.jpg"
+  ],
+  "eclairage-plaque": [
+    "assets/img/eclairage-plaque-1.jpg"
+  ],
+  "feux-route-exterieur": [
+    "assets/img/feux-route-exterieur-1.jpg"
+  ],
+  "feux-brouillard-arriere-exterieur": [
+    "assets/img/feux-brouillard-arriere-exterieur-1.jpg"
+  ],
+  "feux-stop": [
+    "assets/img/feux-stop-1.jpg"
+  ],
+  "clignotants": [
+    "assets/img/clignotants-1.jpg"
+  ],
+  "retroviseur-nuit": [
+    "assets/img/retroviseur-nuit-1.jpg"
+  ],
+  "essuie-glace-avant": [
+    "assets/img/essuie-glace-avant-1.jpg"
+  ],
+  "essuie-glace-arriere": [
+    "assets/img/essuie-glace-arriere-1.jpg"
+  ],
+  "trappe-carburant": [
+    "assets/img/trappe-carburant-1.jpg"
+  ],
+  "commande-air-parebrise": [
+    "assets/img/commande-air-parebrise-1.jpg"
+  ],
+  "defibrillateur": [
+    "assets/img/defibrillateur-1.jpg"
+  ],
+  "position-laterale-securite": [
+    "assets/img/position-laterale-securite-1.jpg"
+  ],
+  "plaque-pression-pneus": [
+    "assets/img/plaque-pression-pneus-1.jpg"
+  ]
+}

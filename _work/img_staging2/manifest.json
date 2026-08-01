@@ -1,0 +1,254 @@
+{
+  "ethylotest": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b27973_642ec5b6609b19101bc5aaea_5e5855690edb05f5058b571c8de6875a67bd0e11_ethylotest-detail-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'un ethylotest chimique jetable (tube avec embout jaune et reservoir bleu) tenu en main, devant un sac gonflable de secours. Verifie visuellement: correspond bien a un ethylotest. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "triangle-presignalisation": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86e47_642ec5b1b248cc81e07759bc_b27c8f1c8c58ee376715f334b7bddb5018870d75_triangle-presignalisation-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'un triangle de presignalisation rouge depliee et pose au sol derriere une voiture. Verifie visuellement: bon triangle. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "gilet-haute-visibilite": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b2797f_642ec5b6609b192ca1c5aad7_0a994778443975a659213a9b4acba5ed2bb0a1eb_gilet-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'une main sortant un gilet jaune fluo haute visibilite d'une pochette de portiere. Verifie visuellement: bon gilet. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "feux-detresse-commande": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b27963_642ec5b6609b1931c6c5aad9_36a582544e444c61fd459db4d71a776685c09b42_bouton-warning-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Gros plan sur le bouton rouge de commande des feux de detresse (triangle blanc) au tableau de bord. Verifie visuellement: correspond exactement. Page Ornikar 'verifications interieures', question 'Actionnez les feux de detresse'."
+    }
+  ],
+  "feux-detresse-exterieur": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d38_642ec5b1b248cc7bc97759c6_5de7e9ba95fb063a4dc3feefd6a8f0d11ed661c5_detresse.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue avant d'une voiture avec les deux clignotants avant allumes simultanement (effet feux de detresse). Verifie visuellement: coherent avec la question. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "carte-grise": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b27970_642ec5b6609b197835c5aada_9e420a396fb873d6397595de0aa67e7a43d996e8_carte-grise-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'un certificat d'immatriculation francais (carte grise) vierge, entete 'Republique Francaise / Certificat d'immatriculation'. Verifie visuellement: document correct. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "vignette-assurance": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67a26394e0813b279b6_642ec5b6609b1980bcc5aae3_b0319cd98bda5b83f063ad5cd8b211bb01c3f877_certificat-assurance-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'une main tenant une vignette verte 'CERTIFICAT D'ASSURANCE' devant le pare-brise. Verifie visuellement: correspond bien. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "constat-amiable": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67a26394e0813b279c2_642ec5b6609b192a8dc5aaeb_c243e5aea5d6c6ff583a74b943c3e33b609633ae_constat-amiable-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'un carnet de constat amiable d'accident automobile (formulaire bleu), gros plan sur l'entete. Verifie visuellement: bon document. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "plaque-immatriculation": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d22_642ec5b1b248cc60ba7759b7_5bca38dabf4bdd86797886da956f69a83a720bc0_plaque-immatriculation.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo de deux plaques d'immatriculation francaises neuves (bande bleue F + etoiles UE) posees sur un carton. Verifie visuellement: bonnes plaques. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "dispositifs-reflechissants": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d51_642ec5b1b248cc15d97759c3_4831995cef68ac1c8c2c0a221b219d661f91512c_catadioptre-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Gros plan sur un catadioptre (reflecteur) rouge triangulaire integre au feu arriere d'une voiture. Verifie visuellement: bon element. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "balais-essuie-glace": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d18_642ec5b1b248cc28ee7759c4_8f941746ab792d97978dfef281c5aa6d902ab01c_balais-essui-glace.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'une personne tenant/inspectant un balai d'essuie-glace retire du vehicule. Le pare-brise n'est pas visible dans le cadrage mais le balai est clairement identifiable. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "eclairage-plaque": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d61_642ec5b1b248cc5b4c7759cd_7ffe9845d7686e13510a203765db0b9a51d0afe1_eclairage-plaque.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue arriere d'une voiture, gros plan sur les deux petites ampoules d'eclairage de plaque allumees au-dessus de la plaque (plaque floutee par Ornikar). Verifie visuellement: eclairage bien visible et allume. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-croisement": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d3b_642ec5b1b248cc32bb7759d2_032fc56075c2e4fe4d1e54d025874fdf58bbcb07_croisement.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue avant d'une voiture (Ford Fiesta) avec phares allumes. ATTENTION: visuellement quasi identique aux photos utilisees pour feux-route-exterieur et feux-diurnes (meme vehicule, meme showroom) - Ornikar ne differencie pas visuellement croisement/route/diurnes sur ces photos, la difference n'est pas discernable a l'oeil sur une photo statique. Gardee car c'est l'image officiellement associee a cette question precise sur le site source. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-route-exterieur": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d28_642ec5b1b248cc13227759c9_2ee01ba75d7b9ad9db99b8bd43daf2cb0f3c66be_route.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue avant d'une voiture (Ford Fiesta) avec phares tres lumineux (feux de route/pleins phares). ATTENTION: meme remarque que feux-croisement - photos du meme vehicule difficiles a distinguer visuellement entre elles, mais c'est l'image specifiquement associee a cette question sur Ornikar. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-brouillard-arriere-exterieur": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d32_642ec5b1b248cc10d47759b8_e86189f8617586e9bc4b76c863fe3f303fe24775_brouillard-ar-ok.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue arriere/bas de caisse d'une voiture avec un feu rouge allume dans le pare-chocs (position typique du feu de brouillard arriere). Verifie visuellement: coherent. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-position": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d35_642ec5b1b248ccfbbb7759ba_96ea77d6b4befa504c0da7144c9ef1aeb2abe394_position.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Gros plan sur un bloc optique avant montrant la zone du feu de position/veilleuse. Image assez proche des autres photos de phares du meme lot Ornikar - a defaut de mieux, conservee car c'est l'image associee a cette question sur le site source. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-stop": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86e3e_642ec5b1b248cc69067759c5_6ad3296cddfebfc56747d589dafa1b9068a57a84_feux-stop-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue arriere d'une voiture blanche dans la circulation, feu stop haut (troisieme feu de freinage) et feux stop lateraux rouges visiblement allumes. Verifie visuellement: coherent. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-recul": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86e35_642ec5b1b248cc277c7759be_dbde996aad4c350e26df177fc921819a2cb28401_feu-recul-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Gros plan sur un bloc optique arriere rouge. ATTENTION: le segment blanc du feu de recul n'est pas clairement visible/allume sur ce cadrage (photo prise feu de recul eteint) - montre surtout l'emplacement du bloc optique, pas la lumiere blanche allumee. Conservee car c'est l'image du site source pour cette question, mais correspondance imparfaite a signaler. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "feux-diurnes": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86e2c_642ec5b1b248cc67577759bf_9b6824ed8fa0810f4a41d1df1485f30e887714a9_diurnes.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue avant d'une voiture (Ford Fiesta) avec phares allumes. ATTENTION: meme remarque que feux-croisement/feux-route-exterieur - photos tres proches visuellement du meme lot Ornikar, mais c'est l'image specifiquement associee a cette question sur le site source. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "clignotants": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d2e_642ec5b1b248cce6c67759c7_0f65e8ac870cb27e4de1316668f2c3b290494df4_clignotant-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Gros plan sur un feu arriere (VW Golf) avec la section orange du clignotant nettement allumee. Bonne illustration claire. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "retroviseur-nuit": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b2796a_642ec5b6609b1921e1c5aad5_155d6688929f7482468fb221abdb14582687e7c3_retroviseur-eblouir-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Vue a travers le retroviseur interieur avec un fort eblouissement de phares arriere (illustre la raison d'utiliser la position nuit), mais ne montre pas clairement la petite languette de bascule anti-eblouissement sous le miroir. Conservee car c'est l'image associee a cette question sur le site source; correspondance partielle a signaler. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "essuie-glace-avant": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b2795d_642ec5b6609b19f530c5aade_9273fa9d40f75c9277c3a6cee5ba68e20c7b0bd2_commande-essuie-glace-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo de la commande (manette) d'essuie-glace derriere le volant, avec les positions MIST/OFF/AUTO/LO/HI bien lisibles. Verifie visuellement: correspond bien. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "essuie-glace-arriere": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b2795d_642ec5b6609b19f530c5aade_9273fa9d40f75c9277c3a6cee5ba68e20c7b0bd2_commande-essuie-glace-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Meme photo que essuie-glace-avant: Ornikar reutilise la meme manette de commande d'essuie-glace pour illustrer aussi bien la question 'essuie-glace avant' que 'essuie-glace arriere' (la meme manette commande generalement les deux, position differente). Reutilisation volontaire, comme pour d'autres concepts en 1ere passe (ex. niveau_liquide_frein / voyant_pression_huile)."
+    }
+  ],
+  "trappe-carburant": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d54_642ec5b1b248cc142d7759d0_7c861ce59cd55711c7b000e1d17ac23a76c99b61_trappe-carburant-petit.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo d'un pistolet de pompe a essence rouge insere dans la trappe a carburant ouverte, bouchon pendu sur le cote. Verifie visuellement: correspond bien. Page Ornikar 'verifications exterieures'."
+    }
+  ],
+  "commande-air-parebrise": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f67926394e0813b27976_642ec5b6609b19ec82c5aadc_ad3009d1816950e83767306773bc5243a9c8d272_desembuage-pare-brise.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Doigt appuyant sur le bouton MAX/desembuage pare-brise (symbole pare-brise + fleches) de la climatisation automatique. Verifie visuellement: correspond bien a 'diriger l'air vers le pare-brise'. Page Ornikar 'verifications interieures'."
+    }
+  ],
+  "defibrillateur": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Defibrillator-809447_1920.jpg",
+      "license": "CC0 1.0 (domaine public)",
+      "credit": "Tanja-Denise Schantz (source Pixabay, uploade sur Wikimedia Commons)",
+      "note": "Photo d'un defibrillateur automatise externe (DAE) jaune 'samaritan PAD' dans son boitier mural orange 'Defibrillator', avec pictogrammes d'utilisation visibles (pose des electrodes, positions PLS/RCP). Verifie visuellement: tres bonne illustration nette. Fichier 'Defibrillator-809447_1920.jpg'."
+    }
+  ],
+  "position-laterale-securite": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Recovery_position.jpg",
+      "license": "CC BY-SA 3.0 / 2.0 France (+ CeCILL)",
+      "credit": "Rama (Wikimedia Commons)",
+      "note": "Dessin/schema en noir et blanc d'une personne en position laterale de securite (PLS), vue de profil. Verifie visuellement: schema clair et correct de la PLS. Fichier 'Recovery_position.jpg'."
+    }
+  ],
+  "plaque-pression-pneus": [
+    {
+      "file": "1.jpg",
+      "source_url": "https://cdn.prod.website-files.com/6864d666097819db1fc2600f/68d0f6780a9c50735ac86d57_642ec5b1b248cc038f7759c0_ca8e6078fd7a7b0e1de8a0c613eb535b96861723_pression.jpeg",
+      "license": "incertain",
+      "credit": "Ornikar (site auto-ecole commercial, ornikar.com) - reproduction non explicitement autorisee, usage educatif seulement",
+      "note": "Photo de l'etiquette autocollante (montant de portiere) indiquant les pressions de gonflage preconisees pour les pneus avant/arriere selon le chargement. Verifie visuellement: tableau de pressions bien lisible. Concept ajoute en cours de tache 2 (demande complementaire de l'utilisateur). Page Ornikar 'verifications exterieures'."
+    }
+  ]
+}

@@ -45,6 +45,7 @@
         if (!item) return;
         if (perItem[idx].q != null) item.q = perItem[idx].q;
         if (perItem[idx].a != null) item.a = perItem[idx].a;
+        if (perItem[idx].img != null) item.img = perItem[idx].img;
       });
     });
   }
@@ -177,11 +178,23 @@
     $('card-answers').innerHTML = currentItems.map(function (o) {
       var it = o.it, idx = o.idx;
       if (editMode) {
+        var thumbs = (it.img || []).map(function (src) {
+          return '<span class="edit-img-thumb" data-src="' + escapeHtml(src) + '">' +
+            '<img src="' + escapeHtml(src) + '" alt=""><button type="button" class="edit-img-remove" aria-label="Retirer cette image">✕</button>' +
+            '</span>';
+        }).join('');
         return '<div class="qitem" data-idx="' + idx + '">' + itemTag(it) +
           '<textarea class="edit-field edit-q" data-idx="' + idx + '" data-field="q" ' +
           'aria-label="Question">' + escapeHtml(it.q) + '</textarea>' +
           '<textarea class="edit-field edit-a" data-idx="' + idx + '" data-field="a" ' +
           'placeholder="Réponse (laisser vide si aucune)">' + escapeHtml(it.a || '') + '</textarea>' +
+          '<div class="edit-imgs" data-idx="' + idx + '">' +
+            '<div class="edit-imgs-list">' + thumbs + '</div>' +
+            '<div class="edit-img-add">' +
+              '<input type="text" class="edit-img-url" placeholder="Coller une URL ou un chemin d\'image (ex. assets/img/....jpg)">' +
+              '<button type="button" class="edit-img-add-btn">+ Image</button>' +
+            '</div>' +
+          '</div>' +
           '</div>';
       }
       var a = it.a && it.a.trim()
@@ -259,6 +272,20 @@
         changed = true;
       }
     });
+    $('card-answers').querySelectorAll('.edit-imgs').forEach(function (box) {
+      var idx = parseInt(box.dataset.idx, 10);
+      var it = currentFiche.items[idx];
+      if (!it) return;
+      var imgs = Array.from(box.querySelectorAll('.edit-img-thumb')).map(function (t) { return t.dataset.src; });
+      var current = it.img || [];
+      var sameLength = imgs.length === current.length;
+      var identical = sameLength && imgs.every(function (src, i) { return src === current[i]; });
+      if (!identical) {
+        it.img = imgs;                                    // données en mémoire
+        SRS.setEdit(currentFiche.id, idx, 'img', imgs);    // localStorage
+        changed = true;
+      }
+    });
     if (changed) renderQuestions(); // garde le recto cohérent
   }
 
@@ -313,10 +340,35 @@
     // ouvre/ferme la visionneuse plein écran pour les photos illustrant une question
     $('card-answers').addEventListener('click', function (e) {
       var link = e.target.closest('.qimg-link');
-      if (!link) return;
-      e.preventDefault();
-      e.stopPropagation();
-      openLightbox(link.dataset.lightbox);
+      if (link) {
+        e.preventDefault();
+        e.stopPropagation();
+        openLightbox(link.dataset.lightbox);
+        return;
+      }
+      // mode édition : retirer une image de la fiche
+      var removeBtn = e.target.closest('.edit-img-remove');
+      if (removeBtn) {
+        e.stopPropagation();
+        removeBtn.closest('.edit-img-thumb').remove();
+        return;
+      }
+      // mode édition : ajouter une image (URL/chemin saisi par l'utilisateur)
+      var addBtn = e.target.closest('.edit-img-add-btn');
+      if (addBtn) {
+        e.stopPropagation();
+        var box = addBtn.closest('.edit-imgs');
+        var input = box.querySelector('.edit-img-url');
+        var src = input.value.trim();
+        if (!src) return;
+        var thumb = document.createElement('span');
+        thumb.className = 'edit-img-thumb';
+        thumb.dataset.src = src;
+        thumb.innerHTML = '<img src="' + escapeHtml(src) + '" alt="">' +
+          '<button type="button" class="edit-img-remove" aria-label="Retirer cette image">✕</button>';
+        box.querySelector('.edit-imgs-list').appendChild(thumb);
+        input.value = '';
+      }
     });
     $('lightbox').addEventListener('click', closeLightbox);
     $('edit-toggle').addEventListener('click', function (e) { e.stopPropagation(); toggleEdit(); });

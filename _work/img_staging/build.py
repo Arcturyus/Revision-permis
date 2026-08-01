@@ -17,9 +17,12 @@ MAX_W_ICON = 320
 # elles existent : symbole net d'abord, photo contextuelle ensuite.
 CONCEPTS = {
     "reglage-hauteur-feux": ["reglage_hauteur_feux/1.jpg"],
-    "remplissage-laveglace": ["remplissage_laveglace/1.jpg"],
+    "remplissage-laveglace": ["remplissage_laveglace/1.jpg", "remplissage_laveglace/2.jpg"],
     "niveau-liquide-frein": ["niveau_liquide_frein/1.jpg", "niveau_liquide_frein/2.jpg"],
-    "indicateur-niveau-carburant": ["indicateur_niveau_carburant/1.jpg"],
+    "indicateur-niveau-carburant": [
+        "indicateur_niveau_carburant/1.jpg",
+        "indicateur_niveau_carburant/2.jpg",
+    ],
     "remplissage-liquide-refroidissement": [
         "remplissage_liquide_refroidissement/1.jpg",
         "remplissage_liquide_refroidissement/2.jpg",
@@ -41,7 +44,7 @@ CONCEPTS = {
         "voyant_defaut_batterie/2.jpg",
         "tableau_de_bord_general/1.jpg",
     ],
-    "emplacement-batterie": ["emplacement_batterie/1.jpg"],
+    "emplacement-batterie": ["emplacement_batterie/1.jpg", "emplacement_batterie/2.jpg"],
     "voyant-temperature-liquide-refroidissement": [
         "voyant_temperature_liquide_refroidissement/1.png",
         "voyant_temperature_liquide_refroidissement/2.jpg",
@@ -52,7 +55,10 @@ CONCEPTS = {
         "tableau_de_bord_general/1.jpg",
     ],
     "temoin-usure-pneu": ["temoin_usure_pneu/1.jpg"],
-    "commande-regulateur-vitesse": ["commande_regulateur_vitesse/1.jpg"],
+    "commande-regulateur-vitesse": [
+        "commande_regulateur_vitesse/1.jpg",
+        "commande_regulateur_vitesse/2.jpg",
+    ],
     "commande-avertisseur-sonore": ["commande_avertisseur_sonore/1_enhanced.jpg"],
     "remplissage-huile-moteur": [
         "remplissage_huile_moteur/1.jpg",

@@ -3,14 +3,16 @@
     "assets/img/reglage-hauteur-feux-1.jpg"
   ],
   "remplissage-laveglace": [
-    "assets/img/remplissage-laveglace-1.jpg"
+    "assets/img/remplissage-laveglace-1.jpg",
+    "assets/img/remplissage-laveglace-2.jpg"
   ],
   "niveau-liquide-frein": [
     "assets/img/niveau-liquide-frein-1.jpg",
     "assets/img/niveau-liquide-frein-2.jpg"
   ],
   "indicateur-niveau-carburant": [
-    "assets/img/indicateur-niveau-carburant-1.jpg"
+    "assets/img/indicateur-niveau-carburant-1.jpg",
+    "assets/img/indicateur-niveau-carburant-2.jpg"
   ],
   "remplissage-liquide-refroidissement": [
     "assets/img/remplissage-liquide-refroidissement-1.jpg",
@@ -39,7 +41,8 @@
     "assets/img/voyant-defaut-batterie-3.jpg"
   ],
   "emplacement-batterie": [
-    "assets/img/emplacement-batterie-1.jpg"
+    "assets/img/emplacement-batterie-1.jpg",
+    "assets/img/emplacement-batterie-2.jpg"
   ],
   "voyant-temperature-liquide-refroidissement": [
     "assets/img/voyant-temperature-liquide-refroidissement-1.png",
@@ -54,7 +57,8 @@
     "assets/img/temoin-usure-pneu-1.jpg"
   ],
   "commande-regulateur-vitesse": [
-    "assets/img/commande-regulateur-vitesse-1.jpg"
+    "assets/img/commande-regulateur-vitesse-1.jpg",
+    "assets/img/commande-regulateur-vitesse-2.jpg"
   ],
   "commande-avertisseur-sonore": [
     "assets/img/commande-avertisseur-sonore-1.jpg"
