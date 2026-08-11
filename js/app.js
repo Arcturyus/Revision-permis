@@ -69,6 +69,7 @@
   function refreshHome() {
     var c = SRS.counts(ALL_IDS);
     $('stat-total').textContent = c.total;
+    $('stat-new').textContent = c.totalNew;
     $('stat-due').textContent = c.due;
     $('stat-mastered').textContent = c.mastered;
     $('home-progress').style.width = (c.total ? (c.mastered / c.total * 100) : 0) + '%';

@@ -154,6 +154,7 @@
       dueNew: dueNew,
       mastered: mastered,
       seen: seen,
+      totalNew: totalNew,
       total: ids.length
     };
   }

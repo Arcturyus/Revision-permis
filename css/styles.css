@@ -85,8 +85,9 @@ body{
   padding:12px 8px;text-align:center;border:1px solid var(--line-soft);
   box-shadow:0 4px 14px rgba(217,110,136,.06);
 }
-.stat-num{display:block;font-family:'Caveat',cursive;font-weight:700;font-size:2.9rem;line-height:1;color:var(--ink);}
-.stat-lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+.stat-num{display:block;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(2rem,7vw,2.9rem);line-height:1;color:var(--ink);}
+.stat-lbl{font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
+.stat-new .stat-num{color:var(--lavender);}
 .stat-due .stat-num{color:var(--rose-deep);}
 .stat-ok .stat-num{color:var(--sage);}
 
