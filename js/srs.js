@@ -17,6 +17,7 @@
   // une fiche est « maîtrisée » à partir de cette boîte
   var MASTERED_BOX = 4;
   var DEFAULT_NEW_PER_DAY = 10;
+  var DEFAULT_AHEAD_DAYS = 3;
 
   var state = load();
 
@@ -36,8 +37,9 @@
     try {
       var s = JSON.parse(global.localStorage.getItem(SETTINGS_KEY));
       var n = s && s.newPerDay > 0 ? s.newPerDay : DEFAULT_NEW_PER_DAY;
-      return { newPerDay: n };
-    } catch (e) { return { newPerDay: DEFAULT_NEW_PER_DAY }; }
+      var a = s && s.aheadDays > 0 ? s.aheadDays : DEFAULT_AHEAD_DAYS;
+      return { newPerDay: n, aheadDays: a };
+    } catch (e) { return { newPerDay: DEFAULT_NEW_PER_DAY, aheadDays: DEFAULT_AHEAD_DAYS }; }
   }
   function saveSettings(s) {
     try { global.localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); } catch (e) {}
@@ -123,6 +125,16 @@
   function isNew(id) {
     return !state[id];
   }
+  // vrai si la fiche (déjà vue) deviendra due dans les `days` prochains jours
+  // (inclut ce qui est déjà en retard/dû aujourd'hui, pour prendre de l'avance)
+  function isDueWithin(id, days) {
+    var s = state[id];
+    if (!s) return false;
+    return s.due <= Date.now() + days * DAY;
+  }
+  function aheadCount(ids, days) {
+    return ids.filter(function (id) { return isDueWithin(id, days); }).length;
+  }
 
   function counts(ids) {
     var dueReview = 0, mastered = 0, seen = 0, totalNew = 0;
@@ -176,7 +188,8 @@
 
   global.SRS = {
     get: get, grade: grade, isDue: isDue, isMastered: isMastered,
-    isNew: isNew, counts: counts, reset: reset, preview: preview,
+    isNew: isNew, isDueWithin: isDueWithin, aheadCount: aheadCount,
+    counts: counts, reset: reset, preview: preview,
     getSettings: getSettings, setSetting: setSetting,
     newAllowanceToday: newAllowanceToday,
     getEdits: getEdits, setEdit: setEdit, resetEdits: resetEdits

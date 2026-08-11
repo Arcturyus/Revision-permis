@@ -47,6 +47,21 @@
         <span class="mode-title">Toutes les fiches</span>
         <span class="mode-sub">Les 100 dans l'ordre mélangé</span>
       </button>
+      <div class="mode-btn mode-advance">
+        <div class="mode-advance-top">
+          <span class="mode-title">Prendre de l'avance</span>
+          <span class="mode-sub" id="ahead-sub">Réviser ce qui arrive bientôt</span>
+        </div>
+        <div class="mode-advance-row">
+          <div class="stepper">
+            <button class="step-btn" id="ahead-minus" type="button" aria-label="Diminuer">−</button>
+            <span class="step-val" id="ahead-days-val">3</span>
+            <button class="step-btn" id="ahead-plus" type="button" aria-label="Augmenter">+</button>
+          </div>
+          <span class="advance-unit">jours</span>
+          <button class="advance-start-btn" id="ahead-start" type="button" data-mode="ahead">Réviser</button>
+        </div>
+      </div>
       <div class="theme-row">
         <button class="mode-btn mode-small" data-mode="theme" data-theme="verification"><span class="dot dot-verif"></span>Vérifications</button>
         <button class="mode-btn mode-small" data-mode="theme" data-theme="securite_routiere"><span class="dot dot-secu"></span>Sécurité routière</button>

@@ -80,6 +80,17 @@
       if (c.dueReview > 0) parts.push(c.dueReview + ' à revoir');
       $('today-sub').textContent = parts.join(' + ');
     }
+    refreshAhead();
+  }
+
+  function refreshAhead() {
+    var days = SRS.getSettings().aheadDays;
+    $('ahead-days-val').textContent = days;
+    var count = SRS.aheadCount(ALL_IDS, days);
+    $('ahead-sub').textContent = count === 0
+      ? 'Rien à revoir avant ' + days + ' j'
+      : count + ' fiche' + (count > 1 ? 's' : '') + ' d\'ici ' + days + ' j';
+    $('ahead-start').disabled = count === 0;
   }
 
   function fichesForTheme(theme) {
@@ -97,6 +108,10 @@
       var dueNew = ALL_IDS.filter(SRS.isNew).slice(0, allowance);
       ids = dueReview.concat(dueNew);
       if (ids.length === 0) ids = ALL_IDS.slice(); // rien de dû → révision libre
+    } else if (mode === 'ahead') {
+      var aheadDays = SRS.getSettings().aheadDays;
+      ids = ALL_IDS.filter(function (id) { return SRS.isDueWithin(id, aheadDays); });
+      if (ids.length === 0) return; // rien à réviser en avance
     } else if (mode === 'theme') {
       ids = fichesForTheme(theme);
     } else {
@@ -330,7 +345,7 @@
 
   // ---------- liaisons ----------
   function bind() {
-    document.querySelectorAll('.mode-btn[data-mode]').forEach(function (btn) {
+    document.querySelectorAll('[data-mode]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         startSession(btn.dataset.mode, btn.dataset.theme);
       });
@@ -407,6 +422,16 @@
     $('npd-minus').addEventListener('click', function () { changeNpd(-1); });
     $('npd-plus').addEventListener('click', function () { changeNpd(1); });
     renderNpd();
+
+    // stepper « jours d'avance »
+    function changeAheadDays(delta) {
+      var v = SRS.getSettings().aheadDays + delta;
+      v = Math.max(1, Math.min(14, v));
+      SRS.setSetting('aheadDays', v);
+      refreshAhead();
+    }
+    $('ahead-minus').addEventListener('click', function (e) { e.stopPropagation(); changeAheadDays(-1); });
+    $('ahead-plus').addEventListener('click', function (e) { e.stopPropagation(); changeAheadDays(1); });
   }
 
   function renderNpd() {
