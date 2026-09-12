@@ -166,6 +166,7 @@
     $('iv-again').textContent = fmtInterval(pv.again);
     $('iv-hard').textContent = fmtInterval(pv.hard);
     $('iv-good').textContent = fmtInterval(pv.good);
+    $('iv-easy').textContent = fmtInterval(pv.easy);
 
     // affichage : recto seul
     $('card-answers').hidden = true;

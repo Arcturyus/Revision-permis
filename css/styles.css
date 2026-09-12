@@ -237,6 +237,7 @@ body{
 .grade-again{background:var(--red);}
 .grade-hard{background:var(--coral);}
 .grade-good{background:var(--sage);}
+.grade-easy{background:#5b9b71;}
 
 /* ---------- édition du texte ---------- */
 .edit-toggle-btn{

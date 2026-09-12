@@ -80,6 +80,7 @@
   function nextBox(box, g) {
     if (g === 'again') return 1;
     if (g === 'hard') return Math.max(1, box); // reste dans sa boîte (au moins 1)
+    if (g === 'easy') return Math.min(box + 3, MAX_BOX);
     return Math.min(box + 1, MAX_BOX);         // good
   }
 
@@ -90,11 +91,12 @@
     return {
       again: INTERVALS[nextBox(box, 'again')],
       hard:  INTERVALS[nextBox(box, 'hard')],
-      good:  INTERVALS[nextBox(box, 'good')]
+      good:  INTERVALS[nextBox(box, 'good')],
+      easy:  INTERVALS[nextBox(box, 'easy')]
     };
   }
 
-  // applique une note : 'again' | 'hard' | 'good'
+  // applique une note : 'again' | 'hard' | 'good' | 'easy'
   function grade(id, g) {
     var firstTime = !state[id];
     var s = get(id);
